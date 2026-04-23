@@ -1,0 +1,319 @@
+{
+  "generado_en": "2026-04-22T00:53:32.094470",
+  "ruta_raw": "C:\\Users\\andre\\INGENIERIA_SOFTWARE\\S6\\COMPUTATIONAL TOOLS FOR ANALITIC OF DATA\\proyectoMinTic\\proyecto_mintic\\data\\raw",
+  "resumen": {
+    "total_fuentes": 4,
+    "ok": 1,
+    "advertencia": 1,
+    "parcial": 0,
+    "pendiente": 2,
+    "error": 0,
+    "listo_para_f3": true
+  },
+  "fuentes": [
+    {
+      "fuente": "SENA",
+      "estado": "ADVERTENCIA",
+      "archivos": [
+        {
+          "nombre": "sena_inscritos.csv",
+          "tamanio": "48.5 KB",
+          "bytes": 49702,
+          "modificado": "2026-04-21 17:19",
+          "md5": "d446e81caf160e208badd10fac7f7aa4"
+        }
+      ],
+      "alertas": [
+        "Columnas faltantes: ['anio', 'mes', 'departamento', 'municipio', 'sector_economico', 'ocupacion', 'inscritos', 'vacantes']"
+      ],
+      "registros": 566,
+      "columnas": [
+        "id",
+        "nombre_de_la_ocupaci_n",
+        "nivel",
+        "n_mero_de_inscritos_2019",
+        "n_mero_de_inscritos_2020",
+        "participacion_2019",
+        "participacion_2020",
+        "variacion_2020_vs_2019",
+        "contribuci_n_a_la_variaci"
+      ],
+      "nulos": {
+        "id": 0,
+        "nombre_de_la_ocupaci_n": 0,
+        "nivel": 0,
+        "n_mero_de_inscritos_2019": 21,
+        "n_mero_de_inscritos_2020": 0,
+        "participacion_2019": 30,
+        "participacion_2020": 17,
+        "variacion_2020_vs_2019": 8,
+        "contribuci_n_a_la_variaci": 30
+      },
+      "duplicados": 0
+    },
+    {
+      "fuente": "DANE_boletines",
+      "estado": "OK",
+      "archivos": [
+        {
+          "nombre": "bol-GEIH-abr2024.pdf",
+          "tamanio": "1.1 MB",
+          "bytes": 1150514,
+          "modificado": "2026-04-21 17:25",
+          "md5": "a2bdc8deab279815a1d6c6629bad5d36"
+        },
+        {
+          "nombre": "bol-GEIH-abr2025.pdf",
+          "tamanio": "348.6 KB",
+          "bytes": 356921,
+          "modificado": "2026-04-21 17:25",
+          "md5": "9450ed44f2fb4ce75a505539827fabf8"
+        },
+        {
+          "nombre": "bol-GEIH-ago2023.pdf",
+          "tamanio": "458.3 KB",
+          "bytes": 469284,
+          "modificado": "2026-04-21 17:24",
+          "md5": "291d33022f7e4001cf2bdcbe8be3d61b"
+        },
+        {
+          "nombre": "bol-GEIH-ago2024.pdf",
+          "tamanio": "543.6 KB",
+          "bytes": 556617,
+          "modificado": "2026-04-21 17:25",
+          "md5": "42721e687c4f2687a6a1142682251d9b"
+        },
+        {
+          "nombre": "bol-GEIH-ago2025.pdf",
+          "tamanio": "363.8 KB",
+          "bytes": 372573,
+          "modificado": "2026-04-21 17:25",
+          "md5": "be278323ba95492e0653abf3e560dcc5"
+        },
+        {
+          "nombre": "bol-GEIH-dic2023.pdf",
+          "tamanio": "1.2 MB",
+          "bytes": 1297923,
+          "modificado": "2026-04-21 17:24",
+          "md5": "7b625cbb9671f5bfcc2c9b09de7cdfc1"
+        },
+        {
+          "nombre": "bol-GEIH-dic2024.pdf",
+          "tamanio": "597.1 KB",
+          "bytes": 611477,
+          "modificado": "2026-04-21 17:25",
+          "md5": "14582250763a10d8e678b8e98d845cb7"
+        },
+        {
+          "nombre": "bol-GEIH-dic2025.pdf",
+          "tamanio": "391.0 KB",
+          "bytes": 400355,
+          "modificado": "2026-04-21 17:26",
+          "md5": "760ecdb91d30042c37ffd529d707d1b6"
+        },
+        {
+          "nombre": "bol-GEIH-ene2024.pdf",
+          "tamanio": "1.2 MB",
+          "bytes": 1262389,
+          "modificado": "2026-04-21 17:24",
+          "md5": "8935f9ff419142f9e8e0b99c858a88e1"
+        },
+        {
+          "nombre": "bol-GEIH-ene2025.pdf",
+          "tamanio": "534.1 KB",
+          "bytes": 546960,
+          "modificado": "2026-04-21 17:25",
+          "md5": "2f45c992e62408ad92a08d079637e19d"
+        },
+        {
+          "nombre": "bol-GEIH-ene2026.pdf",
+          "tamanio": "359.2 KB",
+          "bytes": 367800,
+          "modificado": "2026-04-21 17:26",
+          "md5": "63288efa4c2a043f3ebdcc2d62394cdd"
+        },
+        {
+          "nombre": "bol-GEIH-feb2024.pdf",
+          "tamanio": "1.2 MB",
+          "bytes": 1225481,
+          "modificado": "2026-04-21 17:25",
+          "md5": "910210c844605f381113afbd03e887d3"
+        },
+        {
+          "nombre": "bol-GEIH-feb2025.pdf",
+          "tamanio": "398.2 KB",
+          "bytes": 407760,
+          "modificado": "2026-04-21 17:25",
+          "md5": "5513e82de3074c7de611edf555e647a2"
+        },
+        {
+          "nombre": "bol-GEIH-feb2026.pdf",
+          "tamanio": "359.3 KB",
+          "bytes": 367971,
+          "modificado": "2026-04-21 17:26",
+          "md5": "5a2f72c7fdadae4384bb42a844ad314a"
+        },
+        {
+          "nombre": "bol-GEIH-jul2023.pdf",
+          "tamanio": "457.9 KB",
+          "bytes": 468872,
+          "modificado": "2026-04-21 17:24",
+          "md5": "4e82817ec2cde51f3e4d06b68c3906bf"
+        },
+        {
+          "nombre": "bol-GEIH-jul2024.pdf",
+          "tamanio": "1.0 MB",
+          "bytes": 1092479,
+          "modificado": "2026-04-21 17:25",
+          "md5": "eb9f9d3dcc92dc41890581347ed05913"
+        },
+        {
+          "nombre": "bol-GEIH-jul2025.pdf",
+          "tamanio": "360.5 KB",
+          "bytes": 369197,
+          "modificado": "2026-04-21 17:25",
+          "md5": "885acbb5f0722425c14b5d882a9d4eb7"
+        },
+        {
+          "nombre": "bol-GEIH-jun2023.pdf",
+          "tamanio": "678.9 KB",
+          "bytes": 695231,
+          "modificado": "2026-04-21 17:24",
+          "md5": "65fdc6c6dc7a09de20747350889e8657"
+        },
+        {
+          "nombre": "bol-GEIH-jun2024.pdf",
+          "tamanio": "1.0 MB",
+          "bytes": 1089609,
+          "modificado": "2026-04-21 17:25",
+          "md5": "1c7fff98d0ef6a79f1cc2a4bad6168c5"
+        },
+        {
+          "nombre": "bol-GEIH-jun2025.pdf",
+          "tamanio": "359.5 KB",
+          "bytes": 368172,
+          "modificado": "2026-04-21 17:25",
+          "md5": "241b0a326c5de311bc33cc70b17f2da4"
+        },
+        {
+          "nombre": "bol-GEIH-mar2024.pdf",
+          "tamanio": "1.2 MB",
+          "bytes": 1260321,
+          "modificado": "2026-04-21 17:25",
+          "md5": "b4e94f9e9004447ec10a3995e316554a"
+        },
+        {
+          "nombre": "bol-GEIH-mar2025.pdf",
+          "tamanio": "393.6 KB",
+          "bytes": 403095,
+          "modificado": "2026-04-21 17:25",
+          "md5": "597b447efb55294ba7b0c9ad85e9e18e"
+        },
+        {
+          "nombre": "bol-GEIH-may2023.pdf",
+          "tamanio": "678.6 KB",
+          "bytes": 694844,
+          "modificado": "2026-04-21 17:24",
+          "md5": "e1c7c8c74084a1a7c680bc22a0f7561f"
+        },
+        {
+          "nombre": "bol-GEIH-may2024.pdf",
+          "tamanio": "612.1 KB",
+          "bytes": 626774,
+          "modificado": "2026-04-21 17:25",
+          "md5": "7a78606646a881558cf4c8223c38a037"
+        },
+        {
+          "nombre": "bol-GEIH-may2025.pdf",
+          "tamanio": "431.8 KB",
+          "bytes": 442142,
+          "modificado": "2026-04-21 17:25",
+          "md5": "f566450d2deeaf01dcccdb71294ddaeb"
+        },
+        {
+          "nombre": "bol-GEIH-nov2023.pdf",
+          "tamanio": "457.8 KB",
+          "bytes": 468761,
+          "modificado": "2026-04-21 17:24",
+          "md5": "7733f8912e4d9e7fe49819fb750ecd49"
+        },
+        {
+          "nombre": "bol-GEIH-nov2024.pdf",
+          "tamanio": "460.9 KB",
+          "bytes": 471987,
+          "modificado": "2026-04-21 17:25",
+          "md5": "1591fbb2a4056d7cf489869b950f432a"
+        },
+        {
+          "nombre": "bol-GEIH-nov2025.pdf",
+          "tamanio": "364.3 KB",
+          "bytes": 373050,
+          "modificado": "2026-04-21 17:25",
+          "md5": "97192b53578cd560c2b7530f93c654df"
+        },
+        {
+          "nombre": "bol-GEIH-oct2023.pdf",
+          "tamanio": "458.0 KB",
+          "bytes": 468967,
+          "modificado": "2026-04-21 17:24",
+          "md5": "9f912b673219d5de8424c648a74d8beb"
+        },
+        {
+          "nombre": "bol-GEIH-oct2024.pdf",
+          "tamanio": "684.3 KB",
+          "bytes": 700686,
+          "modificado": "2026-04-21 17:25",
+          "md5": "804090dd9bedcae43b8e67f7ba2daac0"
+        },
+        {
+          "nombre": "bol-GEIH-oct2025.pdf",
+          "tamanio": "359.2 KB",
+          "bytes": 367804,
+          "modificado": "2026-04-21 17:25",
+          "md5": "18e2642843092dc7f04bc2dc8dff0912"
+        },
+        {
+          "nombre": "bol-GEIH-sep2023.pdf",
+          "tamanio": "458.0 KB",
+          "bytes": 469012,
+          "modificado": "2026-04-21 17:24",
+          "md5": "1059ba742b15b6cb99e1cd8ad22e4e3c"
+        },
+        {
+          "nombre": "bol-GEIH-sep2024.pdf",
+          "tamanio": "658.7 KB",
+          "bytes": 674500,
+          "modificado": "2026-04-21 17:25",
+          "md5": "a00654f007cea02bd0ad852b5d1eb9b7"
+        },
+        {
+          "nombre": "bol-GEIH-sep2025.pdf",
+          "tamanio": "364.4 KB",
+          "bytes": 373190,
+          "modificado": "2026-04-21 17:25",
+          "md5": "9701c91e43e2eefb41288776954e93b1"
+        }
+      ],
+      "alertas": [],
+      "total_archivos": 34,
+      "tamanio_total": "20.3 MB"
+    },
+    {
+      "fuente": "GEIH",
+      "estado": "PENDIENTE",
+      "archivos": [],
+      "alertas": [
+        "Sin archivos en geih/2024/ — ejecutar extraccion_geih.py",
+        "Sin archivos en geih/2025/ — ejecutar extraccion_geih.py"
+      ]
+    },
+    {
+      "fuente": "FILCO",
+      "estado": "PENDIENTE",
+      "archivos": [],
+      "alertas": [
+        "Sin archivos en filco/ — ejecutar extraccion_filco.py"
+      ]
+    }
+  ]
+}

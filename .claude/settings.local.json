@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import pdfplumber; print\\('pdfplumber OK', pdfplumber.__version__\\)\")",
+      "Bash(pip install *)",
+      "Bash(python src/2_dataprocess/parsear_boletines.py)",
+      "Bash(python -X utf8 src/2_dataprocess/parsear_boletines.py)",
+      "Bash(python -X utf8 -c ' *)",
+      "Bash(python -X utf8 src/4_dataproduct/modelo_prophet.py)",
+      "Bash(python -X utf8 -c \"import cmdstanpy; cmdstanpy.install_cmdstan\\(\\)\")",
+      "Bash(python -X utf8 src/2_dataprocess/validar_datos.py)",
+      "Bash(python -X utf8 -c \"import json; d=json.load\\(open\\('data/raw/metadata.json', encoding='utf-8'\\)\\); print\\(json.dumps\\(d['fuentes'][0]['alertas'], indent=2, ensure_ascii=False\\)\\)\")",
+      "Bash(python -X utf8 -c \"import pandas as pd; df=pd.read_csv\\('data/raw/sena/sena_inscritos.csv'\\); print\\(list\\(df.columns\\)\\)\")",
+      "Bash(docker info *)",
+      "Bash(python -c \"from fpdf import FPDF; print\\('fpdf2 OK'\\)\")",
+      "Bash(python -c \"import pandas as pd; df=pd.read_csv\\('c:/Users/andre/INGENIERIA_SOFTWARE/S6/COMPUTATIONAL TOOLS FOR ANALITIC OF DATA/proyectoMinTic/proyecto_mintic/data/processed/serie_temporal_td.csv'\\); print\\(df.to_string\\(\\)\\)\")",
+      "Bash(python -c \"import pandas as pd; df=pd.read_csv\\('c:/Users/andre/INGENIERIA_SOFTWARE/S6/COMPUTATIONAL TOOLS FOR ANALITIC OF DATA/proyectoMinTic/proyecto_mintic/data/processed/prediccion_td.csv'\\); print\\(df.to_string\\(\\)\\)\")",
+      "Bash(python -X utf8 generar_informe.py)",
+      "Bash(python -c ' *)",
+      "Bash(docker-compose up *)",
+      "Bash(docker exec *)"
+    ]
+  }
+}
