@@ -1,48 +1,24 @@
+version: '3.8'
 
 services:
-
-  postgres:
+  postgres_mia:
     image: postgres:15
-    container_name: mintic_postgres
+    container_name: alexander_postgres
     restart: always
     environment:
       POSTGRES_DB: mintic_db
       POSTGRES_USER: mintic_user
       POSTGRES_PASSWORD: mintic2026
     ports:
-      - "5432:5432"
+      - "5433:5432" # USAMOS EL PUERTO 5433 PARA QUE NO CHOQUE CON TU COMPAÑERO
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - alex_postgres_data:/var/lib/postgresql/data
+      # Esto cargará tus tablas automáticamente al iniciar
       - ./src/3_datatransform/ddl:/docker-entrypoint-initdb.d
-    networks:
-      - mintic_net
-
-  jupyter:
-    image: jupyter/pyspark-notebook:latest
-    container_name: mintic_jupyter
-    restart: always
-    ports:
-      - "8888:8888"
-    environment:
-      JUPYTER_ENABLE_LAB: "yes"
-      JUPYTER_TOKEN: "mintic2026"
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: "5432"
-      POSTGRES_DB: mintic_db
-      POSTGRES_USER: mintic_user
-      POSTGRES_PASSWORD: mintic2026
-    volumes:
-      - ./src:/home/jovyan/src
-      - ./data:/home/jovyan/data
-      - ./.env:/home/jovyan/.env
-    depends_on:
-      - postgres
-    networks:
-      - mintic_net
-
-volumes:
-  postgres_data:
 
 networks:
-  mintic_net:
+  alex_net:
     driver: bridge
+
+volumes:
+  alex_postgres_data:
