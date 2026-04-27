@@ -40,6 +40,17 @@ services:
     networks:
       - mintic_net
 
+  adminer:
+    image: adminer:latest
+    container_name: mintic_adminer
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    networks:
+      - mintic_net
+
 volumes:
   postgres_data:
 

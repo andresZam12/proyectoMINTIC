@@ -4,12 +4,15 @@ Descarga los archivos de microdatos GEIH 2024 y 2025 desde el portal DANE.
 Selenium es necesario porque el portal renderiza los enlaces de descarga con JS.
 """
 
+import sys
 import os
 import time
 import glob
 import shutil
 from datetime import datetime
 from dotenv import load_dotenv
+
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait

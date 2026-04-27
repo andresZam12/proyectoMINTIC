@@ -5,12 +5,15 @@ filco.mintrabajo.gov.co expone tablas dinámicas con JS → se usa Selenium.
 Salida: data/raw/filco/filco_formalidad.xlsx  (o .csv si no hay Excel)
 """
 
+import sys
 import os
 import time
 import glob
 import shutil
 from datetime import datetime
 from dotenv import load_dotenv
+
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
