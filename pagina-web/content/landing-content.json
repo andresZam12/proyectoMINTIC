@@ -1,0 +1,89 @@
+{
+  "navigation": {
+    "badge": "MinTIC 2026",
+    "projectName": "Mercado Laboral en Colombia",
+    "links": [
+      { "label": "Inicio", "href": "#hero" },
+      { "label": "KPIs", "href": "#kpis" },
+      { "label": "Dashboard", "href": "#dashboard" }
+    ]
+  },
+  "hero": {
+    "eyebrow": "Inteligencia de datos para decisiones publicas",
+    "title": "Analisis de Mercado Laboral con IA",
+    "description": "Landing ejecutiva para visualizar indicadores clave del mercado laboral colombiano, integrando analitica avanzada, seguimiento sectorial y tableros interactivos para la toma de decisiones.",
+    "primaryAction": {
+      "label": "Ver tablero central",
+      "href": "#dashboard"
+    },
+    "secondaryAction": {
+      "label": "Explorar indicadores",
+      "href": "#kpis"
+    },
+    "summary": {
+      "title": "Panel estrategico",
+      "value": "3 indicadores prioritarios",
+      "period": "Actualizable",
+      "highlights": [
+        {
+          "label": "Cobertura",
+          "value": "Nacional",
+          "note": "Pensado para presentar resultados agregados, regionales o sectoriales."
+        },
+        {
+          "label": "Integracion",
+          "value": "Power BI",
+          "note": "Espacio central preparado para insertar el reporte embebido del proyecto."
+        },
+        {
+          "label": "Arquitectura",
+          "value": "Escalable",
+          "note": "Textos y colores desacoplados para facilitar ajustes sin tocar el componente."
+        }
+      ]
+    }
+  },
+  "kpis": {
+    "sectionEyebrow": "Indicadores destacados",
+    "sectionTitle": "KPIs de seguimiento del mercado laboral",
+    "sectionDescription": "Estos bloques pueden conectarse luego a datos reales del proyecto. Por ahora quedan listos para presentar variables clave con una apariencia institucional y moderna.",
+    "items": [
+      {
+        "label": "Desempleo",
+        "value": "10.2%",
+        "trend": "Variacion controlada",
+        "description": "Espacio ideal para mostrar la tasa de desempleo nacional, regional o por poblacion objetivo segun el corte analitico del tablero."
+      },
+      {
+        "label": "Ocupacion",
+        "value": "57.8%",
+        "trend": "Lectura positiva",
+        "description": "Tarjeta diseñada para resaltar niveles de ocupacion, evolucion interanual y comparativos por territorios o sectores economicos."
+      },
+      {
+        "label": "Informalidad",
+        "value": "42.4%",
+        "trend": "Seguimiento prioritario",
+        "description": "Pensada para monitorear la informalidad laboral y apoyar decisiones sobre inclusion, productividad y formalizacion del empleo."
+      }
+    ]
+  },
+  "dashboard": {
+    "eyebrow": "Visualizacion central",
+    "title": "Contenedor principal para el dashboard de Power BI",
+    "description": "La zona inferior esta preparada para alojar un reporte embebido con dimensiones amplias, enfoque ejecutivo y buena lectura tanto en escritorio como en dispositivos moviles.",
+    "embedTitle": "Modulo de integracion Power BI",
+    "embedHelp": "Sustituye el placeholder por el iframe oficial del reporte o pega la URL embed en el espacio indicado dentro del codigo.",
+    "placeholderTitle": "Aqui se insertara el tablero interactivo",
+    "placeholderDescription": "El contenedor ya tiene altura, bordes, fondo y comportamiento responsivo. Solo debes reemplazar este contenido por el iframe generado desde Power BI Service.",
+    "codeHint": "<iframe title=\"Dashboard Power BI\" src=\"AQUI_VA_EL_EMBED_URL_DE_POWER_BI\" className=\"h-full min-h-[420px] w-full\" allowFullScreen />"
+  },
+  "footer": {
+    "title": "Proyecto academico y analitico para MinTIC 2026",
+    "description": "Base visual lista para presentar resultados, conectar indicadores reales y publicar un dashboard profesional del mercado laboral en Colombia.",
+    "action": {
+      "label": "Ir al dashboard",
+      "href": "#dashboard"
+    }
+  }
+}

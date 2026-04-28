@@ -1,0 +1,22 @@
+export const themeColors = {
+  pageBackground: "#f4f7fb",
+  heroGradient:
+    "linear-gradient(135deg, rgba(8,34,73,0.98) 0%, rgba(13,74,122,0.96) 48%, rgba(36,126,168,0.92) 100%)",
+  surfaceCard: "rgba(255,255,255,0.88)",
+  surfaceOverlay: "rgba(255,255,255,0.72)",
+  surfaceSubtle: "#edf3f9",
+  accentSoft: "rgba(35, 121, 181, 0.24)",
+  badgeBackground: "rgba(89, 191, 173, 0.14)",
+  badgeText: "#0c6d62",
+  primaryButton: "#0f4c81",
+  primaryButtonText: "#f8fbff",
+  textPrimary: "#10233d",
+  textSecondary: "#49627d",
+  textMuted: "#69839d",
+  borderSoft: "rgba(130, 161, 191, 0.24)",
+  borderStrong: "rgba(109, 145, 178, 0.34)",
+  shadow: "rgba(16, 35, 61, 0.14)",
+  embedBackgroundStart: "#f8fbff",
+  embedBackgroundEnd: "#ddebf6",
+  success: "#157a6e",
+} as const;
