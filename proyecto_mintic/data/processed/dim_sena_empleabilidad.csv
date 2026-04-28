@@ -1,0 +1,567 @@
+departamento,nivel,oficio,inscritos,vacantes_estimadas
+NACIONAL,Calificados,Acompañantes Domiciliarios,144,14.4
+NACIONAL,Calificados,Agentes de Viajes,418,41.800000000000004
+NACIONAL,Calificados,Ajustadores de Máquinas y Herramientas,187,18.7
+NACIONAL,Calificados,"Analistas de Calidad, Textiles",94,9.4
+NACIONAL,Calificados,Aparejadores,17,1.7000000000000002
+NACIONAL,Calificados,Asistentes en Saneamiento Ambiental,68,6.800000000000001
+NACIONAL,Calificados,"Astrólogos, Adivinadores y Relacionados",0,0.0
+NACIONAL,Calificados,Auxiliares Administrativos,7803,780.3000000000001
+NACIONAL,Calificados,"Auxiliares Contables, de Tesorería y Financieros",2992,299.2
+NACIONAL,Calificados,Auxiliares administrativos en Salud,512,51.2
+NACIONAL,Calificados,Auxiliares de Almacén,4365,436.5
+NACIONAL,Calificados,Auxiliares de Archivo y Registro,1876,187.60000000000002
+NACIONAL,Calificados,Auxiliares de Biblioteca,23,2.3000000000000003
+NACIONAL,Calificados,Auxiliares de Cartera y Cobranzas,178,17.8
+NACIONAL,Calificados,Auxiliares de Compras e Inventarios,290,29.0
+NACIONAL,Calificados,Auxiliares de Correo y Servicio Postal,5,0.5
+NACIONAL,Calificados,Auxiliares de Droguería y Farmacia,537,53.7
+NACIONAL,Calificados,Auxiliares de Estadística y Encuestadores,86,8.6
+NACIONAL,Calificados,Auxiliares de Información y Servicio al Cliente,31362,3136.2000000000003
+NACIONAL,Calificados,Auxiliares de Laboratorio,156,15.600000000000001
+NACIONAL,Calificados,Auxiliares de Laboratorio Clínico,44,4.4
+NACIONAL,Calificados,Auxiliares de Nómina y Prestaciones,153,15.3
+NACIONAL,Calificados,Auxiliares de Producción Gráfica,520,52.0
+NACIONAL,Calificados,Auxiliares de Producción de Audio y Sonido,80,8.0
+NACIONAL,Calificados,Auxiliares de Producción de Eventos y Espectáculos,103,10.3
+NACIONAL,Calificados,Auxiliares de Promoción Artística,42,4.2
+NACIONAL,Calificados,Auxiliares de Publicación y Afines,9,0.9
+NACIONAL,Calificados,Auxiliares de Salud oral,271,27.1
+NACIONAL,Calificados,Auxiliares de Seguridad en el Trabajo,343,34.300000000000004
+NACIONAL,Calificados,Auxiliares de Servicios Funerarios,10,1.0
+NACIONAL,Calificados,Auxiliares de Talento Humano,1566,156.60000000000002
+NACIONAL,Calificados,Auxiliares de Tribunales,8,0.8
+NACIONAL,Calificados,Auxiliares de aduana,259,25.900000000000002
+NACIONAL,Calificados,Auxiliares de educación para la primera infancia,1190,119.0
+NACIONAL,Calificados,Auxiliares de policía,241,24.1
+NACIONAL,Calificados,Auxiliares de servicios financieros,219,21.900000000000002
+NACIONAL,Calificados,Auxiliares del Cuidado de Niños,241,24.1
+NACIONAL,Calificados,Auxiliares en Automatización e Instrumentación Industrial,266,26.6
+NACIONAL,Calificados,Auxiliares en Enfermería,2151,215.10000000000002
+NACIONAL,Calificados,Auxiliares en Salud pública,189,18.900000000000002
+NACIONAL,Calificados,Auxiliares en mecánica dental,11,1.1
+NACIONAL,Calificados,"Auxiliares técnicos de instalación, mantenimiento y reparación de sistemas de Telecomunicaciones",224,22.400000000000002
+NACIONAL,Calificados,Auxiliares técnicos en electrónica,812,81.2
+NACIONAL,Calificados,Avaluadores,1,0.1
+NACIONAL,Calificados,Ayudantes Electricistas,802,80.2
+NACIONAL,Calificados,Ayudantes de Mecánica,601,60.1
+NACIONAL,Calificados,Baristas,20,2.0
+NACIONAL,Calificados,Bartender,29,2.9000000000000004
+NACIONAL,Calificados,Bomberos,25,2.5
+NACIONAL,Calificados,Buzos,2,0.2
+NACIONAL,Calificados,Cajeros de Comercio,2746,274.6
+NACIONAL,Calificados,Cajeros de Servicios Financieros,536,53.6
+NACIONAL,Calificados,Carpinteros,227,22.700000000000003
+NACIONAL,Calificados,Carteros y Mensajeros,372,37.2
+NACIONAL,Calificados,Cerrajeros y afines,4,0.4
+NACIONAL,Calificados,"Chapistas, Caldereros y Paileros",23,2.3000000000000003
+NACIONAL,Calificados,Cocineros,524,52.400000000000006
+NACIONAL,Calificados,"Conductores de Bus, Operadores de Metro y Otros Medios de Transporte Colectivo",543,54.300000000000004
+NACIONAL,Calificados,Conductores de Transporte de Alimentos,130,13.0
+NACIONAL,Calificados,Conductores de Vehículos Livianos,1113,111.30000000000001
+NACIONAL,Calificados,Conductores de Vehículos Pesados,717,71.7
+NACIONAL,Calificados,Cortadores de Carne para Comercio Mayorista y al Detal,272,27.200000000000003
+NACIONAL,Calificados,"Cortadores de Tela, Cuero y Piel",925,92.5
+NACIONAL,Calificados,Cosmetólogos Esteticistas,128,12.8
+NACIONAL,Calificados,Digitadores,974,97.4
+NACIONAL,Calificados,Digitalizadores,15,1.5
+NACIONAL,Calificados,Ebanistas,69,6.9
+NACIONAL,Calificados,Ejecutantes Musicales,25,2.5
+NACIONAL,Calificados,Electricistas Industriales,242,24.200000000000003
+NACIONAL,Calificados,Electricistas Residenciales,408,40.800000000000004
+NACIONAL,Calificados,Electricistas de Vehículos Automotores,91,9.1
+NACIONAL,Calificados,Empleados de Recepción Hotelera,108,10.8
+NACIONAL,Calificados,"Empleados de Ventas y Servicios de Líneas Aéreas, Marítimas y Terrestres",193,19.3
+NACIONAL,Calificados,Enchapadores,21,2.1
+NACIONAL,Calificados,Ensambladores de Productos Plásticos e Inspectores,39,3.9000000000000004
+NACIONAL,Calificados,Ensambladores de productos Electrónicos,36,3.6
+NACIONAL,Calificados,Ensambladores e Inspectores de Aparatos y Equipo Eléctrico,52,5.2
+NACIONAL,Calificados,Ensambladores e Inspectores de Embarcaciones,0,0.0
+NACIONAL,Calificados,Ensambladores e Inspectores de Ensamble de Aeronaves,2,0.2
+NACIONAL,Calificados,Ensambladores e Inspectores de Muebles y Accesorios,22,2.2
+NACIONAL,Calificados,Ensambladores e Inspectores de Productos Mecánicos,50,5.0
+NACIONAL,Calificados,Ensambladores e Inspectores de Vehículos Automotores,30,3.0
+NACIONAL,Calificados,"Ensambladores, Fabricantes e Inspectores de Transformadores y Motores Eléctricos Industriales",44,4.4
+NACIONAL,Calificados,Funcionarios de Regulación,42,4.2
+NACIONAL,Calificados,Guardafrenos y Otros Operadores Ferroviarios,3,0.30000000000000004
+NACIONAL,Calificados,Guardianes de Prisión,12,1.2000000000000002
+NACIONAL,Calificados,Informadores Turísticos,123,12.3
+NACIONAL,Calificados,Inspectores de Construcción de Oleoductos y Gasoductos,5,0.5
+NACIONAL,Calificados,"Inspectores de Control de Calidad, Fabricación de Productos de Tela, Piel y Cuero",236,23.6
+NACIONAL,Calificados,"Inspectores de Control de Calidad, Procesamiento de la Madera",2,0.2
+NACIONAL,Calificados,"Inspectores de Control de Calidad, Tratamiento de Metales y Minerales",1,0.1
+NACIONAL,Calificados,Inspectores de Policía,2,0.2
+NACIONAL,Calificados,Instaladores Residenciales y Comerciales,806,80.60000000000001
+NACIONAL,Calificados,Instaladores de Material Aislante,30,3.0
+NACIONAL,Calificados,Instaladores de Pisos,2,0.2
+NACIONAL,Calificados,Instaladores de Redes de Energía Eléctrica,178,17.8
+NACIONAL,Calificados,Instaladores de Redes y Equipos a Gas,162,16.2
+NACIONAL,Calificados,Instaladores de Tuberías para Sistemas de Extinción de Incendios,15,1.5
+NACIONAL,Calificados,Joyeros y Relojeros,64,6.4
+NACIONAL,Calificados,Latoneros,56,5.6000000000000005
+NACIONAL,Calificados,Manicuristas y Pedicuristas,163,16.3
+NACIONAL,Calificados,Maquilladores,17,1.7000000000000002
+NACIONAL,Calificados,Maquinistas de Transporte Ferroviario,1,0.1
+NACIONAL,Calificados,Marineros de Cubierta,27,2.7
+NACIONAL,Calificados,Marineros de Sala de Máquinas,4,0.4
+NACIONAL,Calificados,Mecánicos Electricistas,168,16.8
+NACIONAL,Calificados,Mecánicos Industriales,813,81.30000000000001
+NACIONAL,Calificados,Mecánicos de Aviación,24,2.4000000000000004
+NACIONAL,Calificados,Mecánicos de Equipo Pesado,81,8.1
+NACIONAL,Calificados,"Mecánicos de Maquinaria Textil, confección, cuero, calzado y marroquinería",78,7.800000000000001
+NACIONAL,Calificados,Mecánicos de Motos,562,56.2
+NACIONAL,Calificados,Mecánicos de Otros Pequeñas Máquinas y Motores,10,1.0
+NACIONAL,Calificados,Mecánicos de Vehículos Automotores,812,81.2
+NACIONAL,Calificados,Mercaderistas e Impulsadores,18947,1894.7
+NACIONAL,Calificados,Meseros y Capitán de Meseros,1035,103.5
+NACIONAL,Calificados,Mineros de Producción Bajo Tierra,141,14.100000000000001
+NACIONAL,Calificados,Modelistas y Matriceros,3,0.30000000000000004
+NACIONAL,Calificados,Modelos,4,0.4
+NACIONAL,Calificados,Montadores de Estructuras Metálicas,96,9.600000000000001
+NACIONAL,Calificados,Oficiales de Construcción,978,97.80000000000001
+NACIONAL,Calificados,Operadores Telefónicos,25,2.5
+NACIONAL,Calificados,Operadores de Control de Procesos y Máquinas para la Elaboración de Alimentos y Bebidas,757,75.7
+NACIONAL,Calificados,Operadores de Equipo Minero,30,3.0
+NACIONAL,Calificados,Operadores de Equipo Pesado (excepto grúa),434,43.400000000000006
+NACIONAL,Calificados,Operadores de Equipo para Limpieza de Vías y Alcantarillado,18,1.8
+NACIONAL,Calificados,"Operadores de Fabricación, Moldeo y Acabado del Vidrio",18,1.8
+NACIONAL,Calificados,Operadores de Grúa,20,2.0
+NACIONAL,Calificados,Operadores de Juegos Mecánicos y de Salón,2,0.2
+NACIONAL,Calificados,Operadores de Maquinaria Agrícola,99,9.9
+NACIONAL,Calificados,"Operadores de Moldeo de Arcilla, Piedra y Concreto",192,19.200000000000003
+NACIONAL,Calificados,Operadores de Máquinas Estacionarias y Equipo Auxiliar,324,32.4
+NACIONAL,Calificados,Operadores de Máquinas Herramientas,337,33.7
+NACIONAL,Calificados,Operadores de Máquinas de Planta Química,16,1.6
+NACIONAL,Calificados,Operadores de Máquinas de Soldadura,67,6.7
+NACIONAL,Calificados,"Operadores de Máquinas de Tintura, Acabado Textil y Prendas",65,6.5
+NACIONAL,Calificados,Operadores de Máquinas e Inspectores de la Fabricación de Productos y Componentes Eléctricos,2,0.2
+NACIONAL,Calificados,Operadores de Máquinas para Coser y Bordar,982,98.2
+NACIONAL,Calificados,Operadores de Máquinas para Forja,0,0.0
+NACIONAL,Calificados,Operadores de Máquinas para Procesamiento de Plásticos,45,4.5
+NACIONAL,Calificados,Operadores de Máquinas para Procesamiento de la Madera,11,1.1
+NACIONAL,Calificados,Operadores de Máquinas para el Trabajo de la Madera,41,4.1000000000000005
+NACIONAL,Calificados,Operadores de Máquinas para el Trabajo del Metal,65,6.5
+NACIONAL,Calificados,Operadores de Máquinas para la Fabricación de Otros Productos Metálicos (n.c.a),6,0.6000000000000001
+NACIONAL,Calificados,Operadores de Máquinas para la Fabricación de Papel,1,0.1
+NACIONAL,Calificados,Operadores de Máquinas para la Fabricación de Productos de Papel,24,2.4000000000000004
+NACIONAL,Calificados,Operadores de Máquinas para la Preparación de Fibras Textiles,32,3.2
+NACIONAL,Calificados,Operadores de Máquinas para la Producción de Pulpa,0,0.0
+NACIONAL,Calificados,Operadores de Máquinas para la fabricación de Otros Productos n.c.a.,43,4.3
+NACIONAL,Calificados,Operadores de Máquinas y Trabajadores Relacionados con el Procesamiento del Caucho,32,3.2
+NACIONAL,Calificados,Operadores de Máquinas y Trabajadores Relacionados con la Fabricación de Calzado y Marroquinería,80,8.0
+NACIONAL,Calificados,"Operadores de Máquinas, Tratamiento de Metales y Minerales",24,2.4000000000000004
+NACIONAL,Calificados,Operadores de Pequeñas Embarcaciones,33,3.3000000000000003
+NACIONAL,Calificados,Operadores de Planta de Gas,11,1.1
+NACIONAL,Calificados,Operadores de Plantas de Generación y Distribución de Energía,16,1.6
+NACIONAL,Calificados,Operadores de Plantas de Tratamiento de Aguas y Desechos,197,19.700000000000003
+NACIONAL,Calificados,Operadores de Radio y Despachadores,52,5.2
+NACIONAL,Calificados,Operadores de Telares y Otras Máquinas Tejedoras,26,2.6
+NACIONAL,Calificados,Operadores de audio y sonido,24,2.4000000000000004
+NACIONAL,Calificados,Operadores de producción de hidrocarburos,28,2.8000000000000003
+NACIONAL,Calificados,Operario Acuícola,191,19.1
+NACIONAL,Calificados,Operarios Portuarios,486,48.6
+NACIONAL,Calificados,Operarios de Acabado de Muebles,53,5.300000000000001
+NACIONAL,Calificados,Operarios de Apoyo y Servicios en Minería Bajo Tierra,78,7.800000000000001
+NACIONAL,Calificados,Operarios de Apoyo y Servicios en Perforación de Petróleo y Gas,291,29.1
+NACIONAL,Calificados,Operarios de Cargue y Descargue de Materiales,564,56.400000000000006
+NACIONAL,Calificados,Operarios de Mantenimiento de Instalaciones de Abastecimiento de Agua y Gas,28,2.8000000000000003
+NACIONAL,Calificados,Operarios de Mantenimiento y Servicio de Televisión por Cable,8,0.8
+NACIONAL,Calificados,Operarios de Máquinas para la Elaboración de Productos de Tabaco,4,0.4
+NACIONAL,Calificados,Operarios de Planta de Beneficio Animal,602,60.2
+NACIONAL,Calificados,Operarios de Planta de Procesamiento y Empaque de Pescado y Mariscos,323,32.300000000000004
+NACIONAL,Calificados,Operarios de Rampa de Transporte Aéreo,64,6.4
+NACIONAL,Calificados,Operarios de Recubrimientos Metálicos,4,0.4
+NACIONAL,Calificados,Operarios de Riego Agrícola,55,5.5
+NACIONAL,Calificados,Operarios de exploración geofísica y geológica,10,1.0
+NACIONAL,Calificados,Operarios de servicios a pozos de hidrocarburos,18,1.8
+NACIONAL,Calificados,Operarios torres de perforación de hidrocarburos,9,0.9
+NACIONAL,Calificados,Ornamentistas y Forjadores,36,3.6
+NACIONAL,Calificados,Otros Auxiliares de Servicios a la Salud n.c.a.,21,2.1
+NACIONAL,Calificados,Otros Ensambladores e Inspectores n.c.a.,17,1.7000000000000002
+NACIONAL,Calificados,Otros Reparadores,24,2.4000000000000004
+NACIONAL,Calificados,Panaderos y Pasteleros,793,79.30000000000001
+NACIONAL,Calificados,Peluqueros,639,63.900000000000006
+NACIONAL,Calificados,Perforadores de Pozos de Agua,2,0.2
+NACIONAL,Calificados,Perforadores de Pozos de Gas y Petróleo y Trabajadores Relacionados,21,2.1
+NACIONAL,Calificados,Perforadores y Operarios de Voladura para Minería de Superficie de Canteras y Construcción,55,5.5
+NACIONAL,Calificados,Pescadores,91,9.1
+NACIONAL,Calificados,Pintores en Procesos de Manufactura,51,5.1000000000000005
+NACIONAL,Calificados,Pintores y Empapeladores,57,5.7
+NACIONAL,Calificados,Plomeros,46,4.6000000000000005
+NACIONAL,Calificados,Procesadores Fotográficos y de Películas,20,2.0
+NACIONAL,Calificados,Programadores de Rutas y Tripulaciones,34,3.4000000000000004
+NACIONAL,Calificados,Rayadores de Caucho,0,0.0
+NACIONAL,Calificados,Recepcionistas y Operadores de Conmutador,325,32.5
+NACIONAL,Calificados,Recreadores,337,33.7
+NACIONAL,Calificados,Reparadores de Aparatos Electrodomésticos,15,1.5
+NACIONAL,Calificados,Revocadores,9,0.9
+NACIONAL,Calificados,"Sastres, Modistos, Peleteros y Sombrereros",273,27.3
+NACIONAL,Calificados,Secretarios,1236,123.60000000000001
+NACIONAL,Calificados,Soldadores,464,46.400000000000006
+NACIONAL,Calificados,Soldados,153,15.3
+NACIONAL,Calificados,Tapiceros,18,1.8
+NACIONAL,Calificados,Techadores,1,0.1
+NACIONAL,Calificados,Tipógrafos,2,0.2
+NACIONAL,Calificados,Trabajadores Agrícolas,1190,119.0
+NACIONAL,Calificados,Trabajadores Pecuarios,910,91.0
+NACIONAL,Calificados,Trabajadores de Explotación Forestal,1,0.1
+NACIONAL,Calificados,Trabajadores de Fundición,4,0.4
+NACIONAL,Calificados,Trabajadores de Plantas de Incubación Artificial,18,1.8
+NACIONAL,Calificados,Trabajadores de Silvicultura y Forestación,19,1.9000000000000001
+NACIONAL,Calificados,Trabajadores de Vivero,128,12.8
+NACIONAL,Calificados,Trabajadores del Campo,1359,135.9
+NACIONAL,Calificados,Trabajadores del Cuidado de Animales,128,12.8
+NACIONAL,Calificados,Trabajadores del Tratamiento de Pieles y Cueros,91,9.1
+NACIONAL,Calificados,"Trabajadores en Concreto, Hormigón y Enfoscado",4,0.4
+NACIONAL,Calificados,Transcriptores y Relatores,3,0.30000000000000004
+NACIONAL,Calificados,Tuberos,13,1.3
+NACIONAL,Calificados,Técnico Acuícola en Sistemas de Levante y Engorde,4,0.4
+NACIONAL,Calificados,Técnico Acuícola en Sistemas de Reproducción,8,0.8
+NACIONAL,Calificados,Técnicos Investigadores Criminalísticos y Judiciales,7,0.7000000000000001
+NACIONAL,Calificados,Técnicos de Aire Acondicionado y Refrigeración,116,11.600000000000001
+NACIONAL,Calificados,Técnicos en Asistencia y Soporte de Tecnologías de la Información,1707,170.70000000000002
+NACIONAL,Calificados,Técnicos instaladores de Redes y Líneas de Telecomunicaciones,57,5.7
+NACIONAL,Calificados,Vendedores de Mostrador,2878,287.8
+NACIONAL,Calificados,Vendedores de Ventas no Técnicas,20668,2066.8
+NACIONAL,Calificados,Vidrieros,6,0.6000000000000001
+NACIONAL,Calificados,Vigilantes y Guardias de Seguridad,1894,189.4
+NACIONAL,Calificados,Zapateros y Afines,37,3.7
+NACIONAL,Directivo,Administradores de Educación Superior y Formación para el Trabajo,19,1.9000000000000001
+NACIONAL,Directivo,Directores de Programas de Esparcimiento y Administradores de Deportes,49,4.9
+NACIONAL,Directivo,Directores y Administradores de Educación Básica y Media,29,2.9000000000000004
+NACIONAL,Directivo,"Directores y Gerentes Generales de Comercio, Medios de Comunicación y Otros Servicios",15,1.5
+NACIONAL,Directivo,"Directores y Gerentes Generales de Producción de Bienes, Servicios Públicos, Transporte y Construcción",11,1.1
+NACIONAL,Directivo,"Directores y Gerentes Generales de Salud, Educación, Servicios Social, Comunitario y Organizaciones de Membresía",20,2.0
+NACIONAL,Directivo,"Directores y Gerentes Generales de Servicios Financieros, de Telecomunicaciones y Otros Servicios a las Empresas",6,0.6000000000000001
+NACIONAL,Directivo,Directores y gerentes generales de servicios y procesos de negocio.,13,1.3
+NACIONAL,Directivo,Gerentes Cadena de Suministro,19,1.9000000000000001
+NACIONAL,Directivo,Gerentes Financieros,33,3.3000000000000003
+NACIONAL,Directivo,"Gerentes de Banca, Crédito e Inversiones",17,1.7000000000000002
+NACIONAL,Directivo,"Gerentes de Biblioteca, Museo y Galería de Arte",3,0.30000000000000004
+NACIONAL,Directivo,Gerentes de Comercio Exterior,21,2.1
+NACIONAL,Directivo,Gerentes de Comercio al Por Menor,19,1.9000000000000001
+NACIONAL,Directivo,Gerentes de Compras y Adquisiciones,35,3.5
+NACIONAL,Directivo,Gerentes de Construcción,56,5.6000000000000005
+NACIONAL,Directivo,Gerentes de Empresas de Servicios Públicos,47,4.7
+NACIONAL,Directivo,Gerentes de Empresas de Telecomunicaciones,1,0.1
+NACIONAL,Directivo,Gerentes de Ingeniería,41,4.1000000000000005
+NACIONAL,Directivo,Gerentes de Investigación y Desarrollo en Ciencias Naturales y Aplicadas,6,0.6000000000000001
+NACIONAL,Directivo,Gerentes de Logística,214,21.400000000000002
+NACIONAL,Directivo,Gerentes de Mantenimiento,25,2.5
+NACIONAL,Directivo,Gerentes de Medios de Comunicación y Artes Escénicas,83,8.3
+NACIONAL,Directivo,Gerentes de Operación de Instalaciones Físicas,48,4.800000000000001
+NACIONAL,Directivo,Gerentes de Otros Servicios,91,9.1
+NACIONAL,Directivo,Gerentes de Otros Servicios Administrativos,169,16.900000000000002
+NACIONAL,Directivo,Gerentes de Otros Servicios a las Empresas,16,1.6
+NACIONAL,Directivo,"Gerentes de Producción Agrícola, Pecuaria, Acuícola y Pesquero",137,13.700000000000001
+NACIONAL,Directivo,Gerentes de Producción Industrial,46,4.6000000000000005
+NACIONAL,Directivo,Gerentes de Producción Primaria (excepto agricultura),19,1.9000000000000001
+NACIONAL,Directivo,Gerentes de Programas de Política Educativa,1,0.1
+NACIONAL,Directivo,Gerentes de Programas de Política Social y de Salud,0,0.0
+NACIONAL,Directivo,Gerentes de Programas de Política de Desarrollo Económico,12,1.2000000000000002
+NACIONAL,Directivo,Gerentes de Restaurantes y Servicios de Alimentos,8,0.8
+NACIONAL,Directivo,"Gerentes de Seguros, Bienes Raíces y Corretaje Financiero",5,0.5
+NACIONAL,Directivo,Gerentes de Servicios Hoteleros,76,7.6000000000000005
+NACIONAL,Directivo,"Gerentes de Servicios Social, Comunitario y Correccional",2,0.2
+NACIONAL,Directivo,Gerentes de Servicios a la Salud,65,6.5
+NACIONAL,Directivo,Gerentes de Servicios de Correo y Mensajería,0,0.0
+NACIONAL,Directivo,Gerentes de Sistemas de Información y Procesamiento de Datos,19,1.9000000000000001
+NACIONAL,Directivo,Gerentes de Talento Humano,28,2.8000000000000003
+NACIONAL,Directivo,Gerentes de Transporte y Distribución,15,1.5
+NACIONAL,Directivo,"Gerentes de Ventas, Mercadeo y Publicidad",306,30.6
+NACIONAL,Directivo,Miembros del Poder Ejecutivo y Legislativo,3,0.30000000000000004
+NACIONAL,Directivo,Oficiales de Bomberos,5,0.5
+NACIONAL,Directivo,Oficiales de Policía,16,1.6
+NACIONAL,Directivo,Oficiales de las Fuerzas Militares,50,5.0
+NACIONAL,Directivo,Oficiales del Cuerpo de Custodia y Vigilancia,5,0.5
+NACIONAL,Directivo,Otros Gerentes de Administración Pública,1,0.1
+NACIONAL,Directivo,Personal Directivo de la Administración Pública,72,7.2
+NACIONAL,Elemental,Anfitriones Turísticos Locales,29,2.9000000000000004
+NACIONAL,Elemental,Aseadores Especializados y Fumigadores,264,26.400000000000002
+NACIONAL,Elemental,Aseadores y Servicio Doméstico,7668,766.8000000000001
+NACIONAL,Elemental,Auxiliares de Servicios a Viajeros,36,3.6
+NACIONAL,Elemental,Auxiliares de Servicios de Recreación y Deporte,172,17.2
+NACIONAL,Elemental,Auxiliares de servicios hoteleros,279,27.900000000000002
+NACIONAL,Elemental,Ayudantes de Otros Oficios,19002,1900.2
+NACIONAL,Elemental,Ayudantes de Transporte Automotor,515,51.5
+NACIONAL,Elemental,Ayudantes de establecimientos de alimentos y bebidas,6079,607.9
+NACIONAL,Elemental,Ayudantes en la Fabricación Metálica,318,31.8
+NACIONAL,Elemental,Ayudantes y Obreros de Construcción,4110,411.0
+NACIONAL,Elemental,Empleados de Lavandería,22,2.2
+NACIONAL,Elemental,Jardineros,197,19.700000000000003
+NACIONAL,Elemental,Obreros Agropecuarios,3083,308.3
+NACIONAL,Elemental,Obreros de Mantenimiento de Obras Públicas,177,17.7
+NACIONAL,Elemental,Obreros y Ayudantes de Minería,185,18.5
+NACIONAL,Elemental,Obreros y Ayudantes de Planta Química,124,12.4
+NACIONAL,Elemental,Obreros y Ayudantes de Producción en Pozos de Petróleo y Gas,439,43.900000000000006
+NACIONAL,Elemental,Obreros y Ayudantes en el Procesamiento de la Madera y Producción de Pulpa y Papel,231,23.1
+NACIONAL,Elemental,Obreros y Ayudantes en el Tratamiento de Metales y Minerales,13,1.3
+NACIONAL,Elemental,Obreros y Ayudantes en la Elaboración de Alimentos y Bebidas,1000,100.0
+NACIONAL,Elemental,Operarios de Cementerios,4,0.4
+NACIONAL,Elemental,Otras Ocupaciones Elementales de las Ventas,969,96.9
+NACIONAL,Elemental,Otras Ocupaciones Elementales de los Servicios n.c.a.,65,6.5
+NACIONAL,Elemental,Otros Obreros y Ayudantes en Fabricación y Procesamiento n.c.a.,5938,593.8000000000001
+NACIONAL,Elemental,Recolectores de Material para Reciclaje,32,3.2
+NACIONAL,Elemental,Trabajadores de Estación de Servicio,79,7.9
+NACIONAL,Profesional,Abogados,811,81.10000000000001
+NACIONAL,Profesional,Actores,31,3.1
+NACIONAL,Profesional,Administradores Ambientales,956,95.60000000000001
+NACIONAL,Profesional,Administradores de Explotación Acuícola y Jefes de Laboratorio de Cultivo o Producción Acuícola,199,19.900000000000002
+NACIONAL,Profesional,Administradores de Servicios de Tecnologías de la Información,1322,132.20000000000002
+NACIONAL,Profesional,Analistas de Sistemas Informáticos,1652,165.20000000000002
+NACIONAL,Profesional,"Analistas, Asesores y Agentes de Mercado Financiero",186,18.6
+NACIONAL,Profesional,Archivistas,100,10.0
+NACIONAL,Profesional,Arquitectos,248,24.8
+NACIONAL,Profesional,Auditores Financieros y Contables,131,13.100000000000001
+NACIONAL,Profesional,Audiólogos y Terapeutas del Lenguaje,31,3.1
+NACIONAL,Profesional,Autores y Compositores Musicales,37,3.7
+NACIONAL,Profesional,Bailarines,23,2.3000000000000003
+NACIONAL,Profesional,Bibliotecólogos,27,2.7
+NACIONAL,Profesional,"Biólogos, Botánicos, Zoólogos y Relacionados",204,20.400000000000002
+NACIONAL,Profesional,Consultores y Funcionarios de Desarrollo Económico y Comercial,161,16.1
+NACIONAL,Profesional,"Consultores, Investigadores y Analistas de Política Económica",185,18.5
+NACIONAL,Profesional,Contadores,508,50.800000000000004
+NACIONAL,Profesional,Curadores,0,0.0
+NACIONAL,Profesional,Desarrolladores de Aplicaciones Informáticas y Digitales,892,89.2
+NACIONAL,Profesional,Dietistas y Nutricionistas,79,7.9
+NACIONAL,Profesional,Directores de Planta de Procesamiento de Alimentos y Bebidas,4,0.4
+NACIONAL,Profesional,Directores e Investigadores Musicales,11,1.1
+NACIONAL,Profesional,Diseñadores Gráficos,1164,116.4
+NACIONAL,Profesional,Diseñadores Industriales,55,5.5
+NACIONAL,Profesional,Editores y Redactores,38,3.8000000000000003
+NACIONAL,Profesional,Enfermeros,613,61.300000000000004
+NACIONAL,Profesional,Escritores,3,0.30000000000000004
+NACIONAL,Profesional,Especialistas en Procesos Pedagógicos,89,8.9
+NACIONAL,Profesional,Evaluadores de Competencias Laborales,3,0.30000000000000004
+NACIONAL,Profesional,Expertos Agrícolas y Pecuarios,655,65.5
+NACIONAL,Profesional,Expertos Forestales,31,3.1
+NACIONAL,Profesional,Farmacéuticos y Químicos Farmacéuticos,70,7.0
+NACIONAL,Profesional,"Filósofos, Filólogos y Afines",48,4.800000000000001
+NACIONAL,Profesional,Fisioterapeutas,231,23.1
+NACIONAL,Profesional,Funcionarios de Programas Exclusivos de la Administración Pública,69,6.9
+NACIONAL,Profesional,Físicos y Astrónomos,16,1.6
+NACIONAL,Profesional,"Geólogos, Geoquímicos y Geofísicos",65,6.5
+NACIONAL,Profesional,Ingenieros  Electrónicos,181,18.1
+NACIONAL,Profesional,Ingenieros  de Telecomunicaciones,75,7.5
+NACIONAL,Profesional,Ingenieros Electricistas,186,18.6
+NACIONAL,Profesional,Ingenieros Industriales y de Fabricación,527,52.7
+NACIONAL,Profesional,Ingenieros Mecánicos,211,21.1
+NACIONAL,Profesional,Ingenieros Navales,1,0.1
+NACIONAL,Profesional,Ingenieros Químicos,108,10.8
+NACIONAL,Profesional,Ingenieros Topográficos,20,2.0
+NACIONAL,Profesional,Ingenieros de Automatización e Instrumentación,194,19.400000000000002
+NACIONAL,Profesional,Ingenieros de Materiales y Metalurgia,19,1.9000000000000001
+NACIONAL,Profesional,Ingenieros de Minas,20,2.0
+NACIONAL,Profesional,Ingenieros de Petróleos,166,16.6
+NACIONAL,Profesional,Ingenieros de Tecnologías de la Información,477,47.7
+NACIONAL,Profesional,Ingenieros en Construcción y Obras Civiles,590,59.0
+NACIONAL,Profesional,Ingenieros y Productores de Audio y Sonido,43,4.3
+NACIONAL,Profesional,Intérpretes Musicales,65,6.5
+NACIONAL,Profesional,"Investigadores, Consultores y Funcionarios de Políticas Sociales de Salud y de Educación",55,5.5
+NACIONAL,Profesional,"Investigadores, Consultores y Funcionarios de Políticas de Ciencias Naturales y Aplicadas",47,4.7
+NACIONAL,Profesional,Jefe de Laboratorio de Alimentos,1,0.1
+NACIONAL,Profesional,Jueces,1,0.1
+NACIONAL,Profesional,"Matemáticos, Estadísticos y Actuarios",62,6.2
+NACIONAL,Profesional,Meteorólogos,0,0.0
+NACIONAL,Profesional,Ministros del Culto,5,0.5
+NACIONAL,Profesional,Médicos Especialistas,120,12.0
+NACIONAL,Profesional,Médicos Generales,631,63.1
+NACIONAL,Profesional,Ocupaciones Profesionales en Relaciones Públicas y Comunicaciones,85,8.5
+NACIONAL,Profesional,Odontólogos,201,20.1
+NACIONAL,Profesional,Optómetras,5,0.5
+NACIONAL,Profesional,Orientadores Educativos,29,2.9000000000000004
+NACIONAL,Profesional,Otras Ocupaciones Profesionales en Diagnóstico y Tratamiento de la Salud n.c.a.,0,0.0
+NACIONAL,Profesional,Otros Ingenieros n.c.a.,435,43.5
+NACIONAL,Profesional,Pedagogo Reeducador,161,16.1
+NACIONAL,Profesional,Periodistas,270,27.0
+NACIONAL,Profesional,"Pintores, Escultores y Otros Artistas Visuales",51,5.1000000000000005
+NACIONAL,Profesional,"Productores, Directores Artísticos, Coreógrafos y Ocupaciones Relacionadas",23,2.3000000000000003
+NACIONAL,Profesional,Profesionales de Talento Humano,836,83.60000000000001
+NACIONAL,Profesional,Profesionales en Gestión de Riesgo de Desastres,12,1.2000000000000002
+NACIONAL,Profesional,Profesionales en Organización y Administración de las Empresas,1172,117.2
+NACIONAL,Profesional,Profesionales en ciencias forenses,1,0.1
+NACIONAL,Profesional,Profesores de Educación Básica Primaria,536,53.6
+NACIONAL,Profesional,Profesores de Educación Básica Secundaria y Media,1098,109.80000000000001
+NACIONAL,Profesional,Profesores de Educación Superior,424,42.400000000000006
+NACIONAL,Profesional,Profesores de Preescolar,301,30.1
+NACIONAL,Profesional,Profesores e Instructores de Formación para el Trabajo,903,90.30000000000001
+NACIONAL,Profesional,Psicólogos,746,74.60000000000001
+NACIONAL,Profesional,Publicistas,42,4.2
+NACIONAL,Profesional,Químicos,50,5.0
+NACIONAL,Profesional,Restauradores,6,0.6000000000000001
+NACIONAL,Profesional,"Sociólogos, Antropólogos y Afines",77,7.7
+NACIONAL,Profesional,Terapeutas Ocupacionales,29,2.9000000000000004
+NACIONAL,Profesional,Trabajadores Sociales y Consultores de Familia,68,6.800000000000001
+NACIONAL,Profesional,Traductores e Intérpretes,13,1.3
+NACIONAL,Profesional,Urbanistas y Planificadores del Uso del Suelo,10,1.0
+NACIONAL,Profesional,Veterinarios,78,7.800000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Administradores de Comunidades Virtuales,68,6.800000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Administradores de Propiedad Horizontal,42,4.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,Administradores y Supervisores de Comercio al Por Menor,903,90.30000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Agentes de Aduana,408,40.800000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Agentes de Bienes Raíces,32,3.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,Agentes de Compras e Intermediarios,312,31.200000000000003
+NACIONAL,Técnicos Profesionales - Tecnólogos,Agentes y Corredores de Seguros,905,90.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Agentes y Promotores Artísticos,21,2.1
+NACIONAL,Técnicos Profesionales - Tecnólogos,Agricultores y Administradores Agropecuarios,4280,428.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Analistas, Asistentes y Asesores de Servicios Financieros",561,56.1
+NACIONAL,Técnicos Profesionales - Tecnólogos,Artesanos Trabajos en Cuero,26,2.6
+NACIONAL,Técnicos Profesionales - Tecnólogos,Artesanos Trabajos en Maderables y No Maderables,53,5.300000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Artesanos Trabajos en Metal,51,5.1000000000000005
+NACIONAL,Técnicos Profesionales - Tecnólogos,Artesanos trabajos en materiales líticos,0,0.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Artesanos trabajos en papel,5,0.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Artesanos trabajos en vidrio,3,0.30000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Asistentes Administrativos,5503,550.3000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Asistentes Contables,1541,154.10000000000002
+NACIONAL,Técnicos Profesionales - Tecnólogos,Asistentes Financieros,121,12.100000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Asistentes Legales y Afines,153,15.3
+NACIONAL,Técnicos Profesionales - Tecnólogos,Asistentes Tesorería,18,1.8
+NACIONAL,Técnicos Profesionales - Tecnólogos,Asistentes de Ambulancia y Otras Ocupaciones Paramédicas,53,5.300000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Asistentes de Comercio Exterior,274,27.400000000000002
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Asistentes de Juzgados, Tribunales y Afines",12,1.2000000000000002
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Asistentes de Mercadeo, Publicidad y Comunicaciones",624,62.400000000000006
+NACIONAL,Técnicos Profesionales - Tecnólogos,Asistentes de Talento Humano,853,85.30000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Asistentes de compras,77,7.7
+NACIONAL,Técnicos Profesionales - Tecnólogos,Asistentes en Servicios Social y Comunitario,294,29.400000000000002
+NACIONAL,Técnicos Profesionales - Tecnólogos,Auxiliares de vuelo y Sobrecargos,22,2.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,Capitanes y Oficiales de Cubierta,46,4.6000000000000005
+NACIONAL,Técnicos Profesionales - Tecnólogos,Capitanes y Patrones de Pesca,2,0.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,Ceramistas,9,0.9
+NACIONAL,Técnicos Profesionales - Tecnólogos,Chefs,217,21.700000000000003
+NACIONAL,Técnicos Profesionales - Tecnólogos,Consejeros de Servicios de Empleo,133,13.3
+NACIONAL,Técnicos Profesionales - Tecnólogos,Contratistas de Servicios Agrícolas y Relacionados,27,2.7
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Contratistas y Supervisores de Ajustadores de Máquinas y Herramientas, y de Ocupaciones Relacionadas",8,0.8
+NACIONAL,Técnicos Profesionales - Tecnólogos,Contratistas y Supervisores de Carpintería,13,1.3
+NACIONAL,Técnicos Profesionales - Tecnólogos,Contratistas y Supervisores de Electricidad y Telecomunicaciones,81,8.1
+NACIONAL,Técnicos Profesionales - Tecnólogos,Contratistas y Supervisores de Instalación de Tuberías,17,1.7000000000000002
+NACIONAL,Técnicos Profesionales - Tecnólogos,Contratistas y Supervisores de Mecánica,89,8.9
+NACIONAL,Técnicos Profesionales - Tecnólogos,Contratistas y Supervisores de Moldeo de Forja y Montaje de Estructuras Metálicas,8,0.8
+NACIONAL,Técnicos Profesionales - Tecnólogos,Contratistas y Supervisores de Operación de Equipo Pesado,5,0.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Contratistas y Supervisores de Servicios de Jardinería y Viverismo,131,13.100000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Controladores de Tráfico Aéreo,3,0.30000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Controladores de Tráfico Ferroviario y Marítimo,24,2.4000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Coordinadores De Servicios Funerarios,11,1.1
+NACIONAL,Técnicos Profesionales - Tecnólogos,Coordinadores de Sistemas Integrados de Gestión,412,41.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,Coordinadores y Productores de Eventos y Espectáculos,373,37.300000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Curadores y Supervisores Musicales,44,4.4
+NACIONAL,Técnicos Profesionales - Tecnólogos,Deportistas,15,1.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Despachadores de Aeronaves,4,0.4
+NACIONAL,Técnicos Profesionales - Tecnólogos,Dibujantes Técnicos,539,53.900000000000006
+NACIONAL,Técnicos Profesionales - Tecnólogos,Diseñadores de Interiores,75,7.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Diseñadores de Teatro, Moda, Exhibición y Otros Diseñadores Creativos",176,17.6
+NACIONAL,Técnicos Profesionales - Tecnólogos,Entrenadores y Preparadores Físicos,692,69.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Evaluadores, Ajustadores, Analistas y Liquidadores de Seguros",43,4.3
+NACIONAL,Técnicos Profesionales - Tecnólogos,Fotógrafos,34,3.4000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Funcionarios de Aduanas, Impuestos, Inmigración y Seguridad Social",10,1.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Graficadores de Imágenes Computarizadas,78,7.800000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Guías de Turismo,275,27.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Guías-intérpretes,2,0.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,Higienistas Dentales,27,2.7
+NACIONAL,Técnicos Profesionales - Tecnólogos,Ilustradores,2,0.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,Impresores de Artes Gráficas,110,11.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Inspectores de Construcción,42,4.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Inspectores de Control de Calidad, Procesamiento de Alimentos y Bebidas",985,98.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Inspectores de Equipos de Transporte e Instrumentos de Medición,3,0.30000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Inspectores de Productos Agrícola, Pecuarios y de Pesca",85,8.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Inspectores de Pruebas No destructivas,6,0.6000000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Inspectores de Riego Agrícola,3,0.30000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Inspectores de Sanidad, Seguridad y Salud Ocupacional",659,65.9
+NACIONAL,Técnicos Profesionales - Tecnólogos,Inspectores de Sistemas e Instalaciones de Gas,20,2.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Instructores y Profesores de Personas en Condición de Discapacidad,3,0.30000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Instrumentadores Quirúrgicos,39,3.9000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Intérpretes De Lengua De Señas Colombiana - Español,5,0.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Investigadores criminalísticos y judiciales,74,7.4
+NACIONAL,Técnicos Profesionales - Tecnólogos,Jefes y supervisores de entidades financieras,22,2.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Locutores de Radio, Televisión y Otros Medios de Comunicación.",37,3.7
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Maestros Generales de Obra y Supervisores de Construcción, Instalación y Reparación",455,45.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Ocupaciones Religiosas,5,0.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Ocupaciones Técnicas Relacionadas con Museos y Galerías,4,0.4
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Ocupaciones de Asistencia en Cine, Televisión y Artes Escénicas",42,4.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,Oficiales de Máquinas,5,0.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Operadores de Control Central de Procesos, Tratamiento de Metales y Minerales",3,0.30000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Operadores de Control de Procesos, Fabricación de Papel",4,0.4
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Operadores de Control de Procesos, Producción de Pulpa",12,1.2000000000000002
+NACIONAL,Técnicos Profesionales - Tecnólogos,Operadores de Cámara de Cine y Televisión,57,5.7
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Operadores de Procesos, Químicos, Gas y Petróleo",9,0.9
+NACIONAL,Técnicos Profesionales - Tecnólogos,Operarios de Terminados y Acabados de Artes Gráficas,142,14.200000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Otras Ocupaciones Técnicas en Cine, Televisión y Artes Escénicas n.c.a.",5,0.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Otras Ocupaciones Técnicas en Terapia y Valoración n.c.a.,2,0.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,Otros Artesanos n.c.a.,768,76.80000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Otros Instructores,177,17.7
+NACIONAL,Técnicos Profesionales - Tecnólogos,Otros artistas,5,0.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Patronistas de Productos de Tela, Cuero y Piel",82,8.200000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Pilotos, Ingenieros e Instructores de Vuelo",12,1.2000000000000002
+NACIONAL,Técnicos Profesionales - Tecnólogos,Practicantes de Medicina Alternativa,9,0.9
+NACIONAL,Técnicos Profesionales - Tecnólogos,Pre-prensistas de Artes Gráficas,36,3.6
+NACIONAL,Técnicos Profesionales - Tecnólogos,Productores de Campo para Cine y Televisión,4,0.4
+NACIONAL,Técnicos Profesionales - Tecnólogos,Regentes de farmacia,67,6.7
+NACIONAL,Técnicos Profesionales - Tecnólogos,Representante de servicios especializados,78,7.800000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Sommeliers,0,0.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Suboficiales de Bomberos,0,0.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Suboficiales de las Fuerzas Militares,36,3.6
+NACIONAL,Técnicos Profesionales - Tecnólogos,Suboficiales del Cuerpo de Custodia y Vigilancia,2,0.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,Suboficiales y nivel ejecutivo de la Policía,116,11.600000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Supervisores de Almacenamiento, Inventario y  Distribución",280,28.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Empleados de Apoyo Administrativo,140,14.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Empleados de Correo y Mensajería,3,0.30000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Ensamble de Vehículos de Motor,21,2.1
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Explotación Forestal y Silvicultura,0,0.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Fabricación de Muebles y Accesorios,11,1.1
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Fabricación de Otros Productos Mecánicos y Metálicos,12,1.2000000000000002
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Fabricación de Productos Electrónicos,0,0.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Fabricación de Productos Eléctricos,1,0.1
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Fabricación de Productos de Plástico y Caucho,4,0.4
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Supervisores de Fabricación de Productos de Tela, Cuero y Piel",28,2.8000000000000003
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Fabricación y Ensamble de Otros Productos n.c.a,5,0.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Impresión y Ocupaciones Relacionadas,88,8.8
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Minería y Canteras,24,2.4000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Operación de Transporte Ferroviario,6,0.6000000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Operación de Transporte Terrestre (no ferroviario),26,2.6
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Supervisores de Perforación y Servicios,Pozos de Petróleo y Gas",51,5.1000000000000005
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Personal de Manejo Doméstico,58,5.800000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Procesamiento Textil,7,0.7000000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Supervisores de Procesamiento de Alimentos, Bebidas y Tabaco",86,8.6
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Supervisores de Procesamiento de Químico, Petróleo, Gas y Tratamiento de Agua y Generación de Energía",18,1.8
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Procesamiento de la Madera y Producción de Pulpa y Papel,1,0.1
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Producción Agrícola,590,59.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Producción Pecuaria,90,9.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Servicios de Alimentos,111,11.100000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Tratamiento de Metales y Minerales,5,0.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Ventas,101,10.100000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de Vigilantes,90,9.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores de servicios de Alojamiento y Hospedaje,45,4.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Supervisores y analistas de producción de hidrocarburos,10,1.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Supervisores y coordinadores de procesos de negocio, Empleados de información y servicio al cliente",140,14.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Tanatopractores,0,0.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Tejedores,140,14.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Topógrafos,111,11.100000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos de Laboratorio Médico y Patología,39,3.9000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Archivística,333,33.300000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Automatización e Instrumentación,140,14.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Biblioteca,29,2.9000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Cartografía,12,1.2000000000000002
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Ciencias Biológicas,58,5.800000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Construcción y Arquitectura,732,73.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Diseño y Arte Gráfico,37,3.7
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Electricidad,190,19.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Electrónica,245,24.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Fabricación Industrial,1624,162.4
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Geología y Minería,29,2.9000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Imágenes Diagnósticas,60,6.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Instrumentos de Aeronavegación,3,0.30000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Mecánica y Construcción Mecánica,354,35.4
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Medicina Nuclear,0,0.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Meteorología,1,0.1
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Metrología,49,4.9
+NACIONAL,Técnicos Profesionales - Tecnólogos,"Técnicos en Prevención, Gestión y Control Ambiental",855,85.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Promoción y Animación a la Lectura y la Escritura,45,4.5
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Química Aplicada,671,67.10000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Radioterapia,6,0.6000000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Recursos Naturales,1271,127.10000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Tecnologías de la Información,3974,397.40000000000003
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Telecomunicaciones,73,7.300000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Terapia Respiratoria y Cardiovascular,22,2.2
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos en Transmisión de Radio y Televisión,6,0.6000000000000001
+NACIONAL,Técnicos Profesionales - Tecnólogos,Técnicos Ópticos,3,0.30000000000000004
+NACIONAL,Técnicos Profesionales - Tecnólogos,Vendedores de Ventas Técnicas,930,93.0
+NACIONAL,Técnicos Profesionales - Tecnólogos,Árbitros,6,0.6000000000000001

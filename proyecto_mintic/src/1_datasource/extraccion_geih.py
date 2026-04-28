@@ -1,339 +1,101 @@
-"""
-extraccion_geih.py
-Descarga los archivos de microdatos GEIH 2024 y 2025 desde el portal DANE.
-Selenium es necesario porque el portal renderiza los enlaces de descarga con JS.
-"""
-
+import requests
+from bs4 import BeautifulSoup
 import os
 import time
-import glob
-import shutil
 from datetime import datetime
-from dotenv import load_dotenv
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from selenium.common.exceptions import (
-    TimeoutException,
-    NoSuchElementException,
-    ElementClickInterceptedException,
-)
 
-load_dotenv()
+# ── Configuración ──────────────────────────────────────────────────────────────
+HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+CARPETA_DESTINO = "data/raw/geih"
+BASE_URL_DANE = "https://www.dane.gov.co"
+os.makedirs(CARPETA_DESTINO, exist_ok=True)
 
-# ── Constantes ────────────────────────────────────────────────────
-CATALOGOS = {
-    "2024": "https://microdatos.dane.gov.co/index.php/catalog/819/get-microdata",
-    "2025": "https://microdatos.dane.gov.co/index.php/catalog/853/get-microdata",
-}
-
-RUTA_SALIDA = os.path.join("data", "raw", "geih")
-RUTA_TEMP   = os.path.join(RUTA_SALIDA, "_temp_downloads")
-
-ESPERA_CARGA     = 20   # segundos para que cargue la página
-ESPERA_DESCARGA  = 180  # segundos máximos por archivo descargado
-PAUSA_ENTRE_URLS = 3    # pausa cortés entre peticiones
-
-# Solo descargamos los módulos que necesitamos para las 12 variables GEIH
-MODULOS_OBJETIVO = [
-    "caracteristicas",
-    "ocupados",
-    "desocupados",
-    "inactivos",
-    "fuerza de trabajo",
-    "vivienda",
+# Páginas oficiales del DANE para GEIH (Empleo y Desempleo)
+PAGINAS_GEIH = [
+    "https://www.dane.gov.co/index.php/estadisticas-por-tema/mercado-laboral/empleo-y-desempleo",
+    "https://www.dane.gov.co/index.php/estadisticas-por-tema/mercado-laboral/empleo-y-desempleo/mercado-laboral-historicos"
 ]
 
+# Filtros para bajar anexos excel con indicadores (Desempleo, Ocupación, Participación)
+ANIOS_INTERES = ["2023", "2024", "2025", "2026", "23", "24", "25", "26"]
+PALABRAS_CLAVE = ["anexo", "departamental", "nacional", "mercado_laboral", "empleo"]
 
-# ── Utilidades Selenium ───────────────────────────────────────────
-def crear_driver(ruta_descargas: str) -> webdriver.Chrome:
-    """Crea un driver Chrome con descarga automática al directorio indicado."""
-    opciones = Options()
-    opciones.add_argument("--headless=new")
-    opciones.add_argument("--no-sandbox")
-    opciones.add_argument("--disable-dev-shm-usage")
-    opciones.add_argument("--disable-gpu")
-    opciones.add_argument("--window-size=1920,1080")
-    # Evita que el portal detecte un bot
-    opciones.add_argument(
-        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/124.0.0.0 Safari/537.36"
-    )
-    prefs = {
-        "download.default_directory": os.path.abspath(ruta_descargas),
-        "download.prompt_for_download": False,
-        "download.directory_upgrade": True,
-        "safebrowsing.enabled": True,
-        "plugins.always_open_pdf_externally": True,
-    }
-    opciones.add_experimental_option("prefs", prefs)
-    return webdriver.Chrome(options=opciones)
+def es_archivo_valido(url):
+    """Verifica si el enlace es un Excel de anexos GEIH."""
+    u = url.lower()
+    nombre_archivo = u.split("/")[-1]
+    
+    tiene_extension = u.endswith((".xlsx", ".xls"))
+    tiene_anio = any(anio in nombre_archivo for anio in ANIOS_INTERES)
+    tiene_tema = any(keyword in nombre_archivo for keyword in PALABRAS_CLAVE)
+    
+    # Excluir algunos que no son directamente los anexos principales si es necesario
+    return tiene_extension and tiene_anio and tiene_tema
 
+def extraer_links():
+    links_validos = set()
+    for url_pag in PAGINAS_GEIH:
+        print(f"[*] Explorando: {url_pag}")
+        try:
+            r = requests.get(url_pag, headers=HEADERS, timeout=30)
+            if r.status_code != 200: continue
+            
+            soup = BeautifulSoup(r.text, "html.parser")
+            for a in soup.find_all("a", href=True):
+                href = a["href"]
+                url_completa = href if href.startswith("http") else BASE_URL_DANE + href
+                
+                if es_archivo_valido(url_completa):
+                    links_validos.add(url_completa)
+        except Exception as e:
+            print(f"  [ERROR] Error accediendo a la página: {e}")
+    return links_validos
 
-def esperar_descarga(ruta_destino: str, timeout: int = ESPERA_DESCARGA) -> bool:
-    """
-    Espera a que desaparezca el archivo .crdownload de Chrome.
-    Retorna True si la descarga completó dentro del timeout.
-    """
-    inicio = time.time()
-    while time.time() - inicio < timeout:
-        parciales = glob.glob(os.path.join(ruta_destino, "*.crdownload"))
-        archivos  = [f for f in os.listdir(ruta_destino)
-                     if not f.endswith(".crdownload") and not f.startswith("_")]
-        if not parciales and archivos:
-            return True
-        time.sleep(2)
-    return False
-
-
-def es_modulo_objetivo(nombre: str) -> bool:
-    """Decide si un enlace de descarga corresponde a un módulo que necesitamos."""
-    nombre_lower = nombre.lower()
-    return any(mod in nombre_lower for mod in MODULOS_OBJETIVO)
-
-
-# ── Lógica de extracción ──────────────────────────────────────────
-def aceptar_terminos(driver: webdriver.Chrome, wait: WebDriverWait) -> None:
-    """
-    Acepta los términos de uso si el portal los muestra antes del listado.
-    El portal NADA suele mostrar un checkbox + botón Continuar.
-    """
-    try:
-        checkbox = wait.until(
-            EC.presence_of_element_located(
-                (By.CSS_SELECTOR, "input[type='checkbox']")
-            )
-        )
-        if not checkbox.is_selected():
-            checkbox.click()
-            time.sleep(0.5)
-
-        boton = driver.find_element(
-            By.XPATH,
-            "//button[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ',"
-            "'abcdefghijklmnopqrstuvwxyz'),'continuar') or "
-            "contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ',"
-            "'abcdefghijklmnopqrstuvwxyz'),'continue') or "
-            "contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ',"
-            "'abcdefghijklmnopqrstuvwxyz'),'accept')]",
-        )
-        boton.click()
-        print("    Términos aceptados.")
-        time.sleep(2)
-    except (TimeoutException, NoSuchElementException):
-        pass  # No hay modal de términos en esta vista
-
-
-def obtener_enlaces_descarga(driver: webdriver.Chrome, wait: WebDriverWait) -> list:
-    """
-    Extrae todos los <a> que apuntan a archivos descargables (.zip, .csv, .sav, .dta).
-    Retorna lista de dicts {nombre, url}.
-    """
-    try:
-        wait.until(
-            EC.presence_of_element_located(
-                (By.CSS_SELECTOR, "a[href*='.zip'], a[href*='.csv'], "
-                                  "a[href*='.sav'], a[href*='.dta'], "
-                                  "a[href*='download']")
-            )
-        )
-    except TimeoutException:
-        pass  # intentamos igual
-
-    enlaces = driver.find_elements(
-        By.CSS_SELECTOR,
-        "a[href*='.zip'], a[href*='.csv'], a[href*='.sav'], "
-        "a[href*='.dta'], a[href*='/download']",
-    )
-    resultado = []
-    for enlace in enlaces:
-        nombre = enlace.text.strip() or enlace.get_attribute("title") or ""
-        url    = enlace.get_attribute("href") or ""
-        if url:
-            resultado.append({"nombre": nombre, "url": url})
-    return resultado
-
-
-def descargar_archivos_anio(anio: str, url_catalogo: str) -> int:
-    """
-    Abre el portal DANE para un año dado, filtra los módulos objetivo
-    y dispara la descarga. Retorna el número de archivos descargados.
-    """
-    ruta_anio = os.path.join(RUTA_SALIDA, anio)
-    os.makedirs(ruta_anio,    exist_ok=True)
-    os.makedirs(RUTA_TEMP,    exist_ok=True)
-
-    # Limpiar descargas parciales anteriores
-    for f in glob.glob(os.path.join(RUTA_TEMP, "*")):
-        os.remove(f)
-
-    driver = crear_driver(RUTA_TEMP)
-    wait   = WebDriverWait(driver, ESPERA_CARGA)
-    descargados = 0
+def descargar_archivo(url):
+    nombre = url.split("/")[-1]
+    ruta = os.path.join(CARPETA_DESTINO, nombre)
+    
+    if os.path.exists(ruta):
+        return "existente"
 
     try:
-        print(f"  Navegando a: {url_catalogo}")
-        driver.get(url_catalogo)
-        time.sleep(3)
+        r = requests.get(url, headers=HEADERS, timeout=60, stream=True)
+        if r.status_code == 200:
+            with open(ruta, "wb") as f:
+                f.write(r.content)
+            return "descargado"
+        return "error_404"
+    except:
+        return "error_conexion"
 
-        aceptar_terminos(driver, wait)
-
-        # Algunos portales NADA requieren clic en la pestaña "Archivos de datos"
-        for texto_tab in ["archivos de datos", "data files", "files"]:
-            try:
-                tab = driver.find_element(
-                    By.XPATH,
-                    f"//a[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ',"
-                    f"'abcdefghijklmnopqrstuvwxyz'),'{texto_tab}')]",
-                )
-                tab.click()
-                time.sleep(2)
-                break
-            except NoSuchElementException:
-                continue
-
-        enlaces = obtener_enlaces_descarga(driver, wait)
-        print(f"  Enlaces encontrados: {len(enlaces)}")
-
-        if not enlaces:
-            print("  ⚠ No se encontraron enlaces. Intentando estrategia alternativa...")
-            enlaces = _buscar_enlaces_alternativo(driver)
-            print(f"  Enlaces (alt): {len(enlaces)}")
-
-        for item in enlaces:
-            nombre_lower = item["nombre"].lower()
-            if not es_modulo_objetivo(nombre_lower):
-                continue
-
-            nombre_archivo = _nombre_seguro(item["nombre"], anio)
-            ruta_final     = os.path.join(ruta_anio, nombre_archivo)
-
-            if os.path.exists(ruta_final):
-                print(f"    ⏭ Ya existe: {nombre_archivo}")
-                descargados += 1
-                continue
-
-            print(f"    ↓ Descargando: {item['nombre'][:60]} ...", end="", flush=True)
-
-            # Limpiar temp antes de cada descarga
-            for f in glob.glob(os.path.join(RUTA_TEMP, "*")):
-                os.remove(f)
-
-            try:
-                driver.get(item["url"])
-                completado = esperar_descarga(RUTA_TEMP)
-
-                if completado:
-                    archivos_temp = [
-                        f for f in os.listdir(RUTA_TEMP)
-                        if not f.endswith(".crdownload") and not f.startswith("_")
-                    ]
-                    for arch in archivos_temp:
-                        shutil.move(
-                            os.path.join(RUTA_TEMP, arch),
-                            os.path.join(ruta_anio, arch),
-                        )
-                    tam_mb = sum(
-                        os.path.getsize(os.path.join(ruta_anio, a))
-                        for a in archivos_temp
-                    ) / (1024 * 1024)
-                    print(f" ✓ ({tam_mb:.1f} MB)")
-                    descargados += 1
-                else:
-                    print(" ✗ Timeout")
-            except Exception as e:
-                print(f" ✗ Error: {e}")
-
-            time.sleep(PAUSA_ENTRE_URLS)
-
-    finally:
-        driver.quit()
-        # Limpiar carpeta temp
-        if os.path.exists(RUTA_TEMP):
-            shutil.rmtree(RUTA_TEMP, ignore_errors=True)
-
-    return descargados
-
-
-def _buscar_enlaces_alternativo(driver: webdriver.Chrome) -> list:
-    """
-    Segunda estrategia: busca cualquier <a> que parezca un archivo de datos
-    dentro de tablas o listas de archivos NADA.
-    """
-    resultado = []
-    for tag in driver.find_elements(By.TAG_NAME, "a"):
-        href = tag.get_attribute("href") or ""
-        if any(ext in href for ext in [".zip", ".csv", ".sav", ".dta"]):
-            resultado.append({
-                "nombre": tag.text.strip() or href.split("/")[-1],
-                "url": href,
-            })
-    return resultado
-
-
-def _nombre_seguro(nombre: str, anio: str) -> str:
-    """Convierte el texto del enlace en un nombre de archivo válido."""
-    nombre_limpio = "".join(c if c.isalnum() or c in "._- " else "_" for c in nombre)
-    nombre_limpio = nombre_limpio.strip().replace(" ", "_")[:80]
-    if not nombre_limpio:
-        nombre_limpio = f"geih_{anio}_{int(time.time())}"
-    # Asegurar extensión
-    if not any(nombre_limpio.lower().endswith(e) for e in [".zip", ".csv", ".sav", ".dta"]):
-        nombre_limpio += ".zip"
-    return nombre_limpio
-
-
-# ── Entry point ───────────────────────────────────────────────────
 def extraer_geih():
-    print(f"[{datetime.now().strftime('%H:%M:%S')}] Iniciando extracción GEIH (Selenium)...")
-    print(f"  Módulos objetivo: {MODULOS_OBJETIVO}\n")
+    print(f"[{datetime.now().strftime('%H:%M:%S')}] Iniciando Extracción GEIH (Anexos Estadísticos DANE)")
+    print("="*60)
+    
+    links = extraer_links()
+    print(f"[*] Se encontraron {len(links)} archivos potenciales.")
+    
+    descargados, existentes, errores = 0, 0, 0
+    
+    for link in sorted(links):
+        resultado = descargar_archivo(link)
+        nombre = link.split("/")[-1]
+        
+        if resultado == "descargado":
+            print(f"  [SUCCESS] Nuevo: {nombre}")
+            descargados += 1
+            time.sleep(1) # Evitar bloqueo
+        elif resultado == "existente":
+            existentes += 1
+        else:
+            errores += 1
 
-    os.makedirs(RUTA_SALIDA, exist_ok=True)
-    total_descargados = 0
-
-    for anio, url in CATALOGOS.items():
-        print(f"\n{'─'*55}")
-        print(f"  GEIH {anio}")
-        print(f"{'─'*55}")
-        n = descargar_archivos_anio(anio, url)
-        total_descargados += n
-        print(f"  → {n} archivo(s) procesados para {anio}")
-
-    print(f"\n{'─'*55}")
-    print(f"  ✓ Total archivos : {total_descargados}")
-    print(f"  ✓ Carpeta        : {RUTA_SALIDA}")
-    print(f"[{datetime.now().strftime('%H:%M:%S')}] Extracción GEIH completada.")
-
-    if total_descargados == 0:
-        _mostrar_instrucciones_manuales()
-
-
-def _mostrar_instrucciones_manuales():
-    """
-    Si Selenium no logró descargar nada (portal cambió su estructura),
-    guía al usuario con la descarga manual.
-    """
-    print("""
-╔══════════════════════════════════════════════════════╗
-║  DESCARGA MANUAL — Portal DANE requiere interacción  ║
-╠══════════════════════════════════════════════════════╣
-║  1. Ir a:                                            ║
-║     2024 → microdatos.dane.gov.co/catalog/819        ║
-║     2025 → microdatos.dane.gov.co/catalog/853        ║
-║  2. Clic en pestaña "Archivos de datos"              ║
-║  3. Aceptar términos de uso                          ║
-║  4. Descargar módulos:                               ║
-║     - Características generales                      ║
-║     - Ocupados                                       ║
-║     - Desocupados / Inactivos                        ║
-║  5. Guardar en: data/raw/geih/2024/  y  .../2025/    ║
-╚══════════════════════════════════════════════════════╝
-""")
-
+    print("="*60)
+    print(f"RESUMEN GEIH:")
+    print(f"  - Descargados nuevos: {descargados}")
+    print(f"  - Ya estaban en carpeta: {existentes}")
+    print(f"  - Errores/No encontrados: {errores}")
+    print(f"[*] Ubicación: {os.path.abspath(CARPETA_DESTINO)}")
 
 if __name__ == "__main__":
     extraer_geih()

@@ -34,7 +34,7 @@ def es_archivo_valido(url):
 def extraer_links():
     links_validos = set()
     for url_pag in PAGINAS_FILCO:
-        print(f"🔍 Explorando: {url_pag}")
+        print(f"[*] Explorando: {url_pag}")
         try:
             r = requests.get(url_pag, headers=HEADERS, timeout=30)
             if r.status_code != 200: continue
@@ -47,7 +47,7 @@ def extraer_links():
                 if es_archivo_valido(url_completa):
                     links_validos.add(url_completa)
         except Exception as e:
-            print(f"  ❌ Error accediendo a la página: {e}")
+            print(f"  [ERROR] Error accediendo a la página: {e}")
     return links_validos
 
 def descargar_archivo(url):
@@ -72,7 +72,7 @@ def main():
     print("="*60)
     
     links = extraer_links()
-    print(f"📊 Se encontraron {len(links)} archivos potenciales.")
+    print(f"[*] Se encontraron {len(links)} archivos potenciales.")
     
     descargados, existentes, errores = 0, 0, 0
     
@@ -81,7 +81,7 @@ def main():
         nombre = link.split("/")[-1]
         
         if resultado == "descargado":
-            print(f"  ✅ Nuevo: {nombre}")
+            print(f"  [SUCCESS] Nuevo: {nombre}")
             descargados += 1
             time.sleep(0.5) # Evitar que el DANE nos bloquee
         elif resultado == "existente":
@@ -94,7 +94,7 @@ def main():
     print(f"  - Descargados nuevos: {descargados}")
     print(f"  - Ya estaban en carpeta: {existentes}")
     print(f"  - Errores/No encontrados: {errores}")
-    print(f"📁 Ubicación: {os.path.abspath(CARPETA_DESTINO)}")
+    print(f"[*] Ubicación: {os.path.abspath(CARPETA_DESTINO)}")
 
 if __name__ == "__main__":
     main()

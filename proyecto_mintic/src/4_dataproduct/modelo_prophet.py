@@ -27,9 +27,9 @@ def obtener_datos():
         engine = create_engine(f'postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB}')
         
         query = """
-        SELECT fecha_corte AS ds, tasa_desocupacion AS y
+        SELECT fecha_corte AS ds, tasa_informalidad AS y
         FROM fact_mercado_laboral
-        WHERE tasa_desocupacion IS NOT NULL
+        WHERE tasa_informalidad IS NOT NULL
         ORDER BY fecha_corte ASC
         """
         df = pd.read_sql(query, engine)
