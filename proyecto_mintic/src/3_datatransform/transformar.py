@@ -1,11 +1,3 @@
-"""
-transformar.py  —  F3 · DataTransform
-Lee el Data Lake (data/raw/), limpia con PySpark y carga a PostgreSQL via JDBC.
-Ejecutar dentro del contenedor mintic_jupyter:
-    spark-submit transformar.py
-  o desde Jupyter con %run src/3_datatransform/transformar.py
-"""
-
 import os
 from datetime import datetime, date
 from dotenv import load_dotenv
@@ -13,13 +5,12 @@ from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 from pyspark.sql.types import (
     StructType, StructField, StringType, IntegerType,
-    FloatType, DateType, TimestampType,
+    FloatType, DateType,
 )
 
 load_dotenv()
 
-# ── Configuración ─────────────────────────────────────────────────
-POSTGRES_HOST = os.getenv("POSTGRES_HOST", "postgres")  # nombre del servicio Docker
+POSTGRES_HOST = os.getenv("POSTGRES_HOST", "postgres")
 POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
 POSTGRES_DB   = os.getenv("POSTGRES_DB",   "mintic_db")
 POSTGRES_USER = os.getenv("POSTGRES_USER", "mintic_user")
@@ -42,34 +33,18 @@ ANIO_INICIO = 2010
 ANIO_FIN    = 2026
 
 
-# ── SparkSession ──────────────────────────────────────────────────
 def crear_spark() -> SparkSession:
-    """
-    El JAR JDBC de PostgreSQL viene incluido en la imagen pyspark-notebook.
-    Si no está disponible, descargarlo con:
-      spark.jars.packages = org.postgresql:postgresql:42.7.1
-    """
     return (
         SparkSession.builder
         .appName("mintic_transform")
         .config("spark.sql.shuffle.partitions", "8")
-        .config(
-            "spark.jars",
-            "/home/jovyan/postgresql-42.7.3.jar",
-        )
+        .config("spark.jars", "/home/jovyan/postgresql-42.7.3.jar")
         .getOrCreate()
     )
 
 
-# ── Helpers JDBC ──────────────────────────────────────────────────
 def guardar_jdbc(df, tabla: str, modo: str = "append") -> None:
-    """Escribe un DataFrame a PostgreSQL usando JDBC."""
-    df.write.jdbc(
-        url=JDBC_URL,
-        table=tabla,
-        mode=modo,
-        properties=JDBC_PROPS,
-    )
+    df.write.jdbc(url=JDBC_URL, table=tabla, mode=modo, properties=JDBC_PROPS)
     print(f"    ✓ {tabla} — {df.count():,} filas guardadas ({modo})")
 
 
@@ -77,12 +52,7 @@ def leer_jdbc(spark: SparkSession, tabla: str):
     return spark.read.jdbc(url=JDBC_URL, table=tabla, properties=JDBC_PROPS)
 
 
-# ── dim_periodo ───────────────────────────────────────────────────
 def cargar_dim_periodo(spark: SparkSession) -> None:
-    """
-    Genera el calendario mes-año 2010-2026 y lo inserta en dim_periodo.
-    Se usa overwrite para idempotencia.
-    """
     print("  Generando dim_periodo...")
     filas = []
     for anio in range(ANIO_INICIO, ANIO_FIN + 1):
@@ -96,7 +66,6 @@ def cargar_dim_periodo(spark: SparkSession) -> None:
     ])
     df = spark.createDataFrame(filas, schema=esquema)
 
-    # Evitar duplicados: solo insertar periodos que no existen aún
     try:
         existentes = leer_jdbc(spark, "dim_periodo").select("anio", "mes")
         df = df.join(existentes, on=["anio", "mes"], how="left_anti")
@@ -111,15 +80,7 @@ def cargar_dim_periodo(spark: SparkSession) -> None:
         print("    ⏭ dim_periodo ya está completa")
 
 
-# ── fact_demanda_sena ─────────────────────────────────────────────
 def transformar_sena(spark: SparkSession) -> None:
-    """
-    Lee sena_inscritos.csv (formato datos.gov.co: inscritos 2019/2020 por ocupacion).
-    Pivotea a filas anuales y carga a fact_demanda_sena.
-    Columnas reales: nombre_de_la_ocupaci_n, nivel, n_mero_de_inscritos_2019,
-                     n_mero_de_inscritos_2020, participacion_2019, participacion_2020,
-                     variacion_2020_vs_2019, contribuci_n_a_la_variaci
-    """
     ruta_csv = os.path.join(RUTA_RAW, "sena", "sena_inscritos.csv")
     print(f"  Transformando SENA: {ruta_csv}")
 
@@ -131,12 +92,10 @@ def transformar_sena(spark: SparkSession) -> None:
         .csv(ruta_csv)
     )
 
-    # Normalizar nombres a minúsculas
     for col in df.columns:
         df = df.withColumnRenamed(col, col.strip().lower().replace(" ", "_"))
 
     dim_periodo = leer_jdbc(spark, "dim_periodo").select("id_periodo", "anio", "mes")
-    # Usar enero de cada año como periodo representativo (datos anuales)
     periodo_2019 = dim_periodo.filter((F.col("anio") == 2019) & (F.col("mes") == 1)) \
                               .select(F.col("id_periodo").alias("id_periodo_2019"))
     periodo_2020 = dim_periodo.filter((F.col("anio") == 2020) & (F.col("mes") == 1)) \
@@ -150,45 +109,25 @@ def transformar_sena(spark: SparkSession) -> None:
     col_i2019 = "n_mero_de_inscritos_2019" if "n_mero_de_inscritos_2019" in df.columns else None
     col_i2020 = "n_mero_de_inscritos_2020" if "n_mero_de_inscritos_2020" in df.columns else None
 
-    filas_2019 = (
-        df.select(
-            F.lit(id_p2019).cast(IntegerType()).alias("id_periodo"),
-            F.lit(None).cast(IntegerType()).alias("id_departamento"),
-            F.col(col_ocup).alias("ocupacion") if col_ocup else F.lit(None).cast(StringType()).alias("ocupacion"),
-            F.col(col_nivel).alias("sector_economico") if col_nivel else F.lit(None).cast(StringType()).alias("sector_economico"),
-            F.col(col_i2019).cast(FloatType()).alias("inscritos") if col_i2019 else F.lit(None).cast(FloatType()).alias("inscritos"),
-            F.lit(None).cast(FloatType()).alias("vacantes"),
+    def _fila(id_p, col_ins):
+        return (
+            df.select(
+                F.lit(id_p).cast(IntegerType()).alias("id_periodo"),
+                F.lit(None).cast(IntegerType()).alias("id_departamento"),
+                F.col(col_ocup).alias("ocupacion") if col_ocup else F.lit(None).cast(StringType()).alias("ocupacion"),
+                F.col(col_nivel).alias("sector_economico") if col_nivel else F.lit(None).cast(StringType()).alias("sector_economico"),
+                F.col(col_ins).cast(FloatType()).alias("inscritos") if col_ins else F.lit(None).cast(FloatType()).alias("inscritos"),
+                F.lit(None).cast(FloatType()).alias("vacantes"),
+            )
+            .withColumn("fuente", F.lit("SENA"))
+            .withColumn("fecha_carga", F.current_timestamp())
+            .dropna(subset=["id_periodo"])
         )
-        .withColumn("fuente", F.lit("SENA"))
-        .withColumn("fecha_carga", F.current_timestamp())
-        .dropna(subset=["id_periodo"])
-    )
 
-    filas_2020 = (
-        df.select(
-            F.lit(id_p2020).cast(IntegerType()).alias("id_periodo"),
-            F.lit(None).cast(IntegerType()).alias("id_departamento"),
-            F.col(col_ocup).alias("ocupacion") if col_ocup else F.lit(None).cast(StringType()).alias("ocupacion"),
-            F.col(col_nivel).alias("sector_economico") if col_nivel else F.lit(None).cast(StringType()).alias("sector_economico"),
-            F.col(col_i2020).cast(FloatType()).alias("inscritos") if col_i2020 else F.lit(None).cast(FloatType()).alias("inscritos"),
-            F.lit(None).cast(FloatType()).alias("vacantes"),
-        )
-        .withColumn("fuente", F.lit("SENA"))
-        .withColumn("fecha_carga", F.current_timestamp())
-        .dropna(subset=["id_periodo"])
-    )
-
-    df_final = filas_2019.unionAll(filas_2020)
-    guardar_jdbc(df_final, "fact_demanda_sena", "append")
+    guardar_jdbc(_fila(id_p2019, col_i2019).unionAll(_fila(id_p2020, col_i2020)), "fact_demanda_sena", "append")
 
 
-# ── fact_mercado_laboral (boletines parseados) ────────────────────
 def transformar_serie_temporal(spark: SparkSession) -> None:
-    """
-    Lee serie_temporal_td.csv (generado por parsear_boletines.py),
-    enriquece con id_periodo y carga a fact_mercado_laboral.
-    Esto cubre los indicadores agregados nacionales (TD/TO/TGP).
-    """
     ruta_csv = os.path.join(RUTA_PROCESSED, "serie_temporal_td.csv")
     if not os.path.exists(ruta_csv):
         print(f"  ⚠ No existe {ruta_csv} — ejecutar parsear_boletines.py primero")
@@ -203,9 +142,8 @@ def transformar_serie_temporal(spark: SparkSession) -> None:
         .csv(ruta_csv)
     )
 
-    dim_periodo = leer_jdbc(spark, "dim_periodo")
     df = df.join(
-        dim_periodo.select("id_periodo", "anio", "mes"),
+        leer_jdbc(spark, "dim_periodo").select("id_periodo", "anio", "mes"),
         on=["anio", "mes"],
         how="left",
     )
@@ -237,12 +175,7 @@ def transformar_serie_temporal(spark: SparkSession) -> None:
     guardar_jdbc(df_final, "fact_mercado_laboral", "append")
 
 
-# ── fact_mercado_laboral (microdatos GEIH) ────────────────────────
 def transformar_geih(spark: SparkSession) -> None:
-    """
-    Procesa los archivos ZIP/CSV del microdato GEIH descargados en data/raw/geih/.
-    Limpia y carga a fact_mercado_laboral con granularidad individual.
-    """
     dim_periodo = leer_jdbc(spark, "dim_periodo")
     dim_depto   = leer_jdbc(spark, "dim_departamento")
 
@@ -270,15 +203,11 @@ def transformar_geih(spark: SparkSession) -> None:
                     .csv(ruta_csv)
                 )
 
-                # Normalizar nombres
                 for col in df.columns:
                     df = df.withColumnRenamed(col, col.strip().lower())
 
-                # Los microdatos GEIH usan códigos DANE estándar
-                # Columnas clave: p6020 (sexo), p6040 (edad), p6210 (educacion)
-                # dpto (departamento), clase (zona 1=cabecera 2=resto)
-                # inglabo (ingreso laboral), rama2d (rama actividad)
-                # Estos nombres pueden variar por año — hacemos mapeo defensivo
+                # Códigos DANE estándar: p6020=sexo, p6040=edad, p6210=educacion,
+                # dpto=departamento, clase=zona, inglabo=ingreso, rama2d=rama, p6430=posición
                 renombres = {
                     "p6020":   "sexo_cod",
                     "p6040":   "edad",
@@ -293,7 +222,6 @@ def transformar_geih(spark: SparkSession) -> None:
                     if orig in df.columns:
                         df = df.withColumnRenamed(orig, nuevo)
 
-                # Decodificar sexo
                 if "sexo_cod" in df.columns:
                     df = df.withColumn(
                         "sexo",
@@ -302,7 +230,6 @@ def transformar_geih(spark: SparkSession) -> None:
                          .otherwise("Sin dato"),
                     )
 
-                # Grupo de edad
                 if "edad" in df.columns:
                     df = df.withColumn(
                         "grupo_edad",
@@ -312,7 +239,6 @@ def transformar_geih(spark: SparkSession) -> None:
                          .otherwise(None),
                     )
 
-                # Zona
                 if "zona_cod" in df.columns:
                     df = df.withColumn(
                         "zona",
@@ -321,9 +247,7 @@ def transformar_geih(spark: SparkSession) -> None:
                          .otherwise("Sin dato"),
                     )
 
-                # Unir periodo (el CSV debería tener columnas mes y año o las inferimos del nombre)
                 df = df.withColumn("anio", F.lit(int(anio)).cast(IntegerType()))
-                # Si hay columna mes en el CSV la usamos, si no asumimos promedio anual (mes=0 no existe)
                 if "mes" not in df.columns:
                     df = df.withColumn("mes", F.lit(1).cast(IntegerType()))
 
@@ -332,22 +256,23 @@ def transformar_geih(spark: SparkSession) -> None:
                     on=["anio", "mes"], how="left"
                 )
 
-                # Unir departamento
                 if "codigo_dane" in df.columns:
-                    df = df.withColumn("codigo_dane", F.lpad(F.col("codigo_dane").cast(StringType()), 2, "0"))
+                    df = df.withColumn(
+                        "codigo_dane",
+                        F.lpad(F.col("codigo_dane").cast(StringType()), 2, "0"),
+                    )
                     df = df.join(
                         dim_depto.select("id_departamento", "codigo_dane"),
                         on="codigo_dane", how="left"
                     )
 
-                # Seleccionar columnas del modelo
-                cols_disponibles = df.columns
+                cols = df.columns
                 def col_o_null(nombre, tipo=StringType()):
-                    return F.col(nombre) if nombre in cols_disponibles else F.lit(None).cast(tipo)
+                    return F.col(nombre) if nombre in cols else F.lit(None).cast(tipo)
 
                 df_final = df.select(
-                    col_o_null("id_periodo",                IntegerType()),
-                    col_o_null("id_departamento",           IntegerType()),
+                    col_o_null("id_periodo",             IntegerType()),
+                    col_o_null("id_departamento",        IntegerType()),
                     col_o_null("sexo"),
                     col_o_null("grupo_edad"),
                     col_o_null("zona"),
@@ -359,38 +284,27 @@ def transformar_geih(spark: SparkSession) -> None:
                     F.lit(None).cast(FloatType()).alias("tasa_global_participacion"),
                     F.lit(None).cast(FloatType()).alias("tasa_formalidad"),
                     F.lit(None).cast(FloatType()).alias("tasa_informalidad"),
-                    col_o_null("ingreso_laboral",           FloatType()),
+                    col_o_null("ingreso_laboral",        FloatType()),
                     F.lit(None).cast(FloatType()).alias("afiliacion_seg_social"),
                     F.lit(None).cast(FloatType()).alias("variacion_anual_td"),
                     F.lit("GEIH").alias("fuente"),
                 ).withColumn("fecha_carga", F.current_timestamp())
 
-                # Filtrar solo registros con periodo válido
-                df_final = df_final.dropna(subset=["id_periodo"])
-                guardar_jdbc(df_final, "fact_mercado_laboral", "append")
+                guardar_jdbc(df_final.dropna(subset=["id_periodo"]), "fact_mercado_laboral", "append")
 
             except Exception as e:
                 print(f"    ✗ Error procesando {nombre_csv}: {e}")
 
 
-# ── Entry point ───────────────────────────────────────────────────
 def transformar():
     print(f"[{datetime.now().strftime('%H:%M:%S')}] Iniciando F3 · DataTransform...\n")
     spark = crear_spark()
 
     try:
-        print("── dim_periodo ────────────────────────────────────────")
         cargar_dim_periodo(spark)
-
-        print("\n── fact_demanda_sena (SENA) ────────────────────────────")
         transformar_sena(spark)
-
-        print("\n── fact_mercado_laboral (boletines DANE) ──────────────")
         transformar_serie_temporal(spark)
-
-        print("\n── fact_mercado_laboral (microdatos GEIH) ─────────────")
         transformar_geih(spark)
-
     finally:
         spark.stop()
 

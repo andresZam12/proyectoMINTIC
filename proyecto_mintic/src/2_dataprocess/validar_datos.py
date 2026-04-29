@@ -1,19 +1,12 @@
-"""
-validar_datos.py
-Recorre data/raw/, valida cada fuente y genera data/raw/metadata.json.
-No modifica los archivos originales — data/raw/ es INMUTABLE.
-"""
-
 import os
 import json
 import hashlib
 from datetime import datetime
 import pandas as pd
 
-RUTA_RAW       = os.path.join("data", "raw")
-RUTA_METADATA  = os.path.join(RUTA_RAW, "metadata.json")
+RUTA_RAW      = os.path.join("data", "raw")
+RUTA_METADATA = os.path.join(RUTA_RAW, "metadata.json")
 
-# Columnas mínimas esperadas en cada fuente estructurada
 ESQUEMA_SENA = [
     "nombre_de_la_ocupaci_n",
     "n_mero_de_inscritos_2019",
@@ -28,8 +21,7 @@ EXTENSIONES_VALIDAS = {
 }
 
 
-# ── Helpers ───────────────────────────────────────────────────────
-def md5_archivo(ruta: str) -> str:
+def md5_archivo(ruta):
     h = hashlib.md5()
     with open(ruta, "rb") as f:
         for bloque in iter(lambda: f.read(65536), b""):
@@ -37,7 +29,7 @@ def md5_archivo(ruta: str) -> str:
     return h.hexdigest()
 
 
-def tam_legible(bytes_: int) -> str:
+def tam_legible(bytes_):
     for unidad in ["B", "KB", "MB", "GB"]:
         if bytes_ < 1024:
             return f"{bytes_:.1f} {unidad}"
@@ -45,31 +37,28 @@ def tam_legible(bytes_: int) -> str:
     return f"{bytes_:.1f} TB"
 
 
-def listar_archivos(ruta_carpeta: str, extensiones: list) -> list:
-    """Devuelve lista de rutas con las extensiones permitidas."""
+def listar_archivos(ruta_carpeta, extensiones):
     if not os.path.exists(ruta_carpeta):
         return []
-    archivos = []
-    for nombre in sorted(os.listdir(ruta_carpeta)):
-        _, ext = os.path.splitext(nombre.lower())
-        if ext in extensiones:
-            archivos.append(os.path.join(ruta_carpeta, nombre))
-    return archivos
+    return [
+        os.path.join(ruta_carpeta, nombre)
+        for nombre in sorted(os.listdir(ruta_carpeta))
+        if os.path.splitext(nombre.lower())[1] in extensiones
+    ]
 
 
-def info_archivo(ruta: str) -> dict:
+def info_archivo(ruta):
     stat = os.stat(ruta)
     return {
-        "nombre":    os.path.basename(ruta),
-        "tamanio":   tam_legible(stat.st_size),
-        "bytes":     stat.st_size,
+        "nombre":     os.path.basename(ruta),
+        "tamanio":    tam_legible(stat.st_size),
+        "bytes":      stat.st_size,
         "modificado": datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d %H:%M"),
-        "md5":       md5_archivo(ruta),
+        "md5":        md5_archivo(ruta),
     }
 
 
-# ── Validadores por fuente ────────────────────────────────────────
-def validar_sena() -> dict:
+def validar_sena():
     ruta = os.path.join(RUTA_RAW, "sena", "sena_inscritos.csv")
     resultado = {"fuente": "SENA", "estado": "ERROR", "archivos": [], "alertas": []}
 
@@ -85,31 +74,27 @@ def validar_sena() -> dict:
         resultado["nulos"]      = df.isnull().sum().to_dict()
         resultado["duplicados"] = int(df.duplicated().sum())
 
-        # Verificar columnas mínimas (nombres en minúsculas)
         cols_lower = [c.lower() for c in df.columns]
-        faltantes = [c for c in ESQUEMA_SENA if c not in cols_lower]
+        faltantes  = [c for c in ESQUEMA_SENA if c not in cols_lower]
         if faltantes:
             resultado["alertas"].append(f"Columnas faltantes: {faltantes}")
 
         if df.isnull().values.any():
             pct_nulos = df.isnull().mean().max() * 100
             if pct_nulos > 20:
-                resultado["alertas"].append(
-                    f"Columna con más del {pct_nulos:.0f}% de nulos"
-                )
+                resultado["alertas"].append(f"Columna con más del {pct_nulos:.0f}% de nulos")
 
         resultado["estado"] = "OK" if not resultado["alertas"] else "ADVERTENCIA"
         print(f"  [SENA]  {len(df):,} registros · {len(df.columns)} cols · {resultado['estado']}")
-
     except Exception as e:
         resultado["alertas"].append(str(e))
 
     return resultado
 
 
-def validar_dane_boletines() -> dict:
+def validar_dane_boletines():
     ruta_carpeta = os.path.join(RUTA_RAW, "dane_boletines")
-    resultado = {"fuente": "DANE_boletines", "estado": "ERROR", "archivos": [], "alertas": []}
+    resultado    = {"fuente": "DANE_boletines", "estado": "ERROR", "archivos": [], "alertas": []}
 
     archivos = listar_archivos(ruta_carpeta, [".pdf"])
     if not archivos:
@@ -131,21 +116,18 @@ def validar_dane_boletines() -> dict:
     return resultado
 
 
-def validar_geih() -> dict:
-    resultado = {"fuente": "GEIH", "estado": "PENDIENTE", "archivos": [], "alertas": []}
+def validar_geih():
+    resultado   = {"fuente": "GEIH", "estado": "PENDIENTE", "archivos": [], "alertas": []}
     encontrados = 0
 
     for anio in ["2024", "2025"]:
         ruta_anio = os.path.join(RUTA_RAW, "geih", anio)
         archivos  = listar_archivos(ruta_anio, [".zip", ".csv", ".sav", ".dta"])
         if archivos:
-            for ruta in archivos:
-                resultado["archivos"].append(info_archivo(ruta))
+            resultado["archivos"].extend(info_archivo(r) for r in archivos)
             encontrados += len(archivos)
         else:
-            resultado["alertas"].append(
-                f"Sin archivos en geih/{anio}/ — ejecutar extraccion_geih.py"
-            )
+            resultado["alertas"].append(f"Sin archivos en geih/{anio}/ — ejecutar extraccion_geih.py")
 
     if encontrados > 0:
         resultado["estado"] = "OK" if not resultado["alertas"] else "PARCIAL"
@@ -153,16 +135,14 @@ def validar_geih() -> dict:
     return resultado
 
 
-def validar_filco() -> dict:
+def validar_filco():
     ruta_carpeta = os.path.join(RUTA_RAW, "filco")
-    resultado = {"fuente": "FILCO", "estado": "PENDIENTE", "archivos": [], "alertas": []}
+    resultado    = {"fuente": "FILCO", "estado": "PENDIENTE", "archivos": [], "alertas": []}
 
     archivos = listar_archivos(ruta_carpeta, [".xlsx", ".csv", ".xls"])
     if not archivos:
-        resultado["alertas"].append(
-            "Sin archivos en filco/ — ejecutar extraccion_filco.py"
-        )
-        print(f"  [FILCO] sin archivos · PENDIENTE")
+        resultado["alertas"].append("Sin archivos en filco/ — ejecutar extraccion_filco.py")
+        print("  [FILCO] sin archivos · PENDIENTE")
         return resultado
 
     total_bytes = 0
@@ -171,13 +151,11 @@ def validar_filco() -> dict:
             info = info_archivo(ruta)
             resultado["archivos"].append(info)
             total_bytes += info["bytes"]
-
             if ruta.endswith((".xlsx", ".xls")):
                 df = pd.read_excel(ruta, nrows=5)
-                resultado.setdefault("muestras", {})[info["nombre"]] = list(df.columns)
-            elif ruta.endswith(".csv"):
+            else:
                 df = pd.read_csv(ruta, nrows=5)
-                resultado.setdefault("muestras", {})[info["nombre"]] = list(df.columns)
+            resultado.setdefault("muestras", {})[info["nombre"]] = list(df.columns)
         except Exception as e:
             resultado["alertas"].append(f"{os.path.basename(ruta)}: {e}")
 
@@ -188,33 +166,23 @@ def validar_filco() -> dict:
     return resultado
 
 
-# ── Resumen del Data Lake ─────────────────────────────────────────
-def resumen_data_lake(validaciones: list) -> dict:
+def resumen_data_lake(validaciones):
     estados = [v["estado"] for v in validaciones]
     return {
-        "total_fuentes":  len(validaciones),
-        "ok":             estados.count("OK"),
-        "advertencia":    estados.count("ADVERTENCIA"),
-        "parcial":        estados.count("PARCIAL"),
-        "pendiente":      estados.count("PENDIENTE"),
-        "error":          estados.count("ERROR"),
-        "listo_para_f3":  all(e in ("OK", "ADVERTENCIA", "PARCIAL")
-                              for e in estados
-                              if e not in ("PENDIENTE",)),
+        "total_fuentes": len(validaciones),
+        "ok":            estados.count("OK"),
+        "advertencia":   estados.count("ADVERTENCIA"),
+        "parcial":       estados.count("PARCIAL"),
+        "pendiente":     estados.count("PENDIENTE"),
+        "error":         estados.count("ERROR"),
+        "listo_para_f3": all(e in ("OK", "ADVERTENCIA", "PARCIAL") for e in estados if e != "PENDIENTE"),
     }
 
 
-# ── Entry point ───────────────────────────────────────────────────
 def validar_datos():
     print(f"[{datetime.now().strftime('%H:%M:%S')}] Iniciando validación del Data Lake...\n")
 
-    validaciones = [
-        validar_sena(),
-        validar_dane_boletines(),
-        validar_geih(),
-        validar_filco(),
-    ]
-
+    validaciones = [validar_sena(), validar_dane_boletines(), validar_geih(), validar_filco()]
     resumen = resumen_data_lake(validaciones)
 
     metadata = {
@@ -231,7 +199,6 @@ def validar_datos():
     print(f"\n{'─'*55}")
     print(f"  OK          : {resumen['ok']}")
     print(f"  Advertencia : {resumen['advertencia']}")
-    print(f"  Parcial     : {resumen['parcial']}")
     print(f"  Pendiente   : {resumen['pendiente']}")
     print(f"  Listo F3    : {'Sí' if resumen['listo_para_f3'] else 'No'}")
     print(f"  Metadata    : {RUTA_METADATA}")
