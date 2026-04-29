@@ -1,8 +1,3 @@
-"""
-transformar_informalidad.py
-Lee los anexos GEIH-EISS del DANE (informalidad laboral) y los carga a PostgreSQL.
-Usa solo el archivo más reciente que ya contiene la serie completa 2021-2026.
-"""
 import sys
 import os
 import re
@@ -16,32 +11,22 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 warnings.filterwarnings("ignore")
 load_dotenv()
 
-# ── Configuración ─────────────────────────────────────────────────
 POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
 POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
 POSTGRES_DB   = os.getenv("POSTGRES_DB",   "mintic_db")
 POSTGRES_USER = os.getenv("POSTGRES_USER", "mintic_user")
 POSTGRES_PASS = os.getenv("POSTGRES_PASSWORD", "mintic2026")
 
-RUTA_FILCO = os.path.join("data", "raw", "filco", "Data")
-# Archivo con la serie completa 2021-2026
+RUTA_FILCO        = os.path.join("data", "raw", "filco", "Data")
 ARCHIVO_PRINCIPAL = "anex-GEIHEISS-dic2025-feb2026.xlsx"
 
-# Mapeo trimestre → (mes_central, offset_año)
-# offset_año=0 → mismo año del header; offset_año=1 → año siguiente
+# Mes central del trimestre móvil; offset=1 indica que cruza al año siguiente
 TRIMESTRE_MES = {
-    "ene": (2, 0),
-    "feb": (3, 0),
-    "mar": (4, 0),
-    "abr": (5, 0),
-    "may": (6, 0),
-    "jun": (7, 0),
-    "jul": (8, 0),
-    "ago": (9, 0),
-    "sep": (10, 0),
-    "oct": (11, 0),
+    "ene": (2, 0), "feb": (3, 0), "mar": (4, 0), "abr": (5, 0),
+    "may": (6, 0), "jun": (7, 0), "jul": (8, 0), "ago": (9, 0),
+    "sep": (10, 0), "oct": (11, 0),
     "nov": (12, 0),  # Nov-ene → diciembre del año de inicio
-    "dic": (1, 1),   # Dic-feb → enero del año siguiente
+    "dic": (1,  1),  # Dic-feb → enero del año siguiente
 }
 
 
@@ -75,18 +60,12 @@ def crear_tabla(conn):
 
 
 def leer_dim_periodo(conn) -> dict:
-    """Retorna {(anio, mes): id_periodo}"""
     with conn.cursor() as cur:
         cur.execute("SELECT id_periodo, anio, mes FROM dim_periodo")
         return {(r[1], r[2]): r[0] for r in cur.fetchall()}
 
 
 def construir_columnas(df_raw) -> list:
-    """
-    Reconstruye la lista [(año, mes), ...] para cada columna de datos (cols 1..60).
-    Para trimestres con año explícito en el label (ej 'Nov 21 - ene 22'),
-    extrae el año directamente del texto en lugar del header de la fila.
-    """
     row_anio = list(df_raw.iloc[10])
     row_trim = list(df_raw.iloc[11])
 
@@ -107,36 +86,26 @@ def construir_columnas(df_raw) -> list:
             columnas.append((None, None))
             continue
 
-        # Si el label tiene años explícitos (ej "nov 21 - ene 22"), usar el primer año
         numeros = re.findall(r"\b(\d{2})\b", trim_label)
         if numeros:
             anio_inicio = 2000 + int(numeros[0])
         else:
             anio_inicio = anio_header
 
-        if anio_inicio:
-            columnas.append((anio_inicio + (offset or 0), mes))
-        else:
-            columnas.append((None, None))
+        columnas.append((anio_inicio + (offset or 0), mes) if anio_inicio else (None, None))
     return columnas
 
 
 def parsear_prop_informalidad(ruta: str, dim_periodo: dict) -> list:
-    """
-    Extrae la tasa de informalidad por ciudad/periodo.
-    Retorna lista de tuplas para insertar en fact_informalidad.
-    """
     df = pd.read_excel(ruta, sheet_name="Prop informalidad", header=None)
     columnas = construir_columnas(df)
 
     filas = []
-    # Datos empiezan en fila 12
     for i in range(12, len(df)):
         row = list(df.iloc[i])
         ciudad = str(row[0]).strip() if pd.notna(row[0]) else None
         if not ciudad or ciudad == "nan":
             continue
-        # Solo Total nacional y principales ciudades (sin AM repetidas)
         for j, (anio, mes) in enumerate(columnas):
             if anio is None or mes is None:
                 continue
@@ -155,26 +124,17 @@ def parsear_prop_informalidad(ruta: str, dim_periodo: dict) -> list:
 
 
 def parsear_sexo(ruta: str, dim_periodo: dict) -> list:
-    """
-    Extrae ocupados total/formal/informal por sexo a nivel nacional.
-    """
     df = pd.read_excel(ruta, sheet_name="Sexo", header=None)
     columnas = construir_columnas(df)
 
     filas = []
-    i = 13  # Datos inician en fila 13 (Población ocupada total)
+    i = 13
     while i < len(df):
         row = list(df.iloc[i])
         concepto = str(row[0]).strip() if pd.notna(row[0]) else ""
 
-        # Detectar bloque por sexo
-        if concepto in ("Población ocupada", "Poblaci��nuevo ocupada"):
-            pass
-
-        # Procesar bloques de Hombres y Mujeres
         if concepto in ("Hombres", "Mujeres"):
-            sexo = concepto
-            # Siguiente fila = Formal, la de después = Informal
+            sexo         = concepto
             row_formal   = list(df.iloc[i + 1]) if i + 1 < len(df) else []
             row_informal = list(df.iloc[i + 2]) if i + 2 < len(df) else []
 
@@ -184,15 +144,16 @@ def parsear_sexo(ruta: str, dim_periodo: dict) -> list:
                 id_periodo = dim_periodo.get((anio, mes))
                 if id_periodo is None:
                     continue
+
                 def _v(r, idx):
                     try:
                         return round(float(r[idx + 1]), 1) if (idx + 1) < len(r) and str(r[idx + 1]) != "nan" else None
                     except (ValueError, TypeError):
                         return None
+
                 formal   = _v(row_formal,   j)
                 informal = _v(row_informal, j)
                 total    = round(formal + informal, 1) if formal and informal else None
-
                 if total is None:
                     continue
                 filas.append((id_periodo, "Total nacional", sexo, None, total, formal, informal))
@@ -226,27 +187,22 @@ def main():
     print(f"Conectando a PostgreSQL ({POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB})...")
     conn = conectar()
 
-    print("\n── Creando tabla ──────────────────────────────────────────")
     crear_tabla(conn)
 
-    print("\n── Leyendo dim_periodo ────────────────────────────────────")
     dim_periodo = leer_dim_periodo(conn)
     print(f"  {len(dim_periodo)} periodos disponibles")
 
-    print("\n── Prop informalidad por ciudad ───────────────────────────")
     filas_inf = parsear_prop_informalidad(ruta, dim_periodo)
-    print(f"  Filas extraídas: {len(filas_inf):,}")
+    print(f"  Filas extraídas (informalidad): {len(filas_inf):,}")
     cargar(conn, filas_inf)
 
-    print("\n── Ocupados por sexo (nacional) ───────────────────────────")
     filas_sexo = parsear_sexo(ruta, dim_periodo)
-    print(f"  Filas extraídas: {len(filas_sexo):,}")
+    print(f"  Filas extraídas (sexo): {len(filas_sexo):,}")
     cargar(conn, filas_sexo)
 
-    # Resumen
     with conn.cursor() as cur:
-        cur.execute("SELECT COUNT(*), MIN(id_periodo), MAX(id_periodo) FROM fact_informalidad")
-        total, p_min, p_max = cur.fetchone()
+        cur.execute("SELECT COUNT(*) FROM fact_informalidad")
+        total = cur.fetchone()[0]
     print(f"\n  Total en fact_informalidad: {total:,} filas")
 
     conn.close()
