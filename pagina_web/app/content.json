@@ -1,0 +1,118 @@
+{
+  "theme": {
+    "background": "#07111f",
+    "surface": "#0d1b2f",
+    "surfaceSoft": "#13243a",
+    "border": "#21415f",
+    "primary": "#102a43",
+    "accent": "#42f59e",
+    "accentSoft": "#123d32",
+    "text": "#f6fbff",
+    "muted": "#9fb2c8",
+    "warning": "#facc15"
+  },
+  "project": {
+    "name": "Dashboard Predictivo MINTIC 2026",
+    "eyebrow": "Analitica predictiva del mercado laboral colombiano",
+    "description": "Una experiencia interactiva para leer el mercado laboral colombiano desde cuatro vistas: panorama nacional, tendencias, demanda SENA y prediccion con IA.",
+    "repositoryLabel": "Repositorio",
+    "repositoryUrl": "https://github.com/andresZam12/proyectoMINTIC",
+    "teamLabel": "Equipo",
+    "team": ["Andres Zam", "Daniers", "Deivid"]
+  },
+  "hero": {
+    "primaryAction": "Explorar pantallas",
+    "status": "Datos abiertos DANE, SENA, FILCO y GEIH",
+    "summaryTitle": "Una lectura clara del empleo en Colombia",
+    "summaryText": "Cada pantalla explica un angulo del problema: estado actual, comportamiento historico, demanda de formacion y prediccion de desempleo."
+  },
+  "navigation": {
+    "dashboardLabel": "Pantallas del dashboard"
+  },
+  "powerBi": {
+    "loadingLabel": "Cargando reporte interactivo",
+    "openLabel": "Abrir vista completa"
+  },
+  "sections": [
+    {
+      "id": "panorama",
+      "label": "Panorama Nacional",
+      "kicker": "Pantalla 01",
+      "title": "Panorama Nacional",
+      "subtitle": "Estado general del mercado laboral",
+      "description": "Esta pantalla muestra los indicadores principales del mercado laboral colombiano para el ano seleccionado: tasa de desocupacion, tasa de ocupacion, tasa global de participacion e informalidad.",
+      "url": "https://app.powerbi.com/view?r=eyJrIjoiNGNlNjExZWQtZDI2MC00ZmM3LWIwMzMtZDY3NGY0MDIyZWFjIiwidCI6IjhkMzY4MzZlLTZiNzUtNGRlNi1iYWI5LTVmNGIxNzc1NDI3ZiIsImMiOjR9&pageName=a3a4848fed1830b14e95",
+      "image": "/dashboard/panorama.png",
+      "pointsTitle": "Que permite entender",
+      "points": [
+        "Identifica rapidamente si el desempleo esta alto o bajo en el periodo consultado.",
+        "Relaciona desempleo, ocupacion y participacion para no mirar un solo indicador aislado.",
+        "Ubica geograficamente las ciudades disponibles en el tablero."
+      ],
+      "dataTitle": "Datos que se muestran",
+      "data": ["TD nacional", "TO nacional", "TGP nacional", "Informalidad", "Mapa por ciudad"],
+      "valueTitle": "Valor de la pantalla",
+      "value": "Sirve como entrada al dashboard: da una foto ejecutiva del mercado laboral antes de revisar tendencias o predicciones."
+    },
+    {
+      "id": "tendencias",
+      "label": "Tendencia e Informalidad",
+      "kicker": "Pantalla 02",
+      "title": "Tendencia Nacional e Informalidad",
+      "subtitle": "Evolucion historica y comparacion por ciudad",
+      "description": "Esta vista muestra como cambian las tasas laborales en el tiempo y permite comparar la informalidad por ciudad. Ayuda a detectar patrones, caidas, repuntes y diferencias territoriales.",
+      "url": "https://app.powerbi.com/view?r=eyJrIjoiNGNlNjExZWQtZDI2MC00ZmM3LWIwMzMtZDY3NGY0MDIyZWFjIiwidCI6IjhkMzY4MzZlLTZiNzUtNGRlNi1iYWI5LTVmNGIxNzc1NDI3ZiIsImMiOjR9&pageName=30560d7330e79bb00011",
+      "image": "/dashboard/tendencias.png",
+      "pointsTitle": "Que permite entender",
+      "points": [
+        "Muestra si el desempleo baja, sube o se mantiene estable a traves de los meses.",
+        "Compara la informalidad entre ciudades para evidenciar brechas regionales.",
+        "Permite seleccionar grupos de ciudades y observar cambios por ano."
+      ],
+      "dataTitle": "Datos que se muestran",
+      "data": ["Tasa de desocupacion", "Tasa de ocupacion", "Tasa global de participacion", "Informalidad por ciudad"],
+      "valueTitle": "Valor de la pantalla",
+      "value": "Aporta contexto historico: no solo dice cuanto vale un indicador, sino como se ha comportado y donde estan las diferencias."
+    },
+    {
+      "id": "sena",
+      "label": "Demanda Laboral SENA",
+      "kicker": "Pantalla 03",
+      "title": "Demanda Laboral SENA",
+      "subtitle": "Ocupaciones con mayor demanda de formacion",
+      "description": "Esta pantalla usa datos del SENA para mostrar que ocupaciones concentran mayor numero de inscritos. La lectura conecta necesidades de formacion con posibles demandas del mercado laboral.",
+      "url": "https://app.powerbi.com/view?r=eyJrIjoiNGNlNjExZWQtZDI2MC00ZmM3LWIwMzMtZDY3NGY0MDIyZWFjIiwidCI6IjhkMzY4MzZlLTZiNzUtNGRlNi1iYWI5LTVmNGIxNzc1NDI3ZiIsImMiOjR9&pageName=6b300adb5dc5d1c161d8",
+      "image": "/dashboard/sena.png",
+      "pointsTitle": "Que permite entender",
+      "points": [
+        "Identifica las ocupaciones y niveles de calificacion con mas inscritos.",
+        "Compara el comportamiento entre 2019 y 2020.",
+        "Ayuda a interpretar donde existe mayor interes o necesidad de capacitacion laboral."
+      ],
+      "dataTitle": "Datos que se muestran",
+      "data": ["Inscritos SENA", "Ano 2019", "Ano 2020", "Ocupaciones", "Nivel de calificacion"],
+      "valueTitle": "Valor de la pantalla",
+      "value": "Convierte una fuente de capacitacion en una señal util para orientar programas de formacion y empleabilidad."
+    },
+    {
+      "id": "prediccion",
+      "label": "Prediccion con IA",
+      "kicker": "Pantalla 04",
+      "title": "Prediccion IA - Tasa de Desempleo",
+      "subtitle": "Forecast nacional a seis meses",
+      "description": "Esta vista presenta la serie historica de desempleo y la proyeccion generada por el modelo. Incluye limites de confianza y metricas de evaluacion para interpretar la precision.",
+      "url": "https://app.powerbi.com/view?r=eyJrIjoiNGNlNjExZWQtZDI2MC00ZmM3LWIwMzMtZDY3NGY0MDIyZWFjIiwidCI6IjhkMzY4MzZlLTZiNzUtNGRlNi1iYWI5LTVmNGIxNzc1NDI3ZiIsImMiOjR9&pageName=b529670a08375d0e0cb7",
+      "image": "/dashboard/prediccion.png",
+      "pointsTitle": "Que permite entender",
+      "points": [
+        "Anticipa el posible comportamiento de la tasa de desempleo en los siguientes meses.",
+        "Diferencia valores historicos, prediccion y banda de incertidumbre.",
+        "Evalua la calidad del modelo con MAE y RMSE."
+      ],
+      "dataTitle": "Datos que se muestran",
+      "data": ["Historico TD", "Prediccion TD", "Limite inferior", "Limite superior", "MAE 0.43", "RMSE 0.54"],
+      "valueTitle": "Valor de la pantalla",
+      "value": "Apoya decisiones preventivas: permite preparar acciones antes de que el desempleo suba en los meses proyectados."
+    }
+  ]
+}
