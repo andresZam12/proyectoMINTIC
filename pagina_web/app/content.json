@@ -40,7 +40,7 @@
       "kicker": "Pantalla 01",
       "title": "Panorama Nacional",
       "subtitle": "Estado general del mercado laboral",
-      "description": "Esta pantalla muestra los indicadores principales del mercado laboral colombiano para el ano seleccionado: tasa de desocupacion, tasa de ocupacion, tasa global de participacion e informalidad.",
+      "description": "Esta pantalla muestra los indicadores principales del mercado laboral colombiano para el año seleccionado: tasa de desocupacion, tasa de ocupacion, tasa global de participacion e informalidad.",
       "url": "https://app.powerbi.com/view?r=eyJrIjoiNGNlNjExZWQtZDI2MC00ZmM3LWIwMzMtZDY3NGY0MDIyZWFjIiwidCI6IjhkMzY4MzZlLTZiNzUtNGRlNi1iYWI5LTVmNGIxNzc1NDI3ZiIsImMiOjR9&pageName=a3a4848fed1830b14e95",
       "image": "/dashboard/panorama.png",
       "pointsTitle": "Que permite entender",
@@ -67,7 +67,7 @@
       "points": [
         "Muestra si el desempleo baja, sube o se mantiene estable a traves de los meses.",
         "Compara la informalidad entre ciudades para evidenciar brechas regionales.",
-        "Permite seleccionar grupos de ciudades y observar cambios por ano."
+        "Permite seleccionar grupos de ciudades y observar cambios por año."
       ],
       "dataTitle": "Datos que se muestran",
       "data": ["Tasa de desocupacion", "Tasa de ocupacion", "Tasa global de participacion", "Informalidad por ciudad"],
@@ -90,7 +90,7 @@
         "Ayuda a interpretar donde existe mayor interes o necesidad de capacitacion laboral."
       ],
       "dataTitle": "Datos que se muestran",
-      "data": ["Inscritos SENA", "Ano 2019", "Ano 2020", "Ocupaciones", "Nivel de calificacion"],
+      "data": ["Inscritos SENA", "Año 2019", "Año 2020", "Ocupaciones", "Nivel de calificacion"],
       "valueTitle": "Valor de la pantalla",
       "value": "Convierte una fuente de capacitacion en una señal util para orientar programas de formacion y empleabilidad."
     },
