@@ -33,6 +33,66 @@
     "loadingLabel": "Cargando reporte interactivo",
     "openLabel": "Abrir vista completa"
   },
+  "anova": {
+    "id": "anova",
+    "label": "ANOVA Estadístico",
+    "kicker": "Pantalla 05",
+    "title": "Análisis ANOVA",
+    "subtitle": "Comparación estadística entre fuentes de datos",
+    "description": "Prueba de significancia estadística que compara la tasa de desempleo entre tres grupos: Banco Mundial histórico, DANE 2023-2024 y DANE 2025-2026. Determina si las diferencias observadas son reales o producto del azar.",
+    "pointsTitle": "Qué permite entender",
+    "points": [
+      "Valida si las diferencias entre períodos son estadísticamente significativas (no azar).",
+      "Compara nuestros datos DANE con la fuente externa del Banco Mundial.",
+      "Identifica exactamente entre qué grupos existe la diferencia real con Tukey HSD."
+    ],
+    "dataTitle": "Datos utilizados",
+    "data": ["Banco Mundial 2015-2024", "DANE 2023-2024", "DANE 2025-2026", "F = 4.45", "p = 0.0178", "Tukey HSD"],
+    "valueTitle": "Conclusión estadística",
+    "value": "Se rechaza H₀. El período DANE 2025-2026 es significativamente diferente al Banco Mundial histórico (p = 0.013), confirmando la mejora reciente del mercado laboral colombiano.",
+    "source": {
+      "label": "Fuente externa",
+      "name": "Banco Mundial — World Development Indicators",
+      "indicator": "SL.UEM.TOTL.ZS — Unemployment rate Colombia",
+      "url": "https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?locations=CO"
+    },
+    "hypothesis": {
+      "null": "H₀: La tasa de desempleo media es igual entre el Banco Mundial histórico, DANE 2023-2024 y DANE 2025-2026.",
+      "alt": "H₁: Al menos uno de los grupos tiene una tasa de desempleo media diferente."
+    },
+    "descriptive": [
+      { "group": "Banco Mundial (histórico)", "n": 10, "media": 10.85, "std": 2.15, "min": 8.9, "max": 15.9 },
+      { "group": "DANE 2023-2024", "n": 20, "media": 9.91, "std": 1.04, "min": 8.2, "max": 12.7 },
+      { "group": "DANE 2025-2026", "n": 14, "media": 9.06, "std": 1.17, "min": 7.0, "max": 11.6 }
+    ],
+    "anovaResult": {
+      "f": 4.4543,
+      "p": 0.0178,
+      "conclusion": "Se rechaza H₀ — p < 0.05",
+      "rows": [
+        { "fuente": "Entre grupos", "sc": 18.8725, "gl": 2, "mc": 9.4362, "f": "4.4543", "p": "0.0178" },
+        { "fuente": "Dentro de grupos (Error)", "sc": 86.8573, "gl": 41, "mc": 2.1185, "f": "—", "p": "—" },
+        { "fuente": "Total", "sc": 105.7298, "gl": 43, "mc": "—", "f": "—", "p": "—" }
+      ]
+    },
+    "tukey": [
+      { "g1": "Banco Mundial", "g2": "DANE 2023-2024", "diff": -0.94, "p": 0.2298, "sig": false },
+      { "g1": "Banco Mundial", "g2": "DANE 2025-2026", "diff": -1.79, "p": 0.0133, "sig": true },
+      { "g1": "DANE 2023-2024", "g2": "DANE 2025-2026", "diff": -0.85, "p": 0.2244, "sig": false }
+    ],
+    "bancoMundial": [
+      { "anio": 2015, "tasa": 8.9 },
+      { "anio": 2016, "tasa": 9.2 },
+      { "anio": 2017, "tasa": 9.3 },
+      { "anio": 2018, "tasa": 9.7 },
+      { "anio": 2019, "tasa": 10.5 },
+      { "anio": 2020, "tasa": 15.9 },
+      { "anio": 2021, "tasa": 13.8 },
+      { "anio": 2022, "tasa": 11.2 },
+      { "anio": 2023, "tasa": 10.2 },
+      { "anio": 2024, "tasa": 9.8 }
+    ]
+  },
   "sections": [
     {
       "id": "panorama",

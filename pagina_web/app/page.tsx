@@ -18,6 +18,7 @@ type ThemeStyle = CSSProperties & {
   "--app-warning": string;
 };
 
+// ─── Componente existente: Power BI ───────────────────────────────────────────
 function PowerBIView({
   section,
   loadingLabel,
@@ -45,6 +46,7 @@ function PowerBIView({
   );
 }
 
+// ─── Componente existente: Pantalla de dashboard ──────────────────────────────
 function DashboardScreen({
   section,
   index,
@@ -111,7 +113,7 @@ function DashboardScreen({
         </a>
       </div>
 
-      {/* Columna Derecha: Reporte Power BI - CORRECCIÓN: max-w-full */}
+      {/* Columna Derecha: Reporte Power BI */}
       <div className="flex flex-col w-full max-w-full overflow-hidden">
         <div className="mb-4 flex items-center justify-between px-1">
           <div className="flex items-center gap-3">
@@ -127,12 +129,12 @@ function DashboardScreen({
             Visualización Interactiva
           </span>
         </div>
-        
+
         <PowerBIView
           section={section}
           loadingLabel={content.powerBi.loadingLabel}
         />
-        
+
         <div className="mt-5 border-l-4 border-(--app-accent) bg-(--app-surface) p-4 rounded-r-lg shadow-inner">
           <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-(--app-accent)">
             {section.valueTitle}
@@ -146,8 +148,255 @@ function DashboardScreen({
   );
 }
 
+// ─── NUEVO: Pantalla ANOVA ────────────────────────────────────────────────────
+function AnovaScreen() {
+  const a = content.anova;
+
+  return (
+    <section className="min-h-[calc(100vh-140px)] py-8 space-y-8">
+
+      {/* Header de sección */}
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--app-accent)">
+            {a.kicker}
+          </p>
+          <h2 className="mt-2 text-2xl font-bold text-(--app-text) md:text-3xl">
+            {a.title}
+          </h2>
+          <p className="mt-1 text-sm font-semibold text-(--app-warning)">
+            {a.subtitle}
+          </p>
+        </div>
+        <a
+          href={a.source.url}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 rounded-md border border-(--app-border) bg-(--app-surface) px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-(--app-muted) hover:border-(--app-accent) hover:text-(--app-accent) transition-colors"
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-(--app-accent)" />
+          {a.source.name}
+        </a>
+      </div>
+
+      {/* Descripción + Hipótesis */}
+      <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
+        <div className="rounded-lg border border-(--app-border) bg-(--app-surface) p-5">
+          <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-(--app-muted) mb-3">
+            Descripción
+          </h3>
+          <p className="text-xs leading-relaxed text-(--app-muted)">{a.description}</p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {a.data.map((item) => (
+              <span
+                key={item}
+                className="rounded-md border border-(--app-border) bg-(--app-bg) px-2.5 py-1 text-[10px] font-bold text-(--app-muted) uppercase tracking-wider"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-(--app-border) bg-(--app-surface) p-5 space-y-3">
+          <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-(--app-muted)">
+            Hipótesis
+          </h3>
+          <div className="rounded-md border border-(--app-border) bg-(--app-surface-soft) p-3">
+            <p className="text-[10px] font-bold text-(--app-warning) uppercase tracking-wider mb-1">H₀ — Hipótesis nula</p>
+            <p className="text-xs text-(--app-muted) leading-relaxed">{a.hypothesis.null}</p>
+          </div>
+          <div className="rounded-md border border-(--app-accent)/30 bg-(--app-accent-soft) p-3">
+            <p className="text-[10px] font-bold text-(--app-accent) uppercase tracking-wider mb-1">H₁ — Hipótesis alternativa</p>
+            <p className="text-xs text-(--app-muted) leading-relaxed">{a.hypothesis.alt}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Estadística descriptiva + Banco Mundial */}
+      <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
+
+        {/* Tabla descriptiva */}
+        <div className="rounded-lg border border-(--app-border) bg-(--app-surface) overflow-hidden">
+          <div className="px-5 py-3 border-b border-(--app-border) bg-(--app-surface-soft)">
+            <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-(--app-accent)">
+              Estadística descriptiva por grupo
+            </h3>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-(--app-border)">
+                  {["Grupo", "n", "Media (%)", "Std", "Mín", "Máx"].map((h) => (
+                    <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold uppercase tracking-wider text-(--app-muted)">
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {a.descriptive.map((row, i) => (
+                  <tr key={i} className="border-b border-(--app-border) last:border-0 hover:bg-(--app-surface-soft) transition-colors">
+                    <td className="px-4 py-3 font-medium text-(--app-text)">{row.group}</td>
+                    <td className="px-4 py-3 text-(--app-muted)">{row.n}</td>
+                    <td className="px-4 py-3 font-bold text-(--app-accent)">{row.media}%</td>
+                    <td className="px-4 py-3 text-(--app-muted)">{row.std}</td>
+                    <td className="px-4 py-3 text-(--app-muted)">{row.min}</td>
+                    <td className="px-4 py-3 text-(--app-muted)">{row.max}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Dataset Banco Mundial */}
+        <div className="rounded-lg border border-(--app-border) bg-(--app-surface) overflow-hidden">
+          <div className="px-5 py-3 border-b border-(--app-border) bg-(--app-surface-soft)">
+            <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-(--app-accent)">
+              Dataset externo — Banco Mundial Colombia
+            </h3>
+            <p className="text-[9px] text-(--app-muted) mt-0.5">{a.source.indicator}</p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-(--app-border)">
+                  <th className="px-4 py-2.5 text-left text-[10px] font-bold uppercase tracking-wider text-(--app-muted)">Año</th>
+                  <th className="px-4 py-2.5 text-left text-[10px] font-bold uppercase tracking-wider text-(--app-muted)">Tasa Desempleo (%)</th>
+                  <th className="px-4 py-2.5 text-left text-[10px] font-bold uppercase tracking-wider text-(--app-muted)">Fuente</th>
+                </tr>
+              </thead>
+              <tbody>
+                {a.bancoMundial.map((row) => (
+                  <tr key={row.anio} className="border-b border-(--app-border) last:border-0 hover:bg-(--app-surface-soft) transition-colors">
+                    <td className="px-4 py-2.5 text-(--app-text) font-medium">{row.anio}</td>
+                    <td className="px-4 py-2.5 font-bold" style={{ color: row.tasa > 12 ? "#f87171" : row.tasa > 10 ? "#facc15" : "#42f59e" }}>
+                      {row.tasa}%
+                    </td>
+                    <td className="px-4 py-2.5 text-(--app-muted) text-[10px]">Banco Mundial</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      {/* Resultado ANOVA */}
+      <div className="rounded-lg border border-(--app-border) bg-(--app-surface) overflow-hidden">
+        <div className="px-5 py-3 border-b border-(--app-border) bg-(--app-surface-soft) flex items-center justify-between">
+          <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-(--app-accent)">
+            Tabla ANOVA de un factor
+          </h3>
+          <div className="flex gap-3">
+            <span className="rounded-md bg-(--app-accent-soft) border border-(--app-accent)/40 px-3 py-1 text-[10px] font-bold text-(--app-accent)">
+              F = {a.anovaResult.f}
+            </span>
+            <span className="rounded-md bg-(--app-accent-soft) border border-(--app-accent)/40 px-3 py-1 text-[10px] font-bold text-(--app-accent)">
+              p = {a.anovaResult.p}
+            </span>
+          </div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-(--app-border)">
+                {["Fuente de variación", "Suma de cuadrados", "Grados de libertad", "Media cuadrática", "F", "p-valor"].map((h) => (
+                  <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold uppercase tracking-wider text-(--app-muted)">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {a.anovaResult.rows.map((row, i) => (
+                <tr key={i} className="border-b border-(--app-border) last:border-0 hover:bg-(--app-surface-soft) transition-colors">
+                  <td className="px-4 py-3 font-medium text-(--app-text)">{row.fuente}</td>
+                  <td className="px-4 py-3 text-(--app-muted)">{row.sc}</td>
+                  <td className="px-4 py-3 text-(--app-muted)">{row.gl}</td>
+                  <td className="px-4 py-3 text-(--app-muted)">{row.mc}</td>
+                  <td className="px-4 py-3 font-bold text-(--app-accent)">{row.f}</td>
+                  <td className="px-4 py-3 font-bold text-(--app-accent)">{row.p}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="px-5 py-3 border-t border-(--app-border) bg-(--app-accent-soft)">
+          <p className="text-xs font-bold text-(--app-accent)">
+            ✓ {a.anovaResult.conclusion}
+          </p>
+        </div>
+      </div>
+
+      {/* Post-hoc Tukey */}
+      <div className="rounded-lg border border-(--app-border) bg-(--app-surface) overflow-hidden">
+        <div className="px-5 py-3 border-b border-(--app-border) bg-(--app-surface-soft)">
+          <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-(--app-accent)">
+            Post-hoc Tukey HSD — Comparación de pares
+          </h3>
+          <p className="text-[9px] text-(--app-muted) mt-0.5">
+            Identifica entre cuáles grupos existe la diferencia real (α = 0.05)
+          </p>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-(--app-border)">
+                {["Grupo 1", "Grupo 2", "Diferencia media (pp)", "p ajustado", "¿Significativo?"].map((h) => (
+                  <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold uppercase tracking-wider text-(--app-muted)">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {a.tukey.map((row, i) => (
+                <tr key={i} className="border-b border-(--app-border) last:border-0 hover:bg-(--app-surface-soft) transition-colors">
+                  <td className="px-4 py-3 text-(--app-text) font-medium">{row.g1}</td>
+                  <td className="px-4 py-3 text-(--app-text) font-medium">{row.g2}</td>
+                  <td className="px-4 py-3 text-(--app-muted)">{row.diff}</td>
+                  <td className="px-4 py-3 text-(--app-muted)">{row.p}</td>
+                  <td className="px-4 py-3">
+                    <span className={`rounded-md px-2.5 py-1 text-[10px] font-bold ${
+                      row.sig
+                        ? "bg-(--app-accent-soft) text-(--app-accent) border border-(--app-accent)/40"
+                        : "bg-(--app-surface-soft) text-(--app-muted) border border-(--app-border)"
+                    }`}>
+                      {row.sig ? "SÍ ✓" : "NO"}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Conclusión final */}
+      <div className="border-l-4 border-(--app-accent) bg-(--app-surface) p-5 rounded-r-lg shadow-inner">
+        <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-(--app-accent) mb-2">
+          {a.valueTitle}
+        </h3>
+        <p className="text-sm text-(--app-muted) italic leading-relaxed">
+          &quot;{a.value}&quot;
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          {a.points.map((p) => (
+            <div key={p} className="flex items-start gap-2 text-xs text-(--app-muted)">
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--app-accent)" />
+              <span>{p}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </section>
+  );
+}
+
+// ─── Componente principal ─────────────────────────────────────────────────────
 export default function Home() {
   const [activeId, setActiveId] = useState(content.sections[0].id);
+
+  const isAnova = activeId === "anova";
 
   const activeIndex = useMemo(
     () =>
@@ -173,13 +422,18 @@ export default function Home() {
     "--app-warning": content.theme.warning,
   } as ThemeStyle;
 
+  // Todas las secciones de nav: las 4 existentes + ANOVA
+  const allNavItems = [
+    ...content.sections,
+    { id: content.anova.id, label: content.anova.label },
+  ];
+
   return (
     <main
       className="min-h-screen bg-(--app-bg) text-(--app-text) selection:bg-(--app-accent) selection:text-(--app-bg)"
       style={themeStyle}
     >
       <header className="sticky top-0 z-50 border-b border-(--app-border) bg-(--app-bg)/80 backdrop-blur-xl">
-        {/* CORRECCIÓN: max-w-400 (equivale a 1600px en Tailwind) */}
         <div className="mx-auto flex max-w-400 flex-col gap-4 px-6 py-4 lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-(--app-accent)">
@@ -191,11 +445,12 @@ export default function Home() {
           </div>
 
           <nav
-            className="flex flex-wrap gap-2 sm:grid sm:grid-cols-2 lg:flex xl:grid-cols-4"
+            className="flex flex-wrap gap-2 sm:grid sm:grid-cols-2 lg:flex xl:grid-cols-5"
             aria-label={content.navigation.dashboardLabel}
           >
-            {content.sections.map((section) => {
+            {allNavItems.map((section) => {
               const isActive = section.id === activeId;
+              const isAnovaBtn = section.id === "anova";
 
               return (
                 <button
@@ -208,8 +463,14 @@ export default function Home() {
                       : "transparent",
                     borderColor: isActive
                       ? "var(--app-accent)"
+                      : isAnovaBtn
+                      ? "var(--app-accent)30"
                       : "var(--app-border)",
-                    color: isActive ? "var(--app-accent)" : "var(--app-muted)",
+                    color: isActive
+                      ? "var(--app-accent)"
+                      : isAnovaBtn
+                      ? "var(--app-accent)99"
+                      : "var(--app-muted)",
                   }}
                   type="button"
                 >
@@ -221,9 +482,12 @@ export default function Home() {
         </div>
       </header>
 
-      {/* CORRECCIÓN: max-w-400 */}
       <div className="mx-auto max-w-400 px-6 lg:px-10">
-        <DashboardScreen section={activeSection} index={activeIndex} />
+        {isAnova ? (
+          <AnovaScreen />
+        ) : (
+          <DashboardScreen section={activeSection} index={activeIndex} />
+        )}
       </div>
     </main>
   );
