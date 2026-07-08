@@ -1,21 +1,28 @@
-# Carpeta recursos/
+# Carpeta RECURSOS/
 
-Esta carpeta debe contener los siguientes archivos antes de la entrega final:
+Contiene los materiales de presentación del proyecto para el concurso MinTIC 2026.
 
 | Archivo | Descripción | Estado |
 |---|---|---|
-| `presentacion.pdf` | Exportación PDF de la presentación | ✅ Listo |
+| `presentacion.pdf` | Presentación del proyecto en PDF (8 diapositivas) | ✅ Listo |
 | `presentacion.html` | Presentación interactiva en HTML | ✅ Listo |
-| `portada.png` | Captura de pantalla de la web app (imagen de portada) | ⚠️ Pendiente de agregar |
+| `portada.png` | Captura de pantalla del dashboard en producción | ✅ Listo |
 
-## Cómo obtener portada.png
+## Contenido de la presentación
 
-1. Abrir https://economia-empleo.vercel.app en el navegador
-2. Hacer captura de pantalla (Win + Shift + S en Windows)
-3. Guardar como `portada.png` en esta carpeta
+La presentación cubre los 8 puntos exigidos por los lineamientos de sustentación del concurso:
 
-## Cómo obtener presentacion.pdf
+1. Portada e integrantes del equipo
+2. Problema y objetivo
+3. Datos abiertos utilizados (DANE, FILCO, SENA)
+4. Solución e IA aplicada (Holt-Winters, PostgreSQL, Next.js)
+5. Resultados y demo en vivo
+6. Impacto y beneficiarios
+7. Repositorio y entregables
+8. Cierre
 
-1. Abrir `Presentacion.pptx` en PowerPoint
-2. Archivo → Exportar → Crear PDF/XPS
-3. Guardar como `presentacion.pdf` en esta carpeta
+## Enlaces
+
+- Dashboard en producción: https://economia-empleo.vercel.app
+- Video demo: https://youtu.be/uf618RjgYhc
+- Repositorio: https://github.com/andresZam12/proyectoMINTIC
