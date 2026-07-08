@@ -88,6 +88,8 @@ El modelo captura correctamente la tendencia bajista del desempleo colombiano de
 
 Para ver y probar la solución funcionando en tiempo real:
 
+**Video demo:** [Ver en YouTube](https://youtu.be/uf618RjgYhc)
+
 **Aplicación Web / Producción:** [Visitar la solución en vivo](https://economia-empleo.vercel.app)
 
 **Contenedor listo (Docker):**
@@ -119,8 +121,8 @@ La base de datos se inicializa automáticamente. Jupyter Lab disponible en `http
 
 ```
 proyecto_mintic/
-├── recursos/                  # Presentación del proyecto
-│   ├── Presentacion.pptx
+├── RECURSOS/                  # Presentación del proyecto
+│   ├── presentacion.html
 │   ├── presentacion.pdf
 │   └── portada.png
 ├── docs/                      # Documentación técnica detallada
@@ -132,13 +134,27 @@ proyecto_mintic/
 │   ├── conclusiones.md
 │   └── validation_guide.md
 ├── data/
-│   ├── raw/                   # Datos originales descargados
-│   └── processed/             # Archivos generados por el pipeline
-├── src/
-│   ├── 1_datasource/          # Scripts de extracción
-│   ├── 2_dataprocess/         # Validación y parseo
-│   ├── 3_datatransform/       # PySpark + DDL SQL
-│   └── 4_dataproduct/         # Modelo IA
+│   ├── 01_raw/                # Datos originales (.gitignore — solo .gitkeep)
+│   ├── 02_intermediate/       # Datos semiprocesados
+│   ├── 03_primary/            # Serie temporal consolidada
+│   └── 04_model_output/       # Predicciones del modelo
+├── notebooks/                 # Análisis exploratorio y modelado
+├── pipelines/
+│   ├── 01_datasource/         # Scripts de extracción
+│   ├── 02_dataprocess/        # Validación y parseo
+│   ├── 03_datatransform/      # PySpark + DDL SQL
+│   ├── 04_dataproduct/        # Modelo IA
+│   └── pipeline_ml.py         # Orquestador completo
+├── src/                       # Módulos de librería reutilizables
+│   ├── config.py
+│   ├── data_cleaning.py
+│   ├── feature_engineering.py
+│   ├── model_training.py
+│   ├── model_evaluation.py
+│   └── pipeline_integration.py
+├── models/                    # Modelos serializados (.pkl)
+├── reports/figures/           # Gráficas generadas
+├── tests/                     # Tests de calidad de datos y modelo
 ├── pagina_web/                # Código fuente web app (Next.js)
 ├── CRISP_ML.html              # Documentación metodológica CRISP-ML
 ├── docker-compose.yml
@@ -162,11 +178,11 @@ pip install -r requirements.txt
 docker-compose up -d
 
 # 4. Ejecutar pipeline completo (en orden)
-python src/1_datasource/extraccion_sena.py
-python src/1_datasource/extraccion_dane_boletines.py
-python src/2_dataprocess/parsear_boletines.py
-python src/3_datatransform/transformar_informalidad.py
-python src/4_dataproduct/modelo_prophet.py
+python pipelines/01_datasource/extraccion_sena.py
+python pipelines/01_datasource/extraccion_dane_boletines.py
+python pipelines/02_dataprocess/parsear_boletines.py
+python pipelines/03_datatransform/transformar_informalidad.py
+python pipelines/pipeline_ml.py
 ```
 
 Ver [`docs/validation_guide.md`](docs/validation_guide.md) para instrucciones detalladas de reproducción.
@@ -175,11 +191,11 @@ Ver [`docs/validation_guide.md`](docs/validation_guide.md) para instrucciones de
 
 ## Enlaces de acceso
 
-- [Ver presentación en línea (.PDF)](recursos/presentacion.pdf)
-- [Descarga directa (.PDF)](recursos/presentacion.pdf?raw=true&inline=false)
-- [Descargar presentación (.PPTX)](recursos/Presentacion.pptx)
-- [Documentación CRISP-ML](CRISP_ML.html)
+- [Video demo (YouTube)](https://youtu.be/uf618RjgYhc)
 - [Web app en producción](https://economia-empleo.vercel.app)
+- [Presentación PDF](RECURSOS/presentacion.pdf)
+- [Presentación HTML interactiva](RECURSOS/presentacion.html)
+- [Documentación CRISP-ML](CRISP_ML.html)
 
 ---
 
