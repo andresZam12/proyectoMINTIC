@@ -4,8 +4,8 @@ Esta carpeta debe contener los siguientes archivos antes de la entrega final:
 
 | Archivo | Descripción | Estado |
 |---|---|---|
-| `Presentacion.pptx` | Presentación del proyecto en PowerPoint | ⚠️ Pendiente de agregar |
-| `presentacion.pdf` | Exportación PDF de la presentación | ⚠️ Pendiente de agregar |
+| `presentacion.pdf` | Exportación PDF de la presentación | ✅ Listo |
+| `presentacion.html` | Presentación interactiva en HTML | ✅ Listo |
 | `portada.png` | Captura de pantalla de la web app (imagen de portada) | ⚠️ Pendiente de agregar |
 
 ## Cómo obtener portada.png
