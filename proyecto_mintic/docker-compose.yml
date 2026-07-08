@@ -4,7 +4,7 @@ services:
   postgres:
     image: postgres:15
     container_name: mintic_postgres
-    restart: always
+    restart: no
     environment:
       POSTGRES_DB: mintic_db
       POSTGRES_USER: mintic_user
@@ -20,7 +20,7 @@ services:
   jupyter:
     image: jupyter/pyspark-notebook:latest
     container_name: mintic_jupyter
-    restart: always
+    restart: no
     ports:
       - "8888:8888"
     environment:
@@ -43,7 +43,7 @@ services:
   adminer:
     image: adminer:latest
     container_name: mintic_adminer
-    restart: always
+    restart: no
     ports:
       - "8081:8080"
     depends_on:

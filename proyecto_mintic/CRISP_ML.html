@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentación CRISP-ML — Datos al Ecosistema 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: #1a1a1a;
+      background: #fff;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 40px 72px;
+    }
+
+    /* ── encabezado ── */
+    .portada {
+      border-bottom: 2px solid #1a5276;
+      padding-bottom: 28px;
+      margin-bottom: 40px;
+    }
+    .portada .concurso {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: .04em;
+      color: #555;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .portada h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .portada .subtitulo {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 22px;
+    }
+    .portada table {
+      border: none;
+      font-family: Arial, sans-serif;
+      font-size: 13.5px;
+    }
+    .portada table td {
+      padding: 3px 16px 3px 0;
+      border: none;
+      color: #333;
+    }
+    .portada table td:first-child { font-weight: 700; color: #1a1a1a; }
+
+    /* ── secciones ── */
+    .fase {
+      margin-top: 52px;
+      padding-top: 24px;
+      border-top: 1px solid #d5d8dc;
+    }
+    .fase .etiqueta {
+      font-family: Arial, sans-serif;
+      font-size: 11.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .fase > h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a5276;
+      margin-bottom: 20px;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a6e6e;
+      margin: 28px 0 10px;
+    }
+    p { margin-bottom: 14px; }
+    ul, ol { margin: 0 0 14px 22px; }
+    li { margin-bottom: 6px; }
+
+    /* ── tablas ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0 22px;
+      font-family: Arial, sans-serif;
+      font-size: 13.5px;
+    }
+    th {
+      background: #eaf0f6;
+      color: #1a5276;
+      font-weight: 700;
+      text-align: left;
+      padding: 9px 12px;
+      border-bottom: 2px solid #aac4d8;
+    }
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f9fbfd; }
+
+    /* ── bloque código / pipeline ── */
+    pre {
+      background: #f4f6f7;
+      border-left: 3px solid #1a5276;
+      padding: 16px 20px;
+      font-family: 'Courier New', monospace;
+      font-size: 12.5px;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin: 18px 0 22px;
+      color: #1a1a1a;
+    }
+
+    /* ── nota destacada ── */
+    .nota {
+      border-left: 4px solid #1a6e6e;
+      background: #f0fafa;
+      padding: 14px 18px;
+      margin: 18px 0 22px;
+      font-size: 14px;
+      color: #1a3333;
+    }
+    .nota strong { color: #1a6e6e; }
+
+    /* ── métricas destacadas ── */
+    .metricas {
+      display: flex;
+      gap: 16px;
+      margin: 22px 0;
+      flex-wrap: wrap;
+    }
+    .metrica-box {
+      border: 1.5px solid #aac4d8;
+      border-radius: 6px;
+      padding: 14px 22px;
+      text-align: center;
+      min-width: 130px;
+    }
+    .metrica-box .valor {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a5276;
+      display: block;
+    }
+    .metrica-box .etiq {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #666;
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* ── pie ── */
+    .pie {
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid #d5d8dc;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+    }
+
+    @media print {
+      body { padding: 20px 28px; font-size: 13px; }
+      .fase { page-break-inside: avoid; }
+      h3 { page-break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════ PORTADA -->
+<div class="portada">
+  <div class="concurso">Datos al Ecosistema 2026: IA para Colombia — Reto 5: Economía y Empleo</div>
+  <h1>Documentación Metodológica </h1>
+  <div class="subtitulo">Dashboard Predictivo del Mercado Laboral Colombiano</div>
+  <table>
+    <tr><td>Equipo:</td><td>Andrés Zambrano · Daniers Solarte · Deivid Alvarado · Luna Mideros</td></tr>
+    <tr><td>Institución:</td><td>Ingeniería de Software UCC — Big Data - Herramientas computacionales para la interpretación de valores</td></tr>
+    <tr><td>Fecha:</td><td>Julio 2026</td></tr>
+    <tr><td>Repositorio:</td><td>github.com/andresZam12/proyectoMINTIC</td></tr>
+    <tr><td>Web app:</td><td>economia-empleo.vercel.app</td></tr>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════ INTRO -->
+<p>
+  Este documento recoge el proceso metodológico que seguimos para construir una solución de analítica predictiva
+  sobre el mercado laboral colombiano. No lo escribimos al final como formalidad: lo fuimos construyendo en
+  paralelo con el desarrollo, anotando las decisiones que tomamos, los problemas que encontramos y los ajustes
+  que hicimos sobre la marcha.
+</p>
+<p>
+  La guía que usamos como referencia fue CRISP-ML(Q), una adaptación del clásico CRISP-DM orientada
+  específicamente a proyectos de machine learning. A diferencia de CRISP-DM, CRISP-ML incorpora criterios de
+  calidad en cada fase y reconoce que los proyectos de IA tienen un ciclo de vida que no termina con el modelo:
+  también hay que pensar en cómo se despliega, cómo se monitorea y qué pasa cuando los datos cambian.
+</p>
+<p>Adaptamos las fases al alcance y recursos de un equipo universitario, sin perder rigor en lo técnico.</p>
+
+
+<!-- ══════════════════════════════════════════ FASE 1 -->
+<div class="fase">
+  <div class="etiqueta">Business &amp; ML Problem Framing</div>
+  <h2>Fase 1 — Comprensión del Problema</h2>
+
+  <h3>Contexto</h3>
+  <p>
+    Colombia tiene históricamente una de las tasas de desempleo más altas de América Latina. En 2023 rondaba el
+    11%, con variaciones estacionales marcadas —los meses de inicio de año siempre suben— y diferencias
+    importantes entre ciudades. Sin embargo, esa información está dispersa: los boletines del DANE son PDFs
+    mensuales, los microdatos del GEIH son archivos pesados, y las estadísticas de informalidad las publica el
+    MinTrabajo en Excel con formatos distintos cada trimestre.
+  </p>
+  <p>
+    El problema concreto que identificamos fue ese: no existe un punto de consulta integrado donde un tomador de
+    decisiones pueda ver, en un solo lugar, cómo evolucionaron las tasas de desempleo, qué tan informal es el
+    trabajo en cada ciudad, qué demanda de formación registró el SENA, y hacia dónde apunta la tendencia en los
+    próximos meses. Todo eso existe en datos abiertos, pero nadie lo cruzó.
+  </p>
+
+  <h3>Objetivo del sistema</h3>
+  <p>
+    Construir un dashboard predictivo que integre múltiples fuentes de datos del mercado laboral colombiano y
+    aplique un modelo de series de tiempo para proyectar la tasa de desempleo a seis meses vista, con métricas
+    de confianza explícitas y accesible desde cualquier dispositivo sin software adicional.
+  </p>
+
+  <h3>Tipo de problema ML</h3>
+  <p>
+    Forecasting univariado de series temporales. La variable objetivo es la tasa de desocupación mensual nacional.
+    No es un problema de clasificación ni de clustering: es predicción de valores continuos en el tiempo, con
+    componentes de tendencia y estacionalidad. Como análisis complementario se incorpora un test ANOVA para
+    comparar si las diferencias en tasas de desempleo entre ciudades son estadísticamente significativas.
+  </p>
+
+  <h3>Criterios de éxito</h3>
+  <table>
+    <tr><th>Criterio</th><th>Meta</th><th>Resultado</th></tr>
+    <tr><td>Error de predicción (MAE)</td><td>≤ 1,0 punto porcentual</td><td>0,43 pp ✓</td></tr>
+    <tr><td>Error cuadrático medio (RMSE)</td><td>≤ 1,5 pp</td><td>0,54 pp ✓</td></tr>
+    <tr><td>Cobertura de datos históricos</td><td>Mínimo 2 años</td><td>May 2023 – Feb 2026 ✓</td></tr>
+    <tr><td>Fuentes integradas</td><td>Mínimo 3</td><td>4 fuentes ✓</td></tr>
+    <tr><td>Producto funcional y accesible</td><td>Dashboard interactivo</td><td>Web app 5 secciones + Power BI ✓</td></tr>
+  </table>
+</div>
+
+
+<!-- ══════════════════════════════════════════ FASE 2 -->
+<div class="fase">
+  <div class="etiqueta">Data Understanding</div>
+  <h2>Fase 2 — Comprensión de los Datos</h2>
+
+  <h3>Fuentes identificadas y consultadas</h3>
+  <p>
+    Empezamos mapeando qué datos existían en datos.gov.co y portales oficiales relacionados. Encontramos cuatro
+    fuentes que juntas dan una imagen bastante completa del mercado laboral:
+  </p>
+  <table>
+    <tr><th>Fuente</th><th>Tipo</th><th>Período</th><th>Registros</th><th>Disponibilidad</th></tr>
+    <tr>
+      <td>SENA — Inscritos por ocupación</td>
+      <td>API JSON (datos.gov.co)</td>
+      <td>2019–2020</td>
+      <td>566</td>
+      <td>Abierta, sin autenticación</td>
+    </tr>
+    <tr>
+      <td>DANE — Boletines GEIH</td>
+      <td>PDF mensual</td>
+      <td>May 2023 – Feb 2026</td>
+      <td>34 boletines</td>
+      <td>Descarga directa dane.gov.co</td>
+    </tr>
+    <tr>
+      <td>DANE — Anexos EISS (informalidad)</td>
+      <td>Excel trimestral</td>
+      <td>2021–2026</td>
+      <td>~3.200 registros ciudad/periodo</td>
+      <td>Portal FILCO MinTrabajo</td>
+    </tr>
+    <tr>
+      <td>DANE — Microdatos GEIH</td>
+      <td>ZIP/SAV por módulos</td>
+      <td>2024–2025</td>
+      <td>Millones de filas</td>
+      <td>Descarga con registro previo</td>
+    </tr>
+  </table>
+
+  <h3>Exploración inicial</h3>
+  <p>
+    Lo primero que hicimos fue explorar cada fuente por separado antes de intentar cruzarlas. Fue ahí donde
+    encontramos la mayoría de los problemas que tendríamos que resolver después.
+  </p>
+  <p>
+    Los boletines PDF del DANE fueron el mayor reto. Cada PDF tiene entre 15 y 30 páginas, y las tasas de
+    desempleo, ocupación y participación no siempre están en el mismo lugar ni con el mismo formato. En algunos
+    boletines el dato aparece en una frase como "la tasa de desocupación del total nacional fue de 10,2%", y en
+    otros está en una tabla sin encabezado consistente. Tuvimos que revisar manualmente varios PDFs para entender
+    el patrón antes de escribir el extractor.
+  </p>
+  <p>
+    Los archivos de informalidad del DANE (anexos EISS) tienen un formato de hoja de cálculo con encabezados en
+    dos filas, celdas combinadas para los años, y trimestres móviles nombrados como "Nov21-Ene22". Eso significa
+    que el dato de noviembre pertenece al año 21 pero el enero al 22. Lo pasamos por alto en la primera versión
+    del parser y generó registros con fechas incorrectas; lo corregimos añadiendo una lógica de offset de año
+    en el extractor.
+  </p>
+  <p>
+    Los datos del SENA vinieron bien estructurados desde la API, pero con nombres de columnas codificados: la ñ
+    aparecía como secuencia de caracteres especiales. Requirió un mapeo explícito en el código de transformación.
+  </p>
+
+  <h3>Calidad de datos observada</h3>
+  <div class="nota">
+    <strong>Observación importante:</strong> El dataset del SENA solo cubre 2019 y 2020. Esto no es un error —
+    refleja que el SENA capacita principalmente a trabajadores del sector informal en ocupaciones de comercio,
+    servicios y agropecuario. Las ocupaciones más demandadas (vendedores, auxiliares de servicios,
+    mercaderistas) son consistentes con la estructura real del mercado laboral de base en Colombia.
+  </div>
+  <table>
+    <tr><th>Fuente</th><th>Problema detectado</th><th>Acción tomada</th></tr>
+    <tr>
+      <td>Boletines DANE PDF</td>
+      <td>Formato variable entre ediciones</td>
+      <td>Dos estrategias de extracción: texto corrido + tablas</td>
+    </tr>
+    <tr>
+      <td>Anexos EISS Excel</td>
+      <td>Encabezados en dos filas, trimestres cruzados de año</td>
+      <td>Parser personalizado con lógica de offset de año</td>
+    </tr>
+    <tr>
+      <td>SENA CSV</td>
+      <td>Columnas con codificación especial (ñ → _n_)</td>
+      <td>Mapeo explícito en transformar.py</td>
+    </tr>
+    <tr>
+      <td>Serie temporal</td>
+      <td>Datos solo desde may 2023 (34 puntos)</td>
+      <td>Se usó el total disponible; no se fabricaron datos</td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- ══════════════════════════════════════════ FASE 3 -->
+<div class="fase">
+  <div class="etiqueta">Data Engineering</div>
+  <h2>Fase 3 — Preparación de los Datos</h2>
+
+  <h3>Arquitectura del pipeline</h3>
+  <p>
+    Definimos un pipeline de cuatro etapas que sigue el flujo clásico de un Data Lake hacia un Data Warehouse:
+  </p>
+  <pre>
+                         F1 · DataSource
+    extraccion_sena.py  |  extraccion_dane_boletines.py  |  extraccion_geih.py  |  extraccion_filco.py
+                                          ↓
+                         F2 · DataProcess
+                    validar_datos.py  →  parsear_boletines.py
+                                          ↓
+                         F3 · DataTransform
+              transformar.py (PySpark + JDBC)  |  transformar_informalidad.py
+                                          ↓
+                         F4 · DataProduct
+          modelo_prophet.py  →  prediccion_td  →  Web App + Power BI Dashboard</pre>
+
+  <h3>Extracción</h3>
+  <p>
+    Para los boletines PDF desarrollamos un extractor con dos estrategias complementarias. La primera intenta
+    extraer las tasas mediante expresiones regulares sobre el texto corrido del PDF. Si falla —porque el PDF
+    tiene el dato en tabla y no en prosa—, la segunda estrategia recorre las tablas de las primeras cinco páginas
+    buscando filas que contengan "Total nacional" y extrae los números dentro del rango válido para cada
+    indicador. En 34 PDFs, las dos estrategias juntas lograron extraer los tres indicadores (TD, TO, TGP) en
+    todos los casos.
+  </p>
+  <p>
+    El SENA se obtiene mediante paginación contra la API Socrata de datos.gov.co, en lotes de 10.000 registros.
+    La API responde sin necesidad de autenticación y el dataset completo tiene 566 registros, pequeño porque
+    solo cubre dos años de una fuente específica de capacitación informal.
+  </p>
+
+  <h3>Transformación y modelo de datos</h3>
+  <p>
+    Para la carga a PostgreSQL usamos PySpark con conexión JDBC. El modelo de datos sigue un esquema estrella,
+    pensado para que tanto la web app como Power BI puedan consultar eficientemente sin hacer joins costosos en
+    la capa de visualización:
+  </p>
+  <table>
+    <tr><th>Tabla</th><th>Tipo</th><th>Descripción</th></tr>
+    <tr><td>dim_periodo</td><td>Dimensión</td><td>Calendario mensual 2010–2026</td></tr>
+    <tr><td>dim_departamento</td><td>Dimensión</td><td>Departamentos con código DANE</td></tr>
+    <tr><td>dim_ciudad</td><td>Dimensión</td><td>Ciudades con coordenadas para mapas</td></tr>
+    <tr><td>fact_mercado_laboral</td><td>Hecho</td><td>TD, TO, TGP mensuales por fuente</td></tr>
+    <tr><td>fact_informalidad</td><td>Hecho</td><td>Tasa de informalidad por ciudad y sexo</td></tr>
+    <tr><td>fact_demanda_sena</td><td>Hecho</td><td>Inscritos SENA por ocupación y año</td></tr>
+    <tr><td>prediccion_td</td><td>Hecho</td><td>Predicciones del modelo a 6 meses con intervalo de confianza</td></tr>
+  </table>
+
+  <h3>Validación de calidad</h3>
+  <p>
+    Antes de pasar a modelado corremos <code>validar_datos.py</code>, que genera un archivo
+    <code>metadata.json</code> con el inventario completo de archivos, sus tamaños, hashes MD5 y porcentajes de
+    nulos. Esto nos sirvió para detectar, por ejemplo, que un boletín PDF estaba corrupto: tenía menos de 50 KB
+    cuando los normales pesan entre 800 KB y 2 MB.
+  </p>
+</div>
+
+
+<!-- ══════════════════════════════════════════ FASE 4 -->
+<div class="fase">
+  <div class="etiqueta">ML Model Engineering</div>
+  <h2>Fase 4 — Modelado</h2>
+
+  <h3>Selección del algoritmo de predicción</h3>
+  <p>
+    Para predecir la tasa de desempleo optamos por un modelo de series temporales. La variable tiene una
+    tendencia clara a la baja desde 2023, una estacionalidad anual marcada —el desempleo sube en
+    enero‑febrero y baja en el segundo semestre—, y solo disponemos de 34 observaciones mensuales. Con ese
+    tamaño de serie, los modelos de deep learning no son una opción razonable: necesitan un volumen de datos
+    mucho mayor para generalizar bien.
+  </p>
+  <p>
+    Intentamos primero con <strong>Prophet</strong> (Meta/Facebook), que maneja estacionalidad múltiple y puntos
+    de cambio de forma automática. El problema es que Prophet requiere compilar Stan en el equipo local, y en
+    Windows sin el compilador MinGW ese proceso falla sin salida clara. En lugar de forzar la instalación con
+    dependencias externas que romperían la reproducibilidad en otros equipos, decidimos usar
+    <strong>Holt-Winters</strong> (suavización exponencial triple) de la librería statsmodels, que no tiene
+    dependencias de compilación y es perfectamente adecuado para esta serie.
+  </p>
+  <div class="nota">
+    El script detecta automáticamente cuál modelo está disponible y usa el que corresponda de forma
+    transparente. Si en otro entorno Prophet está instalado y compilado, lo usa primero.
+  </div>
+
+  <h3>Configuración de Holt-Winters</h3>
+  <p>
+    El modelo usa tendencia aditiva, estacionalidad aditiva con período de 12 meses, e inicialización estimada
+    por la librería a partir de los propios datos. Los hiperparámetros de suavización (α, β, γ) se optimizan
+    automáticamente minimizando la verosimilitud de la serie de entrenamiento, sin búsqueda manual de
+    parámetros.
+  </p>
+
+  <h3>Estrategia de evaluación</h3>
+  <p>
+    Dividimos la serie en 80% entrenamiento y 20% prueba, lo que con 34 puntos representa aproximadamente 27
+    meses de entrenamiento y 7 de prueba. Entrenamos el modelo sobre el subconjunto histórico, predijimos los
+    meses del período de prueba y calculamos las métricas. Luego reentrenamos con todos los datos disponibles
+    para generar el forecast final de 6 meses.
+  </p>
+  <p>
+    Usamos hold-out simple en lugar de validación cruzada con ventana deslizante porque con 34 puntos, cada
+    fold adicional consume demasiados datos de entrenamiento para los primeros cortes y daría estimaciones de
+    error inestables. Con más historia disponible sería la elección natural.
+  </p>
+
+  <h3>Intervalo de confianza</h3>
+  <p>
+    Para el intervalo de predicción calculamos un margen empírico: ±1,645 desviaciones estándar del forecast,
+    que corresponde a un intervalo del 90%. Ese margen resultó en una banda de aproximadamente
+    ±1,2 puntos porcentuales, razonable para un indicador macroeconómico mensual.
+  </p>
+
+  <h3>Análisis ANOVA — comparación entre ciudades</h3>
+  <p>
+    Como componente estadístico complementario al modelo predictivo, incorporamos un análisis de varianza
+    (ANOVA de una vía) sobre los datos de informalidad laboral por ciudad. El objetivo es responder una
+    pregunta concreta: ¿las diferencias en tasas de informalidad que se observan entre ciudades como Quibdó,
+    Bogotá o Medellín son diferencias reales, o podrían explicarse simplemente por variación aleatoria entre
+    períodos?
+  </p>
+  <p>
+    Para el análisis tomamos las tasas trimestrales de informalidad de cada ciudad disponible en los anexos
+    EISS (2021–2026) y aplicamos una prueba F clásica donde cada ciudad es un grupo. Un valor p por debajo de
+    0,05 confirma que al menos un par de ciudades tiene tasas de informalidad significativamente distintas,
+    lo que valida que las comparaciones geográficas del dashboard no son superficiales.
+  </p>
+  <p>
+    Los resultados del ANOVA se visualizan en la sección "ANOVA Estadístico" de la web app, que muestra el
+    valor F, el valor p y una tabla de medias por ciudad. Este análisis no reemplaza el modelo predictivo
+    —son preguntas distintas—, sino que añade una capa de rigor estadístico al análisis descriptivo.
+  </p>
+</div>
+
+
+<!-- ══════════════════════════════════════════ FASE 5 -->
+<div class="fase">
+  <div class="etiqueta">Evaluation &amp; Quality Assurance</div>
+  <h2>Fase 5 — Evaluación</h2>
+
+  <h3>Métricas de desempeño</h3>
+  <div class="metricas">
+    <div class="metrica-box">
+      <span class="valor">0,43 pp</span>
+      <span class="etiq">MAE</span>
+    </div>
+    <div class="metrica-box">
+      <span class="valor">0,54 pp</span>
+      <span class="etiq">RMSE</span>
+    </div>
+    <div class="metrica-box">
+      <span class="valor">6,5 – 9,0 %</span>
+      <span class="etiq">Rango predicción H2 2026</span>
+    </div>
+  </div>
+
+  <p>
+    El MAE de 0,43 puntos porcentuales significa que, en promedio, el modelo se equivoca menos de medio punto
+    porcentual. Para ponerlo en contexto: si la tasa real en un mes es 10,5%, el modelo predice entre 10,07% y
+    10,93%. Para un indicador macroeconómico mensual, ese margen es muy bueno.
+  </p>
+  <p>
+    El RMSE (0,54 pp) es solo ligeramente mayor que el MAE, lo que indica que los errores grandes son poco
+    frecuentes. El modelo no tiene predicciones completamente erradas en ningún punto del período de prueba.
+  </p>
+
+  <h3>Interpretación de las predicciones</h3>
+  <p>
+    El modelo proyecta que la tasa de desempleo colombiana se mantendrá por debajo del 9% durante el segundo
+    semestre de 2026, con una tendencia estable o levemente decreciente. Esto es consistente con el
+    comportamiento observado en 2025, donde la tasa descendió desde el 10,6% de inicio de año hasta valores
+    cercanos al 8,5% en el segundo semestre.
+  </p>
+  <p>
+    La estacionalidad que captura el modelo también es correcta: se espera un repunte temporal en los meses de
+    inicio de 2027 (enero-marzo), como ha ocurrido sistemáticamente en todos los años de la serie.
+  </p>
+
+  <h3>Limitaciones reconocidas</h3>
+  <ul>
+    <li>La serie tiene solo 34 puntos. Con más historia —desde 2010, por ejemplo— el modelo capturaría mejor los ciclos económicos largos y las recuperaciones post-crisis.</li>
+    <li>El modelo no incorpora variables externas como el precio del petróleo, el PIB trimestral o indicadores de confianza empresarial, que tienen correlación conocida con el desempleo colombiano.</li>
+    <li>Shocks no anticipados —una crisis financiera, una pandemia— no pueden predecirse con series temporales univariadas. Las bandas de confianza crecen, pero el modelo no puede anticipar rupturas estructurales.</li>
+    <li>Los datos del SENA corresponden a 2019–2020 y no tienen una actualización pública disponible con la misma API en este momento.</li>
+  </ul>
+</div>
+
+
+<!-- ══════════════════════════════════════════ FASE 6 -->
+<div class="fase">
+  <div class="etiqueta">Deployment &amp; Monitoring</div>
+  <h2>Fase 6 — Despliegue y Monitoreo</h2>
+
+  <h3>Infraestructura de backend</h3>
+  <p>
+    El backend del proyecto corre sobre tres contenedores Docker que se levantan con un solo comando
+    (<code>docker-compose up -d</code>):
+  </p>
+  <table>
+    <tr><th>Contenedor</th><th>Puerto</th><th>Rol</th></tr>
+    <tr><td>mintic_postgres</td><td>5432</td><td>Base de datos PostgreSQL 15</td></tr>
+    <tr><td>mintic_jupyter</td><td>8888</td><td>Entorno PySpark para transformaciones</td></tr>
+    <tr><td>mintic_adminer</td><td>8081</td><td>Interfaz de administración de la BD</td></tr>
+  </table>
+
+  <h3>Producto de datos: web app pública</h3>
+  <p>
+    El producto principal de cara al usuario es una aplicación web desarrollada en TypeScript (Next.js) y
+    desplegada en Vercel, accesible en <strong>economia-empleo.vercel.app</strong>. La decisión de construir
+    una web app además del dashboard de Power BI responde a una limitación práctica importante: Power BI
+    Desktop requiere instalación local en Windows, lo que restringe quién puede consultar los datos. La web
+    app no requiere ningún software adicional y funciona en cualquier navegador.
+  </p>
+  <p>La aplicación tiene cinco secciones:</p>
+  <ul>
+    <li><strong>Panorama Nacional:</strong> KPIs principales de desempleo, ocupación y participación laboral con mapa de Colombia.</li>
+    <li><strong>Tendencia e Informalidad:</strong> Evolución temporal de los tres indicadores GEIH y comparación de informalidad por ciudad y sexo.</li>
+    <li><strong>Demanda Laboral SENA:</strong> Ranking de ocupaciones por número de inscritos (2019 vs. 2020) con filtros interactivos.</li>
+    <li><strong>Predicción con IA:</strong> Visualización del forecast de Holt-Winters a 6 meses con banda de confianza y métricas del modelo.</li>
+    <li><strong>ANOVA Estadístico:</strong> Resultados del análisis de varianza sobre informalidad por ciudad, con valor F, valor p y tabla de medias.</li>
+  </ul>
+
+  <h3>Dashboard Power BI</h3>
+  <p>
+    Paralelamente, el archivo <code>.pbix</code> se conecta directamente a PostgreSQL mediante el conector
+    nativo. Es útil para análisis ad hoc por parte de analistas con acceso al entorno local, pero la web app
+    es el canal principal para acceso público.
+  </p>
+
+  <h3>Reproducibilidad</h3>
+  <p>
+    El pipeline completo es reproducible: si se ejecutan los scripts en orden (extracción → procesamiento →
+    transformación → modelo), se reconstruye toda la base de datos desde cero. Las credenciales se gestionan
+    mediante un archivo <code>.env</code> que no se sube al repositorio. El repositorio público en GitHub
+    incluye instrucciones paso a paso en el README para que cualquier persona pueda replicar el entorno.
+  </p>
+
+  <h3>Plan de monitoreo y actualización</h3>
+  <p>
+    El DANE publica un nuevo boletín GEIH cada mes, aproximadamente el día 30 del mes siguiente. Para mantener
+    el dashboard actualizado bastaría con:
+  </p>
+  <ol>
+    <li>Descargar el nuevo PDF y depositarlo en <code>data/raw/dane_boletines/</code>.</li>
+    <li>Volver a correr <code>parsear_boletines.py</code> y <code>transformar.py</code>.</li>
+    <li>Volver a correr <code>modelo_prophet.py</code> para actualizar las predicciones.</li>
+    <li>La web app en Vercel refleja los cambios automáticamente al reconectarse a los datos.</li>
+  </ol>
+  <p>
+    El modelo no necesita reentrenamiento desde cero: Holt-Winters es incremental por naturaleza y se
+    recalibra con los nuevos puntos de la serie.
+  </p>
+
+  <h3>Escalabilidad</h3>
+  <p>La arquitectura actual puede crecer de varias formas sin rediseñar el sistema:</p>
+  <ul>
+    <li><strong>Más fuentes:</strong> agregar nuevas tablas de hechos en el esquema estrella sin afectar las existentes.</li>
+    <li><strong>Más geografía:</strong> los datos de informalidad ya están desagregados por ciudad; extender a nivel municipal requeriría solo añadir filas en <code>dim_ciudad</code>.</li>
+    <li><strong>Modelo más potente:</strong> el script de modelado ya tiene Prophet como opción prioritaria; en un entorno con compilador disponible se activa automáticamente.</li>
+    <li><strong>Automatización:</strong> el pipeline podría correr en un servidor con un cron mensual y actualizar la base de datos sin intervención manual.</li>
+  </ul>
+</div>
+
+
+<!-- ══════════════════════════════════════════ IMPACTO -->
+<div class="fase">
+  <h2>Impacto Esperado</h2>
+  <p>La solución está pensada para tres tipos de usuarios con necesidades distintas:</p>
+  <p>
+    <strong>Tomadores de decisión en política pública</strong> (ministerios, DANE, planeación departamental):
+    el dashboard les da una vista integrada del mercado laboral sin necesidad de cruzar manualmente boletines,
+    Excel y microdatos. La predicción a 6 meses les permite anticipar períodos de mayor desempleo y preparar
+    respuestas de política con antelación. El análisis ANOVA les da una base estadística para comparar ciudades
+    sin tener que confiar solo en la intuición visual.
+  </p>
+  <p>
+    <strong>Investigadores y académicos:</strong> la base de datos estructurada en PostgreSQL facilita consultas
+    analíticas que serían lentas o imposibles directamente sobre los archivos fuente. El repositorio abierto
+    permite replicar y extender el análisis con otras fuentes o metodologías.
+  </p>
+  <p>
+    <strong>Ciudadanos y periodistas:</strong> la web app presenta los datos de forma visual e intuitiva, sin
+    requerir ningún conocimiento técnico ni software de pago. Cualquier persona puede ver la evolución del
+    desempleo en su ciudad o comparar la informalidad entre regiones desde el navegador.
+  </p>
+  <p>
+    A mediano plazo, la solución podría integrarse con el portal datos.gov.co como herramienta de consulta
+    pública, actualizándose automáticamente cada mes con los nuevos boletines del DANE. Esto convertiría un
+    proyecto universitario en una herramienta de utilidad pública sostenible en el tiempo.
+  </p>
+</div>
+
+
+<!-- ══════════════════════════════════════════ PIE -->
+<div class="pie">
+  Documentación elaborada bajo los lineamientos CRISP-ML(Q) — Concurso Datos al Ecosistema 2026 ·
+  github.com/andresZam12/proyectoMINTIC · economia-empleo.vercel.app
+</div>
+
+</body>
+</html>

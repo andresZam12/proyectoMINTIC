@@ -1,6 +1,103 @@
-# Proyecto MinTIC — Análisis del Mercado Laboral en Colombia
+# Dashboard Predictivo del Mercado Laboral Colombiano
 
-Proyecto de análisis de datos del mercado laboral colombiano desarrollado para el concurso MinTIC. Integra fuentes del DANE, SENA y MinTrabajo, procesa los datos con PySpark, los almacena en PostgreSQL y genera predicciones con un modelo de inteligencia artificial, todo visualizado en un dashboard de Power BI.
+> **Concurso Datos al Ecosistema 2026: IA para Colombia — Reto 5: Economía y Empleo**
+> Equipo: Andrés Zambrano · Daniers Solarte · Deivid Alvarado · Luna Mideros
+> Institución: Ingeniería de Software — UCC
+
+---
+
+## Problema abordado
+
+La información sobre el mercado laboral colombiano está dispersa en múltiples fuentes oficiales: los boletines del DANE son PDFs mensuales, las estadísticas de informalidad se publican en Excel con formatos distintos cada trimestre, y los datos de demanda de formación del SENA están en una API separada. No existe un punto de consulta integrado donde un tomador de decisiones pueda ver, en un solo lugar, cómo evoluciona el desempleo, qué tan informal es el trabajo en cada ciudad, qué ocupaciones demanda el mercado, y hacia dónde apunta la tendencia en los próximos meses.
+
+## Justificación
+
+Colombia tiene históricamente una de las tasas de desempleo más altas de América Latina, con marcada estacionalidad y diferencias regionales significativas. Esta solución genera valor público al integrar datos abiertos de DANE, SENA y MinTrabajo en un sistema analítico accesible desde cualquier navegador, permitiendo anticipar períodos críticos de desempleo con un modelo de IA y orientar políticas de formación profesional y formalización laboral basadas en evidencia.
+
+---
+
+## Datasets utilizados
+
+**Cantidad de datasets:** 4
+
+### Desde datos.gov.co *(obligatorio)*
+
+| Dataset | Fuente | Registros | Período |
+|---|---|---|---|
+| [Inscritos SENA por ocupación](https://www.datos.gov.co/Trabajo/Ocupaciones-SENA/8pqf-rmzr) | datos.gov.co | 566 | 2019–2020 |
+
+### Datasets externos (portales oficiales)
+
+| Dataset | Fuente | Formato | Período |
+|---|---|---|---|
+| Boletines técnicos GEIH (TD, TO, TGP) | [DANE](https://www.dane.gov.co/index.php/estadisticas-por-tema/mercado-laboral/empleo-y-desempleo) | PDF mensual | May 2023–Feb 2026 |
+| Anexos EISS — Informalidad por ciudad y sexo | [DANE](https://www.dane.gov.co/index.php/estadisticas-por-tema/mercado-laboral/empleo-informal-y-seguridad-social) | Excel trimestral | 2021–2026 |
+| Indicadores FILCO | [MinTrabajo](https://filco.mintrabajo.gov.co) | Excel | 2021–2026 |
+
+---
+
+## Variables seleccionadas
+
+| Variable | Descripción | Fuente |
+|---|---|---|
+| `tasa_desocupacion` | Tasa de desempleo mensual nacional (%) | DANE GEIH |
+| `tasa_ocupacion` | Porcentaje de población en edad de trabajar que está ocupada (%) | DANE GEIH |
+| `tasa_global_participacion` | Porcentaje de la población en edad de trabajar que participa en el mercado laboral (%) | DANE GEIH |
+| `tasa_informalidad` | Proporción de ocupados en empleos informales por ciudad (%) | DANE EISS |
+| `variacion_anual_td` | Cambio en puntos porcentuales respecto al mismo mes del año anterior | Calculada |
+| `inscritos` | Número de personas inscritas en programas SENA por ocupación | SENA |
+| `ciudad` | Ciudad de medición para indicadores de informalidad | DANE EISS |
+| `sexo` | Desagregación por sexo de la tasa de informalidad | DANE EISS |
+
+---
+
+## Tipo de análisis
+
+**Predictivo** — Forecasting univariado de series temporales sobre la tasa de desocupación mensual nacional, complementado con análisis descriptivo de informalidad laboral por ciudad y análisis estadístico ANOVA para comparación entre ciudades.
+
+## Modelo utilizado
+
+**Holt-Winters** (suavización exponencial triple) con tendencia aditiva y estacionalidad aditiva de período 12 meses. El script detecta automáticamente si **Prophet** (Meta/Facebook) está disponible y lo usa como primera opción; si no, usa Holt-Winters como fallback. Evaluación con hold-out 80/20 (27 meses entrenamiento / 7 meses prueba). Análisis complementario: **ANOVA de una vía** sobre tasas de informalidad por ciudad.
+
+---
+
+## Resultados clave
+
+| Métrica | Meta | Resultado |
+|---|---|---|
+| MAE (Error Absoluto Medio) | ≤ 1,0 pp | **0,43 pp** ✓ |
+| RMSE (Raíz del Error Cuadrático Medio) | ≤ 1,5 pp | **0,54 pp** ✓ |
+| Cobertura histórica | Mínimo 2 años | May 2023–Feb 2026 ✓ |
+| Fuentes integradas | Mínimo 3 | 4 fuentes ✓ |
+
+**Predicción H2 2026:** la tasa de desocupación colombiana se mantendrá entre **6,5 % y 9,0 %** con una banda de confianza de ±1,2 pp.
+
+## Interpretación
+
+El modelo captura correctamente la tendencia bajista del desempleo colombiano desde 2023 (~11%) hasta 2025-2026 (~8%), así como la estacionalidad anual: el desempleo sube en enero-febrero y baja en el segundo semestre. Un MAE de 0,43 pp significa que si la tasa real es 10,5%, el modelo predice entre 10,07% y 10,93%, margen aceptable para un indicador macroeconómico mensual.
+
+## Impacto potencial
+
+- **Tomadores de decisión:** vista integrada del mercado laboral sin cruzar manualmente boletines, Excel y microdatos. La predicción a 6 meses permite anticipar períodos críticos y preparar políticas con anticipación.
+- **Investigadores:** base de datos estructurada en PostgreSQL con esquema estrella, reproducible desde cero con Docker.
+- **Ciudadanos y periodistas:** web app pública sin instalación ni conocimientos técnicos, con visualizaciones interactivas de desempleo e informalidad por ciudad.
+
+---
+
+## Solución en Producción (Demo en Vivo)
+
+Para ver y probar la solución funcionando en tiempo real:
+
+**Aplicación Web / Producción:** [Visitar la solución en vivo](https://economia-empleo.vercel.app)
+
+**Contenedor listo (Docker):**
+```bash
+git clone https://github.com/andresZam12/proyectoMINTIC.git
+cd proyectoMINTIC/proyecto_mintic
+docker-compose up -d
+```
+
+La base de datos se inicializa automáticamente. Jupyter Lab disponible en `http://localhost:8888` (token: `mintic2026`). Adminer en `http://localhost:8081`.
 
 ---
 
@@ -8,106 +105,42 @@ Proyecto de análisis de datos del mercado laboral colombiano desarrollado para 
 
 | Capa | Tecnología |
 |---|---|
-| Extracción | Python, Selenium, requests |
-| Procesamiento | pandas, pdfplumber |
+| Extracción | Python, Selenium, requests, pdfplumber |
 | Transformación | PySpark + JDBC |
 | Base de datos | PostgreSQL 15 (Docker) |
-| Modelo IA | Prophet / Holt-Winters (statsmodels) |
-| Visualización | Power BI Desktop |
+| Modelo IA | Holt-Winters / Prophet (statsmodels / Prophet) |
+| Web app | Next.js + TypeScript (Vercel) |
+| Dashboard | Power BI Desktop |
 | Infraestructura | Docker Compose |
 
 ---
 
-## Requisitos previos
-
-- Python 3.11+
-- Docker Desktop
-- Power BI Desktop (para abrir el dashboard)
-- Google Chrome + ChromeDriver (para los scripts de Selenium)
-
----
-
-## Instalación
-
-```bash
-# 1. Instalar dependencias de Python
-pip install -r requirements.txt
-
-# 2. Configurar variables de entorno
-# Crear un archivo .env con las credenciales (ver sección abajo)
-
-# 3. Levantar los contenedores (PostgreSQL + Jupyter + Adminer)
-docker-compose up -d
-```
-
-El archivo `.env` debe tener:
-```
-POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
-POSTGRES_DB=mintic_db
-POSTGRES_USER=mintic_user
-POSTGRES_PASSWORD=mintic2026
-```
-
----
-
-## Orden de ejecución
-
-Ejecutar los scripts en este orden desde la carpeta `proyecto_mintic/`:
-
-### Paso 1 — Extracción de datos
-```bash
-python src/1_datasource/extraccion_sena.py
-python src/1_datasource/extraccion_dane_boletines.py
-python src/1_datasource/extraccion_geih.py      # requiere Chrome
-python src/1_datasource/extraccion_filco.py     # requiere Chrome
-```
-
-> Los datos GEIH y FILCO también se pueden descargar manualmente si el portal bloquea el scraping. Cada script muestra las instrucciones al final.
-
-### Paso 2 — Procesamiento
-```bash
-python src/2_dataprocess/validar_datos.py       # valida integridad del Data Lake
-python src/2_dataprocess/parsear_boletines.py   # extrae tasas de los PDFs del DANE
-```
-
-### Paso 3 — Transformación y carga a PostgreSQL
-```bash
-# Crear tablas (solo la primera vez)
-psql -h localhost -U mintic_user -d mintic_db -f src/3_datatransform/ddl/crear_tablas.sql
-
-# Cargar datos con PySpark (ejecutar dentro del contenedor Jupyter)
-spark-submit src/3_datatransform/transformar.py
-
-# Cargar datos de informalidad (se puede ejecutar localmente)
-python src/3_datatransform/transformar_informalidad.py
-```
-
-### Paso 4 — Modelo de predicción
-```bash
-python src/4_dataproduct/modelo_prophet.py
-```
-
-Genera las predicciones para los próximos 6 meses y las guarda en la tabla `prediccion_td`.
-
----
-
-## Estructura del proyecto
+## Estructura del repositorio
 
 ```
 proyecto_mintic/
+├── recursos/                  # Presentación del proyecto
+│   ├── Presentacion.pptx
+│   ├── presentacion.pdf
+│   └── portada.png
+├── docs/                      # Documentación técnica detallada
+│   ├── planteamiento_problema.md
+│   ├── marco_metodologico.md
+│   ├── fuentes_datos.md
+│   ├── diccionario_datos.md
+│   ├── architecture.md
+│   ├── conclusiones.md
+│   └── validation_guide.md
 ├── data/
-│   ├── raw/                  # Datos originales descargados
-│   │   ├── sena/
-│   │   ├── dane_boletines/
-│   │   ├── filco/
-│   │   └── geih/
-│   └── processed/            # Archivos generados por el pipeline
+│   ├── raw/                   # Datos originales descargados
+│   └── processed/             # Archivos generados por el pipeline
 ├── src/
-│   ├── 1_datasource/         # Scripts de extracción
-│   ├── 2_dataprocess/        # Validación y parseo
-│   ├── 3_datatransform/      # Transformación con PySpark + DDL SQL
-│   └── 4_dataproduct/        # Modelo IA
+│   ├── 1_datasource/          # Scripts de extracción
+│   ├── 2_dataprocess/         # Validación y parseo
+│   ├── 3_datatransform/       # PySpark + DDL SQL
+│   └── 4_dataproduct/         # Modelo IA
+├── pagina_web/                # Código fuente web app (Next.js)
+├── CRISP_ML.html              # Documentación metodológica CRISP-ML
 ├── docker-compose.yml
 ├── requirements.txt
 └── README.md
@@ -115,41 +148,38 @@ proyecto_mintic/
 
 ---
 
-## Fuentes de datos
+## Instalación y ejecución
 
-| Fuente | Descripción |
-|---|---|
-| **DANE — Boletines GEIH** | Tasas de desempleo, ocupación y participación laboral mensual (2023–2026) |
-| **DANE — Anexos EISS** | Informalidad laboral por ciudad y sexo (2021–2026) |
-| **SENA** | Inscritos por ocupación (2019–2020), vía API datos.gov.co |
-| **FILCO / MinTrabajo** | Indicadores de formalidad laboral |
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/andresZam12/proyectoMINTIC.git
+cd proyectoMINTIC/proyecto_mintic
 
----
+# 2. Instalar dependencias Python
+pip install -r requirements.txt
 
-## Dashboard Power BI
+# 3. Levantar contenedores (PostgreSQL + Jupyter + Adminer)
+docker-compose up -d
 
-El archivo `.pbix` se conecta directamente a PostgreSQL. Para abrirlo:
+# 4. Ejecutar pipeline completo (en orden)
+python src/1_datasource/extraccion_sena.py
+python src/1_datasource/extraccion_dane_boletines.py
+python src/2_dataprocess/parsear_boletines.py
+python src/3_datatransform/transformar_informalidad.py
+python src/4_dataproduct/modelo_prophet.py
+```
 
-1. Abrir `dashboard_mintic.pbix` en Power BI Desktop
-2. Ir a **Inicio → Transformar datos → Configuración del origen de datos**
-3. Actualizar con tu servidor PostgreSQL (localhost:5432)
-4. Hacer clic en **Actualizar**
-
-El dashboard tiene 4 páginas:
-- **Página 1** — Resumen nacional (KPIs principales)
-- **Página 2** — Evolución temporal de las tasas
-- **Página 3** — Informalidad por ciudad y sexo
-- **Página 4** — Predicción IA + métricas del modelo
+Ver [`docs/validation_guide.md`](docs/validation_guide.md) para instrucciones detalladas de reproducción.
 
 ---
 
-## Modelo de IA
+## Enlaces de acceso
 
-El script intenta usar **Prophet** (Facebook) primero. Si no está disponible (requiere compilador C++ y Stan), usa automáticamente **Holt-Winters** de statsmodels, que funciona en cualquier entorno.
-
-Métricas obtenidas con la serie histórica 2023–2026:
-- **MAE = 0.43 pp** (error promedio de ±0.43 puntos porcentuales)
-- **RMSE = 0.54 pp**
+- [Ver presentación en línea (.PDF)](recursos/presentacion.pdf)
+- [Descarga directa (.PDF)](recursos/presentacion.pdf?raw=true&inline=false)
+- [Descargar presentación (.PPTX)](recursos/Presentacion.pptx)
+- [Documentación CRISP-ML](CRISP_ML.html)
+- [Web app en producción](https://economia-empleo.vercel.app)
 
 ---
 
@@ -158,5 +188,5 @@ Métricas obtenidas con la serie histórica 2023–2026:
 | Servicio | Puerto | Uso |
 |---|---|---|
 | PostgreSQL | 5432 | Base de datos principal |
-| Jupyter Lab | 8888 | Ejecutar PySpark |
+| Jupyter Lab | 8888 | Ejecutar PySpark (token: mintic2026) |
 | Adminer | 8081 | Interfaz web para consultar la BD |
