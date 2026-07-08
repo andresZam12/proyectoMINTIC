@@ -6,9 +6,10 @@ __pycache__/
 # Variables de entorno (credenciales)
 .env
 
-# Datos crudos y procesados (archivos grandes)
+# Datos crudos y procesados (archivos grandes — excluidos del repositorio)
+data/01_raw/
+!data/01_raw/.gitkeep
 data/raw/
-data/processed/
 
 # Jupyter
 .ipynb_checkpoints/

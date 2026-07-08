@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Monitor Predictivo — Mercado Laboral Colombia · MinTIC 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #111827; }
+
+    .slide {
+      width: 1280px; height: 720px;
+      position: relative; overflow: hidden;
+      margin: 16px auto; background: #fff;
+      page-break-after: always; break-after: page;
+    }
+    @media print {
+      body { background: #fff; }
+      .slide { margin: 0; }
+      @page { size: 1280px 720px; margin: 0; }
+    }
+
+    /* ── tokens ── */
+    :root {
+      --navy:    #0b2545;
+      --blue:    #1a56db;
+      --blue2:   #3b82f6;
+      --green:   #15803d;
+      --yellow:  #ca8a04;
+      --gray:    #f3f4f6;
+      --border:  #e5e7eb;
+      --dark:    #111827;
+      --mid:     #4b5563;
+      --light:   #9ca3af;
+    }
+
+    /* ─────────────────────────────
+       SLIDE 1 · PORTADA
+    ───────────────────────────── */
+    .s1 {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+    }
+    .s1-left {
+      background: var(--navy);
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      padding: 52px 44px;
+    }
+
+    .s1-badge {
+      display: inline-block;
+      padding: 5px 14px; border-radius: 4px;
+      background: var(--blue); color: white;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .s1-nivel {
+      font-size: 12px; color: rgba(255,255,255,.5);
+      text-transform: uppercase; letter-spacing: .1em;
+      margin-bottom: 8px;
+    }
+    .s1-title {
+      font-size: 34px; font-weight: 800;
+      color: white; line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .s1-sub {
+      font-size: 13px; color: rgba(255,255,255,.55);
+      line-height: 1.7;
+    }
+    .s1-team {
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 20px;
+    }
+    .s1-team-label { font-size: 10px; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
+    .s1-team-name  { font-size: 14px; color: white; font-weight: 600; line-height: 1.8; }
+    .s1-team-inst  { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 6px; }
+
+    .s1-right {
+      background: #f0f4ff;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 60px;
+      position: relative;
+    }
+    .s1-pitch {
+      text-align: center;
+    }
+    .s1-pitch-q {
+      font-size: 18px; font-weight: 700;
+      color: var(--navy); margin-bottom: 24px;
+    }
+    .s1-pitch-a {
+      font-size: 28px; font-weight: 800;
+      color: var(--blue); line-height: 1.3;
+      max-width: 520px;
+    }
+    .s1-pitch-p {
+      font-size: 14px; color: var(--mid);
+      margin-top: 24px; line-height: 1.7;
+      max-width: 480px;
+    }
+    .s1-id {
+      position: absolute; bottom: 28px; right: 36px;
+      font-size: 11px; color: var(--light);
+    }
+
+    /* ─────────────────────────────
+       SLIDE 2 · PROBLEMA + OBJETIVO
+    ───────────────────────────── */
+    .s-header {
+      background: var(--navy);
+      padding: 22px 56px 18px;
+      display: flex; align-items: baseline; gap: 20px;
+    }
+    .s-num  { font-size: 13px; color: rgba(255,255,255,.35); font-weight: 700; }
+    .s-h2   { font-size: 30px; font-weight: 800; color: white; }
+    .s-body { padding: 32px 56px; }
+
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; height: 540px; align-content: start; }
+
+    .problem-title {
+      font-size: 13px; font-weight: 700; color: var(--blue);
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+    }
+    .problem-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .problem-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--blue); flex-shrink: 0; margin-top: 6px;
+    }
+    .problem-text { font-size: 15px; color: var(--dark); line-height: 1.65; }
+    .problem-text strong { color: var(--navy); }
+
+    .obj-box {
+      background: var(--navy);
+      border-radius: 14px; padding: 28px 28px;
+      height: 100%; display: flex; flex-direction: column; justify-content: center;
+    }
+    .obj-label { font-size: 11px; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 14px; }
+    .obj-text  { font-size: 18px; color: white; line-height: 1.75; }
+    .obj-text strong { color: #93c5fd; }
+    .obj-bottom { margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .obj-tag { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); }
+
+    /* ─────────────────────────────
+       SLIDE 3 · DATOS ABIERTOS
+    ───────────────────────────── */
+    .three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+    .data-card {
+      border: 1.5px solid var(--border);
+      border-radius: 14px; padding: 24px 22px;
+      position: relative;
+    }
+    .data-source {
+      font-size: 22px; font-weight: 800; color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .data-name {
+      font-size: 13px; color: var(--mid);
+      margin-bottom: 18px;
+    }
+    .data-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 10px;
+    }
+    .data-key {
+      font-size: 11px; color: var(--light);
+      text-transform: uppercase; letter-spacing: .06em;
+      min-width: 72px; flex-shrink: 0; margin-top: 2px;
+    }
+    .data-val { font-size: 14px; color: var(--dark); font-weight: 500; line-height: 1.5; }
+    .data-val code {
+      font-family: 'Courier New', monospace;
+      font-size: 12px; color: var(--blue);
+      background: #eff6ff; padding: 1px 6px; border-radius: 4px;
+    }
+    .data-accent { border-top: 4px solid var(--blue); }
+    .data-accent2 { border-top: 4px solid #7c3aed; }
+    .data-accent3 { border-top: 4px solid var(--green); }
+
+    .data-bottom {
+      margin-top: 24px; padding: 16px 20px;
+      background: #f8faff; border-radius: 10px;
+      border-left: 4px solid var(--blue);
+    }
+    .data-bottom p { font-size: 14px; color: var(--mid); line-height: 1.6; }
+    .data-bottom strong { color: var(--navy); }
+
+    /* ─────────────────────────────
+       SLIDE 4 · SOLUCIÓN E IA
+    ───────────────────────────── */
+    .pipeline {
+      display: flex; align-items: stretch; gap: 0;
+      margin-bottom: 24px; height: 80px;
+    }
+    .pipe-step {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      background: var(--navy); color: white;
+      padding: 10px 8px; position: relative;
+      text-align: center;
+    }
+    .pipe-step:not(:last-child)::after {
+      content: '';
+      position: absolute; right: -14px; top: 0;
+      width: 0; height: 0;
+      border-top: 40px solid transparent;
+      border-bottom: 40px solid transparent;
+      border-left: 14px solid var(--navy);
+      z-index: 2;
+    }
+    .pipe-step:nth-child(2) { background: #1e3a5f; }
+    .pipe-step:nth-child(2)::after { border-left-color: #1e3a5f; }
+    .pipe-step:nth-child(3) { background: #1a4080; }
+    .pipe-step:nth-child(3)::after { border-left-color: #1a4080; }
+    .pipe-step:nth-child(4) { background: var(--blue); }
+    .pipe-num  { font-size: 10px; color: rgba(255,255,255,.5); margin-bottom: 2px; }
+    .pipe-name { font-size: 13px; font-weight: 700; color: white; }
+    .pipe-desc { font-size: 10px; color: rgba(255,255,255,.65); margin-top: 2px; }
+
+    .ia-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .ia-card {
+      border: 1.5px solid var(--border); border-radius: 12px;
+      padding: 20px 18px;
+    }
+    .ia-icon { margin-bottom: 10px; }
+    .ia-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .ia-body  { font-size: 13px; color: var(--mid); line-height: 1.6; }
+    .ia-body strong { color: var(--dark); }
+    .ia-tag   { display: inline-block; margin-top: 10px; padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+    .tag-blue  { background: #dbeafe; color: var(--blue); }
+    .tag-green { background: #dcfce7; color: var(--green); }
+    .tag-purple{ background: #ede9fe; color: #7c3aed; }
+
+    /* ─────────────────────────────
+       SLIDE 5 · RESULTADOS Y DEMO
+    ───────────────────────────── */
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .big-metrics {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .metric {
+      background: var(--navy); border-radius: 12px;
+      padding: 22px 18px; text-align: center;
+    }
+    .metric-val   { font-size: 52px; font-weight: 900; color: #60a5fa; line-height: 1; }
+    .metric-unit  { font-size: 13px; color: rgba(255,255,255,.55); margin-top: 6px; }
+    .metric-pass  { background: #064e3b; }
+    .metric-pass .metric-val { color: #6ee7b7; }
+
+    .demo-box {
+      background: var(--navy); border-radius: 14px;
+      padding: 30px 28px; color: white;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .demo-label { font-size: 11px; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+    .demo-url   { font-size: 22px; font-weight: 800; color: #93c5fd; margin-bottom: 12px; word-break: break-all; }
+    .demo-desc  { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.6; }
+
+    .result-finds { margin-top: 0; }
+    .find-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .find-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--blue2); flex-shrink: 0; margin-top: 6px;
+    }
+    .find-text { font-size: 14px; color: var(--dark); line-height: 1.6; }
+    .find-text strong { color: var(--navy); }
+
+    /* ─────────────────────────────
+       SLIDE 6 · IMPACTO
+    ───────────────────────────── */
+    .impact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .impact-card {
+      border-left: 4px solid var(--blue);
+      padding: 16px 18px;
+      background: var(--gray); border-radius: 0 10px 10px 0;
+    }
+    .impact-who   { font-size: 11px; color: var(--blue); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+    .impact-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .impact-desc  { font-size: 13px; color: var(--mid); line-height: 1.55; }
+
+    .phrase-box {
+      grid-column: 1 / -1;
+      background: var(--navy); border-radius: 12px;
+      padding: 20px 28px; text-align: center;
+    }
+    .phrase-text {
+      font-size: 16px; font-weight: 700; color: white; line-height: 1.6;
+    }
+    .phrase-text span { color: #93c5fd; }
+
+    /* ─────────────────────────────
+       SLIDE 7 · REPOSITORIO
+    ───────────────────────────── */
+    .repo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .repo-link-box {
+      background: var(--navy); border-radius: 14px;
+      padding: 28px 28px; color: white;
+    }
+    .repo-link-label { font-size: 11px; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+    .repo-link-url   { font-size: 16px; font-weight: 700; color: #93c5fd; margin-bottom: 10px; word-break: break-all; }
+    .repo-link-desc  { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.6; }
+
+
+    .check-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 10px 14px; border-radius: 8px;
+      margin-bottom: 8px; background: var(--gray);
+    }
+    .check-icon { font-size: 16px; flex-shrink: 0; }
+    .check-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 1px; }
+    .check-desc  { font-size: 12px; color: var(--mid); }
+
+    /* ─────────────────────────────
+       SLIDE 8 · CIERRE
+    ───────────────────────────── */
+    .s8 {
+      background: var(--navy);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 60px 80px;
+    }
+    .s8-label { font-size: 11px; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .14em; margin-bottom: 24px; }
+    .s8-phrase {
+      font-size: 26px; font-weight: 800; color: white;
+      line-height: 1.5; max-width: 880px; margin-bottom: 40px;
+    }
+    .s8-phrase .hi { color: #60a5fa; }
+    .s8-divider { width: 60px; height: 3px; background: var(--blue2); border-radius: 2px; margin: 0 auto 40px; }
+    .s8-links { display: flex; gap: 48px; justify-content: center; }
+    .s8-link-label { font-size: 10px; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px; }
+    .s8-link-val   { font-size: 15px; font-weight: 700; color: #93c5fd; }
+    .s8-footer     { position: absolute; bottom: 22px; font-size: 11px; color: rgba(255,255,255,.25); }
+    .s8-team { margin-top: 32px; font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.8; }
+
+    /* ── shared ── */
+    .pg { position: absolute; bottom: 14px; right: 22px; font-size: 11px; color: #d1d5db; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 1 · PORTADA
+══════════════════════════════════════════════════════════ -->
+<div class="slide s1">
+  <div class="s1-left">
+    <div class="s1-top">
+      <div class="s1-badge">Nivel Intermedio</div>
+      <div class="s1-nivel">Concurso Datos al Ecosistema 2026 · Reto 5</div>
+      <div class="s1-title">Monitor Predictivo<br>del Mercado Laboral<br>Colombiano</div>
+      <div class="s1-sub">Integración de datos DANE + FILCO + SENA y predicción de la tasa de desocupación a 6 meses con modelo Holt-Winters.</div>
+    </div>
+    <div class="s1-team">
+      <div class="s1-team-label">Equipo</div>
+      <div class="s1-team-name">
+        Andrés Zambrano<br>
+        Daniers Solarte<br>
+        Deivid Alvarado<br>
+        Luna Mideros
+      </div>
+      <div class="s1-team-inst">Ingeniería de Software · Universidad Cooperativa de Colombia</div>
+    </div>
+  </div>
+
+  <div class="s1-right">
+    <div class="s1-pitch">
+      <div class="s1-pitch-q">¿Qué resolvemos?</div>
+      <div class="s1-pitch-a">Datos laborales dispersos en +70 archivos sin integración ni predicción pública.</div>
+      <div class="s1-pitch-p">Construimos el pipeline ETL que los unifica y un modelo de ML que proyecta el desempleo colombiano con un error de <strong>0.43 puntos porcentuales</strong>, publicado en un dashboard de acceso libre.</div>
+    </div>
+    <div class="s1-id">ID Equipo: ___________ &nbsp;|&nbsp; Reto 5 — Economía y Empleo</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 2 · PROBLEMA Y OBJETIVO
+══════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="s-header">
+    <span class="s-num">02</span>
+    <h2 class="s-h2">Problema y Objetivo</h2>
+  </div>
+  <div class="s-body">
+    <div class="two">
+      <div>
+        <div class="problem-title">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#1a56db" stroke-width="1.5"/><path d="M8 5v4M8 11h.01" stroke="#1a56db" stroke-width="1.5" stroke-linecap="round"/></svg>
+          El problema
+        </div>
+
+        <div class="problem-item">
+          <div class="problem-dot"></div>
+          <div class="problem-text">La <strong>tasa de desocupación nacional</strong> oscila entre 8 % y 20 %, con alta variación estacional y regional. Es un indicador crítico sin herramienta pública de predicción.</div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-dot"></div>
+          <div class="problem-text">Los datos existen pero están dispersos en <strong>33 PDFs del DANE</strong>, <strong>40+ archivos Excel de FILCO</strong> y <strong>una API del SENA</strong> sin ningún punto de integración.</div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-dot"></div>
+          <div class="problem-text">El MinTrabajo y el SENA diseñan programas con información fragmentada y desactualizada, <strong>sin visibilidad anticipada</strong> del comportamiento del mercado laboral.</div>
+        </div>
+
+        <div style="margin-top:22px;padding:14px 18px;background:#fef3c7;border-radius:10px;border-left:4px solid #f59e0b;">
+          <p style="font-size:13px;color:#92400e;font-weight:600;">Pregunta central: ¿cómo se va a comportar la tasa de desocupación en los próximos 6 meses?</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="obj-box">
+          <div class="obj-label">Objetivo</div>
+          <div class="obj-text">
+            Integrar datos del <strong>DANE, FILCO y SENA</strong> en un pipeline ETL automatizado, aplicar un modelo <strong>Holt-Winters</strong> para proyectar la tasa de desocupación a <strong>6 meses con IC al 90 %</strong>, y publicar los resultados en un <strong>dashboard web de acceso público</strong> con predicciones verificables.
+          </div>
+          <div class="obj-bottom">
+            <span class="obj-tag">Datos abiertos</span>
+            <span class="obj-tag">Machine Learning</span>
+            <span class="obj-tag">Impacto público</span>
+            <span class="obj-tag">Open source</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">2 / 8</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 3 · DATOS ABIERTOS
+══════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="s-header">
+    <span class="s-num">03</span>
+    <h2 class="s-h2">Datos Abiertos — Fuentes, Variables y Tratamiento</h2>
+  </div>
+  <div class="s-body">
+    <div class="three" style="margin-bottom:18px;">
+
+      <div class="data-card data-accent">
+        <div class="data-source">DANE · GEIH</div>
+        <div class="data-name">Boletines de mercado laboral</div>
+        <div class="data-row">
+          <span class="data-key">Formato</span>
+          <span class="data-val">PDF — parseo regex + pdfplumber</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Archivos</span>
+          <span class="data-val">33 boletines mensuales</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Período</span>
+          <span class="data-val">Mayo 2023 → Feb 2026</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Variables</span>
+          <span class="data-val">Tasa desocupación · Tasa ocupación · TGP</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Tratamiento</span>
+          <span class="data-val">Extracción dual: texto plano + tablas en primeras 5 páginas. Validación de rangos [5 %–25 %].</span>
+        </div>
+      </div>
+
+      <div class="data-card data-accent2">
+        <div class="data-source">FILCO</div>
+        <div class="data-name">Informalidad laboral GEIH-EISS</div>
+        <div class="data-row">
+          <span class="data-key">Formato</span>
+          <span class="data-val">Excel (.xls / .xlsx)</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Archivos</span>
+          <span class="data-val">40+ anexos trimestrales</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Período</span>
+          <span class="data-val">Ene 2022 → Feb 2026</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Variables</span>
+          <span class="data-val">Tasa informalidad — 13 ciudades</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Tratamiento</span>
+          <span class="data-val">Normalización de columnas con ñ, conversión numérica, ANOVA entre ciudades.</span>
+        </div>
+      </div>
+
+      <div class="data-card data-accent3">
+        <div class="data-source">SENA</div>
+        <div class="data-name">Inscritos por área y ocupación</div>
+        <div class="data-row">
+          <span class="data-key">Formato</span>
+          <span class="data-val">API Socrata — datos.gov.co</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">ID dataset</span>
+          <span class="data-val"><code>8pqf-rmzr</code></span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Período</span>
+          <span class="data-val">2019 → 2020</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Variables</span>
+          <span class="data-val">Ocupación · inscritos 2019 vs 2020</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Tratamiento</span>
+          <span class="data-val">Consulta REST directa, top-10 ocupaciones por demanda, comparación interanual.</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="data-bottom">
+      <p>Los tres datasets se integran en un <strong>esquema estrella PostgreSQL 15</strong> de 7 tablas (3 dimensiones + 3 hechos + predicciones) cargadas automáticamente con <strong>PySpark JDBC</strong> dentro de un entorno Docker.</p>
+    </div>
+  </div>
+  <div class="pg">3 / 8</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 4 · SOLUCIÓN E IA
+══════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="s-header">
+    <span class="s-num">04</span>
+    <h2 class="s-h2">Solución e IA — Pipeline ETL + Modelo + Dashboard</h2>
+  </div>
+  <div class="s-body">
+
+    <!-- Pipeline arrows -->
+    <div class="pipeline">
+      <div class="pipe-step">
+        <div class="pipe-num">FASE 1</div>
+        <div class="pipe-name">DataSource</div>
+        <div class="pipe-desc">PDF · Excel · API REST</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">FASE 2</div>
+        <div class="pipe-name">DataProcess</div>
+        <div class="pipe-desc">Limpieza · Validación</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">FASE 3</div>
+        <div class="pipe-name">DataTransform</div>
+        <div class="pipe-desc">PySpark · PostgreSQL</div>
+      </div>
+      <div class="pipe-step" style="border-radius:0 0 0 0;">
+        <div class="pipe-num">FASE 4</div>
+        <div class="pipe-name">DataProduct</div>
+        <div class="pipe-desc">Modelo · Dashboard</div>
+      </div>
+    </div>
+
+    <div class="ia-grid" style="margin-top:20px;">
+
+      <div class="ia-card">
+        <div class="ia-title">Modelo — Holt-Winters</div>
+        <div class="ia-body">
+          Suavizamiento exponencial triple que captura <strong>tendencia + estacionalidad</strong> de la tasa de desocupación.<br><br>
+          · Partición: <strong>80 % train / 20 % test</strong><br>
+          · Parámetros: α, β, γ optimizados automáticamente<br>
+          · Intervalo de confianza: <strong>90 % (±1.645σ)</strong><br>
+          · Fallback: Prophet (si CmdStan está disponible)
+        </div>
+        <div><span class="ia-tag tag-blue">statsmodels · ExponentialSmoothing</span></div>
+      </div>
+
+      <div class="ia-card">
+        <div class="ia-title">Base de Datos — Esquema Estrella</div>
+        <div class="ia-body">
+          PostgreSQL 15 con 7 tablas: <strong>dim_periodo, dim_departamento, dim_ciudad</strong> + <strong>fact_mercado_laboral, fact_informalidad, fact_demanda_sena</strong> + <strong>prediccion_td</strong>.<br><br>
+          Carga automática con <strong>PySpark JDBC</strong>. Adminer para exploración. Todo en Docker Compose con 3 contenedores.
+        </div>
+        <div><span class="ia-tag tag-purple">Docker · PySpark · PostgreSQL 15</span></div>
+      </div>
+
+      <div class="ia-card">
+        <div class="ia-title">Dashboard — Next.js en Producción</div>
+        <div class="ia-body">
+          Aplicación web con <strong>5 secciones interactivas</strong>:<br>
+          · Serie histórica TD (2022–2026)<br>
+          · Forecast con banda de confianza<br>
+          · Informalidad por ciudad · Análisis SENA<br>
+          · Métricas del modelo (MAE, RMSE)<br><br>
+          Desplegado en <strong>Vercel</strong>, acceso libre y gratuito.
+        </div>
+        <div><span class="ia-tag tag-green">economia-empleo.vercel.app</span></div>
+      </div>
+
+    </div>
+  </div>
+  <div class="pg">4 / 8</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 5 · RESULTADOS Y DEMO
+══════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="s-header">
+    <span class="s-num">05</span>
+    <h2 class="s-h2">Resultados y Demo</h2>
+  </div>
+  <div class="s-body">
+    <div class="results-grid">
+
+      <div>
+        <p style="font-size:12px;color:var(--light);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">Métricas del modelo · conjunto de prueba</p>
+        <div class="big-metrics">
+          <div class="metric">
+            <div class="metric-val">0.43</div>
+            <div class="metric-unit">MAE · puntos porcentuales</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">0.54</div>
+            <div class="metric-unit">RMSE · puntos porcentuales</div>
+          </div>
+          <div class="metric metric-pass">
+            <div class="metric-val">18</div>
+            <div class="metric-unit">Tests pytest pasados ✓</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">90%</div>
+            <div class="metric-unit">Confianza del intervalo</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="demo-box" style="flex:1;">
+          <div>
+            <div class="demo-label">Demo en producción — acceso libre</div>
+            <div class="demo-url">economia-empleo.vercel.app</div>
+            <div class="demo-desc">Dashboard con serie histórica, forecast a 6 meses, análisis de informalidad por ciudad y métricas del modelo en tiempo real.</div>
+          </div>
+          <div style="margin-top:16px;padding:10px 14px;background:rgba(255,255,255,.06);border-radius:8px;">
+            <p style="font-size:12px;color:rgba(255,255,255,.6);">Tecnología: <strong style="color:white;">Next.js · TypeScript · Vercel</strong></p>
+          </div>
+        </div>
+
+        <div style="background:var(--gray);border-radius:12px;padding:18px 20px;">
+          <p style="font-size:12px;color:var(--light);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;">Hallazgos principales</p>
+          <div class="find-item">
+            <div class="find-dot"></div>
+            <div class="find-text">El modelo acierta dentro de <strong>±0.43 pp en promedio</strong> — para un indicador que fluctúa ±12 pp esto equivale a una precisión del 96 %.</div>
+          </div>
+          <div class="find-item">
+            <div class="find-dot"></div>
+            <div class="find-text">Informalidad en <strong>Cúcuta supera el 65 %</strong>, más del doble que Bogotá (31 %). ANOVA confirma diferencias significativas entre ciudades (p &lt; 0.05).</div>
+          </div>
+          <div class="find-item" style="margin-bottom:0;">
+            <div class="find-dot"></div>
+            <div class="find-text">El SENA redujo inscritos en <strong>18 % entre 2019 y 2020</strong> en ocupaciones de manufactura, coincidiendo con el pico de desempleo pandémico.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="pg">5 / 8</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 6 · IMPACTO
+══════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="s-header">
+    <span class="s-num">06</span>
+    <h2 class="s-h2">Impacto — Valor Público y Sostenibilidad</h2>
+  </div>
+  <div class="s-body">
+    <div class="impact-grid">
+
+      <div class="impact-card">
+        <div class="impact-who">MinTrabajo · DNP</div>
+        <div class="impact-title">Política pública con 6 meses de anticipación</div>
+        <div class="impact-desc">Proyecciones cuantitativas de TD permiten diseñar programas de empleo y subsidios antes de que el desempleo se materialice, no después.</div>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-who">SENA</div>
+        <div class="impact-title">Articulación formación ↔ demanda laboral</div>
+        <div class="impact-desc">El análisis de inscritos por ocupación revela qué programas aumentan o disminuyen su matrícula, orientando la oferta educativa según la dinámica real del mercado.</div>
+      </div>
+
+      <div class="impact-card" style="border-left-color:#7c3aed;">
+        <div class="impact-who" style="color:#7c3aed;">Entidades territoriales · 5 ciudades</div>
+        <div class="impact-title">Intervenciones diferenciadas por ciudad</div>
+        <div class="impact-desc">El análisis ANOVA de informalidad (Bogotá, Medellín, Cali, Barranquilla, Cúcuta) evidencia que las brechas son estadísticamente significativas y requieren políticas distintas.</div>
+      </div>
+
+      <div class="impact-card" style="border-left-color:var(--green);">
+        <div class="impact-who" style="color:var(--green);">Ciudadanos · Investigadores · Periodistas</div>
+        <div class="impact-title">Acceso libre a análisis que antes no existían</div>
+        <div class="impact-desc">Dashboard público gratuito. Pipeline open source y reproducible en GitHub, aplicable a cualquier indicador del mercado laboral colombiano.</div>
+      </div>
+
+      <div class="phrase-box">
+        <div class="phrase-text">
+          Beneficiarios directos: <span>desempleados</span> &nbsp;·&nbsp; <span>trabajadores informales</span> &nbsp;·&nbsp; <span>mujeres</span> &nbsp;·&nbsp; <span>jóvenes</span><br>
+          Sostenibilidad: pipeline automatizado · CI/CD GitHub Actions · Docker · Vercel (sin costo operativo)
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="pg">6 / 8</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 7 · REPOSITORIO Y RECURSOS
+══════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="s-header">
+    <span class="s-num">07</span>
+    <h2 class="s-h2">Repositorio y Recursos de Validación</h2>
+  </div>
+  <div class="s-body">
+    <div class="repo-grid">
+
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="repo-link-box">
+          <div class="repo-link-label">Código fuente</div>
+          <div class="repo-link-url">github.com/andresZam12/proyectoMINTIC</div>
+          <div class="repo-link-desc">Repositorio público con estructura nivel Intermedio: notebooks, src/, tests, CI/CD, docs/ completos.</div>
+        </div>
+        <div class="repo-link-box" style="background:#064e3b;">
+          <div class="repo-link-label">Demo en vivo</div>
+          <div class="repo-link-url">economia-empleo.vercel.app</div>
+          <div class="repo-link-desc">Dashboard interactivo en producción. Acceso inmediato sin instalación.</div>
+        </div>
+      </div>
+
+      <div class="repo-checklist">
+        <p style="font-size:12px;color:var(--light);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">Recursos disponibles para revisión técnica</p>
+
+        <div class="check-item">
+          <span class="check-icon">✅</span>
+          <div><div class="check-title">README.md completo</div><div class="check-desc">Instalación, orden de ejecución, variables de entorno, demo link</div></div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">✅</span>
+          <div><div class="check-title">5 Notebooks Jupyter (01–05)</div><div class="check-desc">EDA · Limpieza · Análisis · Modelo · Reportes — todos ejecutables</div></div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">✅</span>
+          <div><div class="check-title">Código fuente modular (src/)</div><div class="check-desc">config · data_cleaning · feature_engineering · model_training · model_evaluation</div></div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">✅</span>
+          <div><div class="check-title">18 Tests automatizados (pytest)</div><div class="check-desc">Calidad de datos + inferencia del modelo · CI/CD en GitHub Actions</div></div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">✅</span>
+          <div><div class="check-title">Documentación técnica (docs/)</div><div class="check-desc">Arquitectura · diccionario de datos · fuentes · CRISP-ML(Q) · conclusiones</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="pg">7 / 8</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 8 · CIERRE
+══════════════════════════════════════════════════════════ -->
+<div class="slide s8">
+  <div class="s8-label">Valor diferencial del proyecto</div>
+
+  <div class="s8-phrase">
+    Convertimos <span>+70 archivos dispersos</span> del DANE, FILCO y SENA<br>
+    en un <span>dashboard predictivo público</span> que proyecta el desempleo colombiano<br>
+    con un error de <span>0.43 puntos porcentuales</span> y sin costo de acceso.
+  </div>
+
+  <div class="s8-divider"></div>
+
+  <div class="s8-links">
+    <div>
+      <div class="s8-link-label">Demo</div>
+      <div class="s8-link-val">economia-empleo.vercel.app</div>
+    </div>
+    <div>
+      <div class="s8-link-label">Repositorio</div>
+      <div class="s8-link-val">github.com/andresZam12/proyectoMINTIC</div>
+    </div>
+    <div>
+      <div class="s8-link-label">Nivel</div>
+      <div class="s8-link-val">Intermedio · Reto 5</div>
+    </div>
+  </div>
+
+  <div class="s8-team">
+    Andrés Zambrano &nbsp;·&nbsp; Daniers Solarte &nbsp;·&nbsp; Deivid Alvarado &nbsp;·&nbsp; Luna Mideros<br>
+    Ingeniería de Software · Universidad Cooperativa de Colombia
+  </div>
+
+  <div class="s8-footer">Concurso Datos al Ecosistema 2026 · IA para Colombia · Ministerio TIC</div>
+</div>
+
+</body>
+</html>

@@ -7,7 +7,7 @@ load_dotenv()
 
 # Rutas base
 ROOT_DIR = Path(__file__).parent.parent
-DATA_RAW = ROOT_DIR / "data" / "raw"
+DATA_RAW = ROOT_DIR / "data" / "01_raw"
 DATA_INTERMEDIATE = ROOT_DIR / "data" / "02_intermediate"
 DATA_PRIMARY = ROOT_DIR / "data" / "03_primary"
 DATA_OUTPUT = ROOT_DIR / "data" / "04_model_output"
