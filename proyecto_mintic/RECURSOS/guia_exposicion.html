@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Guía de Exposición — MinTIC 2026 · 15 minutos</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #111827;
+  background: #fff;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 36px 44px;
+}
+
+/* ── PORTADA ── */
+.cover {
+  padding: 44px 0 36px;
+  border-bottom: 4px solid #1a56db;
+  margin-bottom: 36px;
+  text-align: center;
+}
+.cover-badge {
+  display: inline-block;
+  background: #dc2626;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+.cover h1 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0b2545;
+  margin-bottom: 6px;
+}
+.cover p { color: #6b7280; font-size: 12.5px; }
+.cover-tip {
+  margin-top: 18px;
+  background: #fefce8;
+  border: 1px solid #fde047;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 12.5px;
+  color: #713f12;
+  font-weight: 500;
+}
+
+/* ── NÚMEROS CLAVE ── */
+.nums {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.num-box {
+  background: #0b2545;
+  color: #fff;
+  border-radius: 8px;
+  padding: 14px 10px;
+  text-align: center;
+}
+.num-val { font-size: 24px; font-weight: 900; color: #60a5fa; line-height: 1; }
+.num-lbl { font-size: 10.5px; color: #93c5fd; margin-top: 4px; line-height: 1.4; }
+
+/* ── TIMELINE ── */
+.timeline {
+  display: flex;
+  gap: 0;
+  margin-bottom: 32px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.tl-slot {
+  flex: 1;
+  background: #0b2545;
+  color: #fff;
+  padding: 10px 8px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,.15);
+}
+.tl-slot:last-child { border-right: none; }
+.tl-time { font-size: 18px; font-weight: 800; color: #60a5fa; }
+.tl-label { font-size: 10px; color: rgba(255,255,255,.6); margin-top: 2px; }
+
+/* ── SLIDE CARD ── */
+.slide-card {
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  page-break-inside: avoid;
+}
+.slide-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #0b2545;
+  padding: 10px 18px;
+}
+.slide-num {
+  background: #1a56db;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 12px;
+}
+.slide-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  flex: 1;
+}
+.slide-time {
+  font-size: 12px;
+  font-weight: 600;
+  color: #93c5fd;
+  background: rgba(255,255,255,.1);
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+.slide-body { padding: 16px 20px; }
+
+/* ── GUIÓN ── */
+.script {
+  background: #f0fdf4;
+  border-left: 4px solid #16a34a;
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: #14532d;
+  line-height: 1.8;
+  margin: 10px 0;
+}
+.script em { font-style: normal; }
+.script strong { color: #166534; font-weight: 700; }
+
+/* ── DATOS RÁPIDOS ── */
+.quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+.tag {
+  background: #dbeafe;
+  color: #1e40af;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+.tag-r { background: #dcfce7; color: #166534; }
+.tag-y { background: #fef9c3; color: #713f12; }
+
+/* ── TIPS ── */
+.tip {
+  background: #fef9c3;
+  border: 1px solid #fde047;
+  border-radius: 7px;
+  padding: 9px 14px;
+  font-size: 12px;
+  color: #713f12;
+  margin: 8px 0;
+}
+.tip::before { content: '💡 '; }
+.warn {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 7px;
+  padding: 9px 14px;
+  font-size: 12px;
+  color: #7f1d1d;
+  margin: 8px 0;
+}
+.warn::before { content: '⚠️ '; }
+
+/* ── PREGUNTAS ── */
+.qa { border: 1px solid #e5e7eb; border-radius: 8px; margin: 10px 0; overflow: hidden; }
+.qa-q { background: #0b2545; color: #fff; padding: 9px 14px; font-size: 12.5px; font-weight: 600; }
+.qa-a { padding: 11px 14px; font-size: 12.5px; color: #1e293b; line-height: 1.7; background: #f8fafc; }
+
+/* ── CIERRE ── */
+.frase-final {
+  background: #0b2545;
+  color: #fff;
+  border-radius: 10px;
+  padding: 22px 28px;
+  text-align: center;
+  margin: 24px 0 0;
+}
+.frase-final p { font-size: 16px; font-weight: 700; line-height: 1.6; }
+.frase-final span { color: #60a5fa; }
+
+hr { border: none; border-top: 1px solid #e5e7eb; margin: 28px 0; }
+
+@media print {
+  body { padding: 18px 24px; }
+  .slide-card { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<div class="cover">
+  <div class="cover-badge">Guía de exposición oral · 15 minutos</div>
+  <h1>Monitor Predictivo del Mercado Laboral Colombiano</h1>
+  <p>Concurso Datos al Ecosistema 2026 · Reto 5: Economía y Empleo · Nivel Intermedio</p>
+  <p style="margin-top:6px; color:#374151;">Andrés Zambrano · Daniers Solarte · Deivid Alvarado · Luna Mideros — UCC</p>
+  <div class="cover-tip">
+    <strong>La historia en una oración:</strong> tomamos +70 archivos dispersos del gobierno, los unificamos con IA y los publicamos gratis para que cualquier colombiano pueda ver a dónde va el desempleo.
+  </div>
+</div>
+
+<!-- NÚMEROS A MEMORIZAR -->
+<p style="font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;">Números que debes saber de memoria antes de entrar</p>
+<div class="nums">
+  <div class="num-box"><div class="num-val">+70</div><div class="num-lbl">archivos procesados<br>(33 PDF + 40+ Excel)</div></div>
+  <div class="num-box"><div class="num-val">0.43 pp</div><div class="num-lbl">MAE del modelo<br>meta era ≤ 1.0 pp</div></div>
+  <div class="num-box"><div class="num-val">0.54 pp</div><div class="num-lbl">RMSE del modelo<br>meta era ≤ 1.5 pp</div></div>
+  <div class="num-box"><div class="num-val">7</div><div class="num-lbl">tablas PostgreSQL<br>esquema estrella</div></div>
+  <div class="num-box"><div class="num-val">6</div><div class="num-lbl">meses de pronóstico<br>con IC 90%</div></div>
+  <div class="num-box"><div class="num-val">18</div><div class="num-lbl">tests automatizados<br>pytest — todos pasan</div></div>
+</div>
+
+<!-- DISTRIBUCIÓN DE TIEMPO -->
+<p style="font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;">Distribución de los 15 minutos</p>
+<div class="timeline">
+  <div class="tl-slot"><div class="tl-time">1'</div><div class="tl-label">Diap. 1<br>Portada</div></div>
+  <div class="tl-slot"><div class="tl-time">2'</div><div class="tl-label">Diap. 2<br>Problema</div></div>
+  <div class="tl-slot"><div class="tl-time">1'30"</div><div class="tl-label">Diap. 3<br>Datos</div></div>
+  <div class="tl-slot"><div class="tl-time">3'</div><div class="tl-label">Diap. 4<br>Solución e IA</div></div>
+  <div class="tl-slot"><div class="tl-time">3'</div><div class="tl-label">Diap. 5<br>Demo</div></div>
+  <div class="tl-slot"><div class="tl-time">2'</div><div class="tl-label">Diap. 6<br>Impacto</div></div>
+  <div class="tl-slot"><div class="tl-time">1'</div><div class="tl-label">Diap. 7<br>Repo</div></div>
+  <div class="tl-slot"><div class="tl-time">1'30"</div><div class="tl-label">Diap. 8<br>Cierre</div></div>
+</div>
+
+<!-- ══════ DIAP 1 ══════ -->
+<div class="slide-card">
+  <div class="slide-header">
+    <span class="slide-num">01</span>
+    <span class="slide-title">Portada — Monitor Predictivo del Mercado Laboral Colombiano</span>
+    <span class="slide-time">~1 min</span>
+  </div>
+  <div class="slide-body">
+    <div class="script">
+      "Buenos días / Buenas tardes. Somos el equipo <strong>[ID del equipo]</strong>, de Ingeniería de Software de la Universidad Cooperativa de Colombia.<br><br>
+      Nuestro proyecto se llama <strong>Monitor Predictivo del Mercado Laboral Colombiano</strong> y pertenece al Reto 5: Economía y Empleo.<br><br>
+      La pregunta que nos hicimos fue sencilla: <strong>los datos del desempleo en Colombia existen, son públicos, entonces ¿por qué no hay una sola herramienta que los integre y diga a dónde va el desempleo en los próximos meses?</strong> Eso es exactamente lo que construimos."
+    </div>
+    <div class="quick">
+      <span class="tag">Reto 5 — Economía y Empleo</span>
+      <span class="tag">Nivel Intermedio</span>
+      <span class="tag">Dashboard público en producción</span>
+    </div>
+    <div class="tip">Lanza la pregunta con convicción. No leas el texto de la pantalla — ya lo saben leer. Tú aportas la historia.</div>
+  </div>
+</div>
+
+<!-- ══════ DIAP 2 ══════ -->
+<div class="slide-card">
+  <div class="slide-header">
+    <span class="slide-num">02</span>
+    <span class="slide-title">Problema y Objetivo</span>
+    <span class="slide-time">~2 min</span>
+  </div>
+  <div class="slide-body">
+    <div class="script">
+      "La tasa de desocupación en Colombia oscila entre <strong>8% y 20%</strong> con alta variación estacional. Es el indicador más crítico del mercado laboral, pero <strong>no existe ninguna herramienta pública que lo proyecte</strong>.<br><br>
+      El problema no es falta de datos — el problema es que esos datos están <strong>completamente fragmentados</strong>: el DANE publica los boletines en 33 PDFs, uno por mes; la informalidad laboral está en más de 40 archivos Excel trimestrales del FILCO; y la demanda de formación del SENA está en una API separada.<br><br>
+      El MinTrabajo y el SENA diseñan políticas con esa información dispersa, sin visibilidad anticipada.<br><br>
+      Nuestro objetivo fue: <strong>integrar todo en un pipeline ETL automatizado, aplicar Holt-Winters para proyectar la desocupación a 6 meses con un intervalo de confianza del 90%, y publicar el resultado en un dashboard web de acceso libre.</strong>"
+    </div>
+    <div class="quick">
+      <span class="tag">33 PDFs DANE</span>
+      <span class="tag">40+ Excel FILCO</span>
+      <span class="tag">1 API SENA</span>
+      <span class="tag-r tag">Sin integración pública existente</span>
+    </div>
+    <div class="tip">La palabra clave es "fragmentado". Repítela. El jurado tiene que sentir el dolor del problema antes de ver la solución.</div>
+  </div>
+</div>
+
+<!-- ══════ DIAP 3 ══════ -->
+<div class="slide-card">
+  <div class="slide-header">
+    <span class="slide-num">03</span>
+    <span class="slide-title">Datos Abiertos — Fuentes, Variables y Tratamiento</span>
+    <span class="slide-time">~1 min 30 seg</span>
+  </div>
+  <div class="slide-body">
+    <div class="script">
+      "Usamos cuatro fuentes, todas públicas y gratuitas.<br><br>
+      Del <strong>DANE</strong> descargamos 33 boletines PDF de la GEIH — la Gran Encuesta Integrada de Hogares — con las tasas de desocupación, ocupación y participación mensual desde mayo 2023 hasta febrero 2026. Para extraer los números usamos una estrategia dual: primero regex en el texto plano y si falla, extracción directa de las tablas de las primeras 5 páginas con pdfplumber.<br><br>
+      Del <strong>FILCO</strong>, portal de MinTrabajo, descargamos más de 40 anexos Excel trimestrales con la tasa de informalidad laboral en 13 ciudades, desagregada por sexo.<br><br>
+      Del <strong>SENA</strong>, consultamos directamente la API de datos.gov.co — identificador <strong>8pqf-rmzr</strong> — con los inscritos por área de ocupación.<br><br>
+      Los tres datasets se integran en un <strong>esquema estrella de 7 tablas en PostgreSQL 15</strong>, cargadas con PySpark JDBC dentro de Docker."
+    </div>
+    <div class="quick">
+      <span class="tag">DANE GEIH · PDF · pdfplumber</span>
+      <span class="tag">FILCO · Excel · 13 ciudades</span>
+      <span class="tag">SENA API · 8pqf-rmzr · datos.gov.co</span>
+      <span class="tag-r tag">7 tablas PostgreSQL</span>
+    </div>
+    <div class="tip">Cuando menciones el ID del dataset SENA di "ocho-pe-ce-efe-ere-eme-zeta-ere" — que suene técnico y concreto. Demuestra que lo conoces.</div>
+  </div>
+</div>
+
+<!-- ══════ DIAP 4 ══════ -->
+<div class="slide-card">
+  <div class="slide-header">
+    <span class="slide-num">04</span>
+    <span class="slide-title">Solución e IA — Pipeline ETL + Modelo + Dashboard</span>
+    <span class="slide-time">~3 min</span>
+  </div>
+  <div class="slide-body">
+    <div class="script">
+      "La solución tiene cuatro fases que siguen la metodología CRISP-ML.<br><br>
+      <strong>Fase 1 — DataSource:</strong> scripts de Python descargan automáticamente PDFs, Excel y datos de la API.<br>
+      <strong>Fase 2 — DataProcess:</strong> limpieza, validación de rangos y parseo de todos los archivos.<br>
+      <strong>Fase 3 — DataTransform:</strong> PySpark procesa los datos en paralelo y los carga a PostgreSQL vía JDBC.<br>
+      <strong>Fase 4 — DataProduct:</strong> el modelo de IA genera el pronóstico y el dashboard lo publica.<br><br>
+      Sobre el modelo: usamos <strong>Holt-Winters</strong>, también llamado suavización exponencial triple. Lo elegimos porque la serie de desocupación tiene tres componentes claros: un <strong>nivel base</strong>, una <strong>tendencia</strong> bajista desde 2023, y una <strong>estacionalidad anual</strong> — el desempleo sube en enero y baja en el segundo semestre, todos los años.<br><br>
+      Entrenamos con el <strong>80% de los datos</strong> — 27 meses — y evaluamos en el <strong>20% restante</strong> — 7 meses — que el modelo nunca vio. Los parámetros alfa, beta y gamma se optimizan automáticamente.<br><br>
+      La infraestructura corre en <strong>Docker Compose con 3 contenedores</strong>: PostgreSQL, Jupyter con PySpark y Adminer. El dashboard es una aplicación Next.js desplegada en Vercel."
+    </div>
+    <div class="quick">
+      <span class="tag">CRISP-ML(Q) · 4 fases</span>
+      <span class="tag">Holt-Winters · nivel + tendencia + estacionalidad</span>
+      <span class="tag">80% train / 20% test</span>
+      <span class="tag">PySpark JDBC</span>
+      <span class="tag-r tag">Docker · 3 contenedores</span>
+      <span class="tag">Next.js · Vercel</span>
+    </div>
+    <div class="tip">Para explicar Holt-Winters sin tecnicismos di: <em>"el modelo aprende el nivel del desempleo, aprende si está subiendo o bajando, y aprende que cada enero sube y cada julio baja. Con eso proyecta."</em></div>
+    <div class="warn">No entres en detalles de código aquí. El jurado quiere entender qué hace, no cómo está escrito.</div>
+  </div>
+</div>
+
+<!-- ══════ DIAP 5 ══════ -->
+<div class="slide-card">
+  <div class="slide-header">
+    <span class="slide-num">05</span>
+    <span class="slide-title">Resultados y Demo</span>
+    <span class="slide-time">~3 min</span>
+  </div>
+  <div class="slide-body">
+    <div class="script">
+      "Los resultados superaron nuestras propias metas.<br><br>
+      El concurso exigía un MAE menor a 1.0 punto porcentual — logramos <strong>0.43</strong>. Un RMSE menor a 1.5 — logramos <strong>0.54</strong>. Pasamos los <strong>18 tests automatizados</strong> de calidad de datos y modelo. Y el intervalo de confianza es del <strong>90%</strong>.<br><br>
+      ¿Qué significa 0.43 pp en la práctica? Si la tasa real de desempleo es 10.5%, el modelo predice entre 10.07% y 10.93%. Para un indicador macroeconómico mensual, eso es una precisión del 96%.<br><br>
+      También encontramos hallazgos relevantes: <strong>Cúcuta tiene informalidad superior al 65%</strong>, más del doble que Bogotá con 31%. Un ANOVA confirma que esas diferencias son estadísticamente significativas entre ciudades. Y el SENA redujo sus inscritos en manufactura un 18% entre 2019 y 2020, justo cuando el desempleo alcanzó su pico pandémico.<br><br>
+      El dashboard está publicado ahora mismo en <strong>economia-empleo.vercel.app</strong> — se los muestro."
+    </div>
+
+    <p style="font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px;">Qué mostrar en el demo (máximo 60 segundos)</p>
+    <div class="script">
+      Abre el dashboard. Señala sin hacer clic innecesario:<br>
+      <strong>1.</strong> "Acá la serie histórica de la tasa de desocupación."<br>
+      <strong>2.</strong> "Esta línea verde es el pronóstico a 6 meses — la banda es el intervalo de confianza al 90%."<br>
+      <strong>3.</strong> "Acá el mapa de informalidad — Cúcuta al rojo, Bogotá en verde."<br>
+      <strong>4.</strong> "Acá las métricas del modelo en tiempo real: MAE 0.43, RMSE 0.54."
+    </div>
+    <div class="warn">Ten el dashboard abierto en una pestaña antes de entrar. Si la conexión falla, di: <em>"también tenemos el video demo"</em> y abre youtu.be/uf618RjgYhc.</div>
+    <div class="quick">
+      <span class="tag">MAE 0.43 pp ✓ meta ≤ 1.0</span>
+      <span class="tag">RMSE 0.54 pp ✓ meta ≤ 1.5</span>
+      <span class="tag">18 tests pasados</span>
+      <span class="tag">Cúcuta 65% informalidad</span>
+      <span class="tag-r tag">SENA -18% inscritos manufactura 2020</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ DIAP 6 ══════ -->
+<div class="slide-card">
+  <div class="slide-header">
+    <span class="slide-num">06</span>
+    <span class="slide-title">Impacto — Valor Público y Sostenibilidad</span>
+    <span class="slide-time">~2 min</span>
+  </div>
+  <div class="slide-body">
+    <div class="script">
+      "Este proyecto genera valor público en tres niveles.<br><br>
+      Para el <strong>MinTrabajo y el DNP</strong>: tienen proyecciones cuantitativas con 6 meses de anticipación para diseñar subsidios y programas de empleo antes de que el desempleo se materialice, no después.<br><br>
+      Para el <strong>SENA</strong>: el análisis de inscritos por ocupación les dice exactamente qué programas están aumentando o perdiendo matrícula, orientando la oferta educativa según la dinámica real del mercado.<br><br>
+      Para los <strong>ciudadanos, investigadores y periodistas</strong>: acceso inmediato a datos históricos cruzados sin tener que descargar y cruzar manualmente 70 archivos.<br><br>
+      Y en cuanto a sostenibilidad: es completamente <strong>open source, gratuito y reproducible</strong>. Cualquiera puede clonar el repositorio, levantar los contenedores Docker con un comando y replicar exactamente el mismo resultado."
+    </div>
+    <div class="quick">
+      <span class="tag">MinTrabajo · DNP · política anticipada</span>
+      <span class="tag">SENA · oferta educativa basada en evidencia</span>
+      <span class="tag">Ciudadanos · acceso libre</span>
+      <span class="tag-r tag">Open source · MIT License</span>
+    </div>
+    <div class="tip">La palabra más poderosa de esta diapositiva es "anticipación". El sistema sirve ANTES de que el problema ocurra.</div>
+  </div>
+</div>
+
+<!-- ══════ DIAP 7 ══════ -->
+<div class="slide-card">
+  <div class="slide-header">
+    <span class="slide-num">07</span>
+    <span class="slide-title">Repositorio y Entregables</span>
+    <span class="slide-time">~1 min</span>
+  </div>
+  <div class="slide-body">
+    <div class="script">
+      "Todo el proyecto está disponible en GitHub bajo licencia MIT.<br><br>
+      El repositorio tiene <strong>estructura intermedia completa</strong>: 5 notebooks Jupyter, módulos src reutilizables, pipeline ETL por etapas, documentación técnica en 7 archivos markdown, y <strong>GitHub Actions</strong> que corre automáticamente los tests de calidad de datos y modelo en cada commit.<br><br>
+      Se levanta completo con Docker Compose en tres comandos. La reproducibilidad total está garantizada."
+    </div>
+    <div class="quick">
+      <span class="tag">github.com/andresZam12/proyectoMINTIC</span>
+      <span class="tag">5 notebooks · src/ · pipelines/</span>
+      <span class="tag">CI/CD GitHub Actions</span>
+      <span class="tag-r tag">Docker Compose · 3 contenedores</span>
+    </div>
+    <div class="tip">Esta diapositiva es rápida. No la desarrolles — el jurado puede ver el repo. Solo confirma que existe, que funciona y que está abierto.</div>
+  </div>
+</div>
+
+<!-- ══════ DIAP 8 ══════ -->
+<div class="slide-card">
+  <div class="slide-header">
+    <span class="slide-num">08</span>
+    <span class="slide-title">Cierre</span>
+    <span class="slide-time">~1 min 30 seg</span>
+  </div>
+  <div class="slide-body">
+    <div class="script">
+      "Para cerrar, les cuento lo que logramos en una oración:<br><br>
+      Convertimos <strong>más de 70 archivos dispersos del DANE, FILCO y SENA</strong> en un dashboard predictivo público que proyecta el desempleo colombiano con un error de <strong>0.43 puntos porcentuales</strong> y sin costo de acceso.<br><br>
+      Los datos siempre estuvieron ahí. Lo que faltaba era integrarlos, modelarlos y hacerlos accesibles. Eso es exactamente lo que hicimos."
+    </div>
+    <div class="warn">Después de "eso es exactamente lo que hicimos" — pausa de 2 segundos — y di "muchas gracias". No agregues nada más. El silencio es parte del cierre.</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- PREGUNTAS DEL JURADO -->
+<p style="font-size:14px;font-weight:700;color:#0b2545;margin-bottom:14px;">Preguntas más probables del jurado</p>
+
+<div class="qa">
+  <div class="qa-q">¿Por qué Holt-Winters y no una red neuronal?</div>
+  <div class="qa-a">Con 34 puntos de datos una red neuronal sobreajusta — aprende el ruido. Holt-Winters es el modelo correcto para esta cantidad de datos con tendencia y estacionalidad clara. Los resultados lo confirman: 0.43 pp de MAE.</div>
+</div>
+<div class="qa">
+  <div class="qa-q">¿Cómo garantizan que no está sobreajustado?</div>
+  <div class="qa-a">División estricta hold-out en el tiempo — el modelo nunca vio los últimos 7 meses durante el entrenamiento. Las métricas son exclusivamente del conjunto de prueba. Los parámetros α, β, γ se optimizan automáticamente, no los ajustamos manualmente.</div>
+</div>
+<div class="qa">
+  <div class="qa-q">¿Por qué los datos del SENA son solo de 2019–2020?</div>
+  <div class="qa-a">El dataset disponible en datos.gov.co con identificador 8pqf-rmzr — que cumple el requisito del concurso de estar en el portal oficial — tiene cobertura hasta 2020. Usamos ese porque es el que está disponible públicamente.</div>
+</div>
+<div class="qa">
+  <div class="qa-q">¿El dashboard se actualiza automáticamente?</div>
+  <div class="qa-a">La arquitectura está diseñada para eso. Los scripts de extracción pueden correr periódicamente y el modelo se reentrena con los nuevos datos. En la versión actual el proceso es manual — se ejecuta cuando el DANE publica un nuevo boletín — pero está listo para automatizarse.</div>
+</div>
+<div class="qa">
+  <div class="qa-q">¿Qué es PySpark y para qué lo usaron?</div>
+  <div class="qa-a">PySpark es el API de Python para Apache Spark, un motor de procesamiento distribuido. Lo usamos para procesar los 40+ Excel en paralelo y cargarlos a PostgreSQL vía JDBC. Escala sin cambios si el volumen de datos crece.</div>
+</div>
+<div class="qa">
+  <div class="qa-q">¿Qué significa el intervalo de confianza del 90%?</div>
+  <div class="qa-a">Que el valor real tiene un 90% de probabilidad de estar dentro de la banda que muestra el gráfico. Se calcula como la predicción más o menos 1.645 veces el MAE. Para el primer mes la banda es de aproximadamente ±0.7 puntos porcentuales.</div>
+</div>
+
+<hr>
+
+<!-- FRASE FINAL -->
+<div class="frase-final">
+  <p>"Convertimos <span>+70 archivos dispersos del DANE, FILCO y SENA</span> en un dashboard predictivo público que proyecta el desempleo colombiano con un error de <span>0.43 puntos porcentuales</span> y sin costo de acceso."</p>
+  <p style="font-size:12px;color:rgba(255,255,255,.5);margin-top:14px;">economia-empleo.vercel.app &nbsp;·&nbsp; youtu.be/uf618RjgYhc &nbsp;·&nbsp; github.com/andresZam12/proyectoMINTIC</p>
+</div>
+
+</body>
+</html>
